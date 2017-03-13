@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "805917342374",
+    "firebase_url": "https://linkingtalent-e8c2d.firebaseio.com",
+    "project_id": "linkingtalent-e8c2d",
+    "storage_bucket": "linkingtalent-e8c2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805917342374:android:f60a6917c48eb7cf",
+        "android_client_info": {
+          "package_name": "com.ridebooker.linkingtalent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805917342374-fn785ig3lsmhds29qth4pg43kv8tptb5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ridebooker.linkingtalent",
+            "certificate_hash": "30456dc5256bc7c6aa9f5e01560ccfcf6e84c8c4"
+          }
+        },
+        {
+          "client_id": "805917342374-q20f0oqh0kftlgacmnufminkgqfkh65i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJFeKlljv8jIfe8yGrxbSZZ3yERjzvmQ4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805917342374-q20f0oqh0kftlgacmnufminkgqfkh65i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

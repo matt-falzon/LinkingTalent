@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Linking Talent</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to Facebook -->
+    <string name="fb_login_protocol_scheme">fb1821955051411508</string>
+    <string name="facebook_app_id">1821955051411508</string>
+
+    <!-- Main menu strings -->
+
+    <!-- Settings Menu strings -->
+    <string name="action_about">About</string>
+    <string name="action_terms">Terms</string>
+    <string name="action_signout">Sign Out</string>
+
+    <!-- User Preferences -->
+    <string name="LOCAL_PREFERENCES">local_preferences</string>
+
+    <string name="key_user_id">key_user_id</string>
+    <string name="pref_user_id"></string>
+
+    <string name="key_name">key_name</string>
+    <string name="pref_name">Firstname Lastname</string>
+
+
+    <string name="pref_email">address@email.com</string>
+
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+
+</resources>
