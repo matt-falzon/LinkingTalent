@@ -17,7 +17,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:visibility="gone"/>
+
+        android:visibility="visible"/>
 
     <ScrollView
         android:id="@+id/login_form"
@@ -44,15 +45,25 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp" />
+                android:layout_marginBottom="30dp"
+                android:visibility="gone"/>
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/fb_custom_button"
+                android:layout_width="213dp"
+                android:layout_height="42dp"
+                android:src="@drawable/fb_login"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:onClick="onClickFacebook"/>
+
+            <ImageButton
+                android:id="@+id/li_login_button"
+                android:layout_width="213dp"
+                android:layout_height="42dp"
                 android:src="@drawable/linkedin_signin"
                 android:layout_gravity="center"
-                android:id="@+id/li_login_button"
-                android:padding="0dp"
+                android:layout_margin="10dp"
                 android:onClick="onClickLinkedin"/>
 
             <TextView

@@ -32,6 +32,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -87,7 +88,7 @@ public class LoginActivity extends AppCompatActivity
     //Linkedin constants
     private static final String host = "api.linkedin.com";
     private static final String topCardUrl = "https://" + host + "/v1/people/~:(id,email-address,formatted-name,phone-numbers,public-profile-url,picture-url,picture-urls::(original))";
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
+
 
     private final static Logger LOGGER = Logger.getLogger(LoginActivity.class.getName());
 
@@ -96,11 +97,13 @@ public class LoginActivity extends AppCompatActivity
     private View mLoginFormView;
     private LoginButton fbLoginButton;
     private TextView tvLogin, tvLinkedin;
+    private ProgressBar progressBar;
 
     CallbackManager cbManager;
 
     //Firebase Auth
     FirebaseAuth mFirebaseAuth;
+    //private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -118,6 +121,8 @@ public class LoginActivity extends AppCompatActivity
         mProgressView = findViewById(R.id.login_progress);
         tvLogin = (TextView) findViewById(R.id.tv_login);
         tvLinkedin = (TextView) findViewById(R.id.tv_linkedin);
+        progressBar = (ProgressBar) findViewById(R.id.login_progress);
+        progressBar.setVisibility(View.INVISIBLE);
 
         fbLoginButton.setReadPermissions("email", "public_profile");
 
@@ -130,14 +135,6 @@ public class LoginActivity extends AppCompatActivity
         {
             e.printStackTrace();
         }
-        /*
-        FirebaseOptions options = new FirebaseOptions.Builder()
-                .setCredential(FirebaseCredentials.fromCertificate(serviceAccount))
-                .setDatabaseUrl("https://<DATABASE_NAME>.firebaseio.com/")
-                .build();
-
-        FirebaseApp.initializeApp(options);
-        */
     }
 
     @Override
@@ -204,8 +201,9 @@ public class LoginActivity extends AppCompatActivity
 
                 //get access token and take to Firebase
                 handleFacebookAccessToken(AccessToken.getCurrentAccessToken());
+                //mFirebaseAuth.
 
-                LoginActivity.this.finish();
+
             }
 
 
@@ -224,27 +222,33 @@ public class LoginActivity extends AppCompatActivity
 
     //Add facebook user to Firebase Auth
     private void handleFacebookAccessToken(AccessToken token) {
-        Log.d(TAG, "handleFacebookAccessToken:" + token);
+        Log.d("", "handleFacebookAccessToken:" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mFirebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
-
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
+                        Log.d("", "signInWithCredential:onComplete:" + task.isSuccessful());
                         if (!task.isSuccessful()) {
-                            Log.w(TAG, "signInWithCredential", task.getException());
-                            Toast.makeText(LoginActivity.this, "Facebook Authentication failed.",
+                            Log.w("", "signInWithCredential", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
+                        else
+                        {
+                            progressBar.setVisibility(View.INVISIBLE);
+                            finish();
+                        }
 
-                        // ...
                     }
                 });
+    }
+
+    public void onClickFacebook(View view)
+    {
+        //progressBar.setVisibility(View.VISIBLE);
+        fbLoginButton.performClick();
     }
 
     //</editor-fold>

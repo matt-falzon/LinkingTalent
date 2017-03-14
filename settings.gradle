@@ -1,4 +1,1 @@
-include ':app', ':sampleapp', ':linkedin-sdk', ':eventsapp'
-project(':sampleapp').projectDir = new File('app/libs/linkedin-sdk/samples/sampleapp')
-project(':linkedin-sdk').projectDir = new File('app/libs/linkedin-sdk/linkedin-sdk')
-project(':eventsapp').projectDir = new File('app/libs/linkedin-sdk/samples/eventsapp')
+include ':app', ':linkedin-sdk'

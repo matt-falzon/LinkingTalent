@@ -7,10 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -28,19 +25,19 @@ import android.widget.Toast;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.ridebooker.linkingtalent.datatypes.TalentChamp;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, SharedPreferences.OnSharedPreferenceChangeListener
 {
 
     private static final String TAG = "HomeActivity";
-    private TextView tvNavName, tvNavEmail;
+    private TextView tvNavName, tvNavEmail, tvHomeName;
     private static boolean PREFERENCES_HAVE_BEEN_UPDATED = false;
+    private TalentChamp user;
 
     //Firebase
     private FirebaseAuth mFirebaseAuth;
@@ -51,6 +48,7 @@ public class HomeActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         //Initialize Firebase Variables
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -60,27 +58,8 @@ public class HomeActivity extends AppCompatActivity
         setupSharedPreferences();
         //getHash();
 
-        //check if user is loggin in and start login state listener
-        loginState();
-
-        //Go to login screen if no user is saved
-        /*
-        if(!haveUser()){
-            Intent i = new Intent(this, LoginActivity.class);
-            startActivity(i);
-        }
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+        //Fill relevent fields with user data
+        onSignedInInitialize(mFirebaseAuth.getCurrentUser());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -89,12 +68,15 @@ public class HomeActivity extends AppCompatActivity
         toggle.syncState();
 
         setupMainNav();
+
+        //check if user is loggin in and start login state listener
+        loginState();
     }
 
     @Override
-    protected void onStart()
+    protected void onResume()
     {
-        super.onStart();
+        super.onResume();
         mFirebaseAuth.addAuthStateListener(mAuthStateListener);
     }
 
@@ -141,10 +123,8 @@ public class HomeActivity extends AppCompatActivity
         tvNavName = (TextView) header.findViewById(R.id.tv_nav_header_name);
         tvNavEmail = (TextView) header.findViewById(R.id.tv_nav_header_email);
 
-        SharedPreferences prefs = getSharedPreferences(getString(R.string.LOCAL_PREFERENCES), Context.MODE_PRIVATE);
-
-        tvNavName.setText(prefs.getString(getString(R.string.key_name), "No NAME"));
-        tvNavEmail.setText(prefs.getString(getString(R.string.key_user_id), "No User ID"));
+        tvNavName.setText(user.getName());
+        tvNavEmail.setText(user.getEmail());
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -170,11 +150,7 @@ public class HomeActivity extends AppCompatActivity
                 Toast.makeText(this, "Terms", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.action_signout:
-                Toast.makeText(this, "Facebook logged out", Toast.LENGTH_SHORT).show();
-                //log out of Facebook
-                LoginManager.getInstance().logOut();
-                //log out of firebase
-                mFirebaseAuth.signOut();
+                //Toast.makeText(this, "Facebook logged out", Toast.LENGTH_SHORT).show();
 
                 //remove preferences
                 SharedPreferences sharedPrefs = getSharedPreferences(getString(R.string.LOCAL_PREFERENCES), Context.MODE_PRIVATE);
@@ -182,9 +158,14 @@ public class HomeActivity extends AppCompatActivity
                 editor.clear();
                 editor.apply();
 
+                //log out of firebase
+                mFirebaseAuth.signOut();
+
+                //log out of Facebook
+                LoginManager.getInstance().logOut();
                 //Start the login Activity again
-                Intent i = new Intent(this, LoginActivity.class);
-                startActivity(i);
+                //Intent i = new Intent(this, LoginActivity.class);
+                //startActivity(i);
                 return true;
             default:
 
@@ -207,6 +188,8 @@ public class HomeActivity extends AppCompatActivity
                 break;
             case R.id.nav_jobs:
                 Toast.makeText(this, "View Jobs", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(HomeActivity.this, JobActivity.class);
+                startActivity(i);
                 break;
             case R.id.nav_search:
                 Toast.makeText(this, "Search Jobs", Toast.LENGTH_SHORT).show();
@@ -250,36 +233,9 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View header = navigationView.getHeaderView(0);
 
-        if(key.equals(getString(R.string.key_user_id)))
-        {
-            tvNavEmail = (TextView) header.findViewById(R.id.tv_nav_header_email);
-            tvNavEmail.setText(prefs.getString(getString(R.string.key_user_id), "No User ID"));
-        }
-
-        if(key.equals(getString(R.string.key_name)))
-        {
-            tvNavName = (TextView) header.findViewById(R.id.tv_nav_header_name);
-            tvNavName.setText(prefs.getString(getString(R.string.key_name), "No NAME"));
-        }
-
     }
 
     //</editor-fold>
-
-
-
-    //Check if we have a user saved in our preferences
-    private boolean haveUser(){
-        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.LOCAL_PREFERENCES), Context.MODE_PRIVATE);
-
-        //If sharedpreferences doesnt contain a preference for the user ID return false
-        if(sharedPreferences.getString(getString(R.string.key_user_id), null) == null)
-            return false;
-
-        return true;
-
-
-    }
 
     public void loginState()
     {
@@ -288,15 +244,24 @@ public class HomeActivity extends AppCompatActivity
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    // User is signed in
-                    //onSignedInInitialize(user.getDisplayName());
+                    Toast.makeText(HomeActivity.this, "Logged in listener", Toast.LENGTH_SHORT).show();
+                    onSignedInInitialize(user);
                 } else {
                     // User is signed out
+                    Toast.makeText(HomeActivity.this, "Logged out listener", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(HomeActivity.this, LoginActivity.class);
                     startActivity(i);
                 }
             }
         };
+    }
+
+    private void onSignedInInitialize(FirebaseUser user)
+    {
+        this.user = new TalentChamp(user.getUid(), user.getDisplayName(), user.getEmail(), "location");
+        tvHomeName = (TextView) findViewById(R.id.tv_name);
+        tvHomeName.setText(this.user.getName() + "\n \n" + this.user.getId());
+
     }
 
     private void getHash(){
