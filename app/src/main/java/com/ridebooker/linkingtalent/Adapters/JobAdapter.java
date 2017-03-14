@@ -1,13 +1,11 @@
-package com.ridebooker.linkingtalent;
+package com.ridebooker.linkingtalent.Adapters;
 
 /**
  * Created by mattf on 13/03/2017.
  */
 
 import android.content.Context;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,10 +13,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ridebooker.linkingtalent.R;
 import com.ridebooker.linkingtalent.datatypes.Job;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>

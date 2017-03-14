@@ -5,7 +5,7 @@
               android:layout_height="wrap_content">
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:src="@drawable/lt_symbol"
         android:id="@+id/iv_job_image"/>
 
@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:text="Job Title"
         android:textSize="30dp"
-        android:layout_marginTop="19dp"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/iv_job_image"
         android:layout_toEndOf="@+id/iv_job_image"/>
@@ -26,9 +25,8 @@
         android:layout_height="wrap_content"
         android:text="Company Name"
         android:textSize="20dp"
-        android:layout_alignBottom="@+id/iv_job_image"
+        android:layout_below="@+id/tv_job_title"
         android:layout_toRightOf="@+id/iv_job_image"
-        android:layout_toEndOf="@+id/iv_job_image"
-        android:layout_marginBottom="22dp"/>
+        android:layout_toEndOf="@+id/iv_job_image"/>
 
 </RelativeLayout>

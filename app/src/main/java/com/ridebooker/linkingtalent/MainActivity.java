@@ -8,6 +8,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,15 +33,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ridebooker.linkingtalent.datatypes.TalentChamp;
 
-public class HomeActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, SharedPreferences.OnSharedPreferenceChangeListener
 {
 
-    private static final String TAG = "HomeActivity";
+    private static final String TAG = "MainActivity";
     private TextView tvNavName, tvNavEmail, tvHomeName;
+    //private RelativeLayout mainLayout;
     private static boolean PREFERENCES_HAVE_BEEN_UPDATED = false;
     private TalentChamp user;
-
     //Firebase
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -47,16 +50,18 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-
+        setContentView(R.layout.activity_main);
         //Initialize Firebase Variables
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        showHomeFragment();
         setupSharedPreferences();
         //getHash();
+
+        //mainLayout = (RelativeLayout) findViewById(R.id.content_main);
 
         //Fill relevent fields with user data
         onSignedInInitialize(mFirebaseAuth.getCurrentUser());
@@ -181,15 +186,18 @@ public class HomeActivity extends AppCompatActivity
     {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
         switch(id){
             case R.id.nav_home:
-                Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+                HomeFragment homeFrag = new HomeFragment();
+                transaction.replace(R.id.content_main, homeFrag, "job_fragment");
+                transaction.commit();
                 break;
             case R.id.nav_jobs:
-                Toast.makeText(this, "View Jobs", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(HomeActivity.this, JobActivity.class);
-                startActivity(i);
+                JobFragment jobFrag = new JobFragment();
+                transaction.replace(R.id.content_main, jobFrag, "job_fragment");
+                transaction.commit();
                 break;
             case R.id.nav_search:
                 Toast.makeText(this, "Search Jobs", Toast.LENGTH_SHORT).show();
@@ -237,30 +245,39 @@ public class HomeActivity extends AppCompatActivity
 
     //</editor-fold>
 
-    public void loginState()
+    private void loginState()
     {
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Toast.makeText(HomeActivity.this, "Logged in listener", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Logged in listener", Toast.LENGTH_SHORT).show();
                     onSignedInInitialize(user);
                 } else {
                     // User is signed out
-                    Toast.makeText(HomeActivity.this, "Logged out listener", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(HomeActivity.this, LoginActivity.class);
+                    Toast.makeText(MainActivity.this, "Logged out listener", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(i);
                 }
             }
         };
     }
 
+    private void showHomeFragment()
+    {
+        HomeFragment frag = new HomeFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(R.id.content_main, frag, "home_fragment");
+        transaction.commit();
+    }
+
     private void onSignedInInitialize(FirebaseUser user)
     {
         this.user = new TalentChamp(user.getUid(), user.getDisplayName(), user.getEmail(), "location");
-        tvHomeName = (TextView) findViewById(R.id.tv_name);
-        tvHomeName.setText(this.user.getName() + "\n \n" + this.user.getId());
+        //tvHomeName = (TextView) findViewById(R.id.tv_name);
+        //tvHomeName.setText(this.user.getName() + "\n \n" + this.user.getId());
 
     }
 

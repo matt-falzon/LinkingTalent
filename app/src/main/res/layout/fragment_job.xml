@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_job_id"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.ridebooker.linkingtalent.JobActivity">
+    android:layout_height="wrap_content"
+    tools:context="com.ridebooker.linkingtalent.JobFragment"
+    android:background="#FFBB00">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_job_view"
@@ -22,5 +23,4 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_email"/>
 
-
-</LinearLayout>
+</FrameLayout>

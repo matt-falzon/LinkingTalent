@@ -18,7 +18,7 @@
             android:value="@string/facebook_app_id"/>
 
         <activity
-            android:name=".HomeActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -35,11 +35,11 @@
         <!-- android:label="@string/title_activity_login" -->
         <activity
             android:name=".LoginActivity"
-            android:parentActivityName=".HomeActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ridebooker.linkingtalent.HomeActivity"/>
+                android:value="com.ridebooker.linkingtalent.MainActivity"/>
         </activity>
         <activity
             android:name="com.facebook.FacebookActivity"
