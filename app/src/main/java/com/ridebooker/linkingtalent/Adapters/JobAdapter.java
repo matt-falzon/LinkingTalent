@@ -12,7 +12,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.ridebooker.linkingtalent.MainActivity;
 import com.ridebooker.linkingtalent.R;
 import com.ridebooker.linkingtalent.datatypes.Job;
 
@@ -27,15 +29,15 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
     private int numberOfItems;
     private static int viewHolderCount;
     private ArrayList<Job> jobs;
-
+    final private ListItemClickListener mOnClickListener;
     //final private ListItemClickListener mOnClickListener;
 
     private LayoutInflater inflator;
 
     //This constructor will need to take in the DB data for jobs
-    public JobAdapter(Context context, ArrayList<Job> jobs/*ListItemClickListener listener, */)
+    public JobAdapter(Context context, ArrayList<Job> jobs, ListItemClickListener listener)
     {
-        //mOnClickListener = listener;
+        mOnClickListener = listener;
         this.jobs = jobs;
         this.context = context;
     }
@@ -73,11 +75,12 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
         void onListItemClick(int clickedItemIndex);
     }
 
+
     /* *************************************
      *          ViewHolder Class           *
      ***************************************/
     public class JobViewHolder extends RecyclerView.ViewHolder
-            implements OnClickListener
+            implements View.OnClickListener
     {
         TextView tvJobTitle, tvJobCompany;
         ImageView ivJobImage;
@@ -95,7 +98,8 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
         @Override
         public void onClick(View v)
         {
-
+            int clickedPos = getAdapterPosition();
+            mOnClickListener.onListItemClick(clickedPos);
         }
     }
 }

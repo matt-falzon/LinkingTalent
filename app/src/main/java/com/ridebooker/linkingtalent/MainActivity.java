@@ -21,7 +21,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -218,7 +217,7 @@ public class MainActivity extends AppCompatActivity
                 transaction.commit();
                 break;
             case R.id.nav_jobs:
-                JobFragment jobFrag = new JobFragment();
+                JobBoardFragment jobFrag = new JobBoardFragment();
                 transaction.replace(R.id.content_main, jobFrag, "job_fragment");
                 transaction.commit();
                 break;
