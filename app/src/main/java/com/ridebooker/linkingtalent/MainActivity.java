@@ -31,6 +31,13 @@ import java.security.NoSuchAlgorithmException;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.ridebooker.linkingtalent.datatypes.Job;
 import com.ridebooker.linkingtalent.datatypes.TalentChamp;
 
 public class MainActivity extends AppCompatActivity
@@ -41,10 +48,15 @@ public class MainActivity extends AppCompatActivity
     private TextView tvNavName, tvNavEmail, tvHomeName;
     //private RelativeLayout mainLayout;
     private static boolean PREFERENCES_HAVE_BEEN_UPDATED = false;
-    private TalentChamp user;
-    //Firebase
+    public static TalentChamp user;
+
+    //Firebase Auth
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    //Firebase Database
+    public static DatabaseReference dbRootRef = FirebaseDatabase.getInstance().getReference();
+    public static DatabaseReference dbJobRef = dbRootRef.child("job");
+    private ChildEventListener jobChildEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -78,6 +90,7 @@ public class MainActivity extends AppCompatActivity
         loginState();
     }
 
+    //<editor-fold desc="Lifecycle">
     @Override
     protected void onResume()
     {
@@ -95,16 +108,25 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onBackPressed()
+    protected void onStart()
     {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START))
+        super.onStart();
+
+        //Listener for whenever data changes in the job board
+        dbJobRef.addValueEventListener(new ValueEventListener()
         {
-            drawer.closeDrawer(GravityCompat.START);
-        } else
-        {
-            super.onBackPressed();
-        }
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError)
+            {
+
+            }
+        });
     }
 
     @Override
@@ -117,6 +139,7 @@ public class MainActivity extends AppCompatActivity
         prefs.unregisterOnSharedPreferenceChangeListener(this);
     }
 
+    //</editor-fold>
 
     //<editor-fold desc="Menu">
 
@@ -206,7 +229,9 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_create:
-                Toast.makeText(this, "New job", Toast.LENGTH_SHORT).show();
+                CreateJobFragment createFrag = new CreateJobFragment();
+                transaction.replace(R.id.content_main, createFrag, "create_fragment");
+                transaction.commit();
                 break;
             default:
                 Toast.makeText(this, "TBC", Toast.LENGTH_SHORT).show();
@@ -218,8 +243,47 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START))
+        {
+            drawer.closeDrawer(GravityCompat.START);
+        } else
+        {
+            super.onBackPressed();
+        }
+    }
+
     //</editor-fold>
 
+    //<editor-fold desc="Database">
+    private void attachDatabaseReadListener() {
+        if (jobChildEventListener == null) {
+            jobChildEventListener = new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    Job newJob = dataSnapshot.getValue(Job.class);
+
+                }
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
+                public void onChildRemoved(DataSnapshot dataSnapshot) {}
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+                public void onCancelled(DatabaseError databaseError) {}
+            };
+            dbRootRef.addChildEventListener(jobChildEventListener);
+        }
+    }
+
+    private void detachDatabaseReadListener() {
+        if (jobChildEventListener != null) {
+            dbRootRef.removeEventListener(jobChildEventListener);
+            jobChildEventListener = null;
+        }
+    }
+
+    //</editor-fold>
 
     //<editor-fold desc="SharedPreferences">
     private void setupSharedPreferences() {

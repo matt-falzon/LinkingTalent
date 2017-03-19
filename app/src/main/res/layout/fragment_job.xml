@@ -5,15 +5,7 @@
     android:id="@+id/fragment_job_id"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="com.ridebooker.linkingtalent.JobFragment"
-    android:background="#FFBB00">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_job_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
-
+    tools:context="com.ridebooker.linkingtalent.JobFragment">
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -21,6 +13,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email"/>
+        app:srcCompat="@android:drawable/ic_input_add"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_job_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
 
 </FrameLayout>

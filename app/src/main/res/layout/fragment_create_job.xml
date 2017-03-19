@@ -1,0 +1,96 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.ridebooker.linkingtalent.CreateJobFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <EditText
+        android:id="@+id/create_job_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/create_job_title_hint"
+        />
+
+    <EditText
+        android:id="@+id/create_job_company_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/create_job_company_hint"
+        />
+    <EditText
+        android:id="@+id/create_job_first_cat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/create_job_first_cat_hint"
+        />
+    <EditText
+        android:id="@+id/create_job_second_cat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/create_job_second_cat_hint"
+        />
+
+    <EditText
+        android:id="@+id/create_job_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/create_job_location_hint"
+        />
+    <EditText
+        android:id="@+id/create_job_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/create_job_descrition_hint"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <SeekBar
+            android:id="@+id/create_job_seekBar"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:minHeight="50dp"
+            android:maxHeight="80dp"
+            android:max="3000"/>
+
+        <TextView
+            android:id="@+id/create_job_tv_bounty_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:text="Set Bounty"/>
+
+    </LinearLayout>
+
+
+    <Spinner
+        android:id="@+id/create_job_min_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/pay_array">
+    </Spinner>
+
+    <Spinner
+        android:id="@+id/create_job_max_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/pay_array">
+    </Spinner>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insert Data"
+        android:id="@+id/create_job_insert_button"/>
+
+</LinearLayout>

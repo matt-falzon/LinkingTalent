@@ -1,5 +1,8 @@
 package com.ridebooker.linkingtalent.datatypes;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -8,16 +11,16 @@ import java.util.Date;
 
 public class Job
 {
-    String title;
-    String company;
-    String firstCategory;
-    String secondCategory;
-    int payMin;
-    int payMax;
-    int bounty;
-    String location;
-    String description;
-    Date postDate;
+    private String title;
+    private String company;
+    private String firstCategory;
+    private String secondCategory;
+    private int payMin;
+    private int payMax;
+    private int bounty;
+    private String location;
+    private String description;
+    private String postDate;
 
     public void setTitle(String title)
     {
@@ -33,8 +36,30 @@ public class Job
     {
         this.title = title;
         this.company = company;
-
+        this.postDate = getPostDate();
     };
+
+
+    public Job()
+    {
+        this.title = "null title";
+        this.company = "null company";
+        this.firstCategory = "null cat 1";
+        this.secondCategory = "null cat 2";
+        this.location = "null location";
+        this.description = "null job description";
+        this.postDate = getTime();
+        this.payMax = 0;
+        this.payMin = 0;
+        this.bounty = 0;
+    }
+
+    private String getTime()
+    {
+        String currentDT = DateFormat.getDateTimeInstance().format(new Date());
+
+         return currentDT;
+    }
 
     public String getTitle()
     {
@@ -81,10 +106,43 @@ public class Job
         return description;
     }
 
-    public Date getPostDate()
+    public String getPostDate()
     {
         return postDate;
     }
 
+    public void setFirstCategory(String firstCategory)
+    {
+        this.firstCategory = firstCategory;
+    }
 
+    public void setSecondCategory(String secondCategory)
+    {
+        this.secondCategory = secondCategory;
+    }
+
+    public void setPayMin(int payMin)
+    {
+        this.payMin = payMin;
+    }
+
+    public void setPayMax(int payMax)
+    {
+        this.payMax = payMax;
+    }
+
+    public void setBounty(int bounty)
+    {
+        this.bounty = bounty;
+    }
+
+    public void setLocation(String location)
+    {
+        this.location = location;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
 }

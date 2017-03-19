@@ -15,10 +15,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.ridebooker.linkingtalent.Adapters.JobAdapter;
 import com.ridebooker.linkingtalent.datatypes.Job;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class JobFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener
@@ -31,22 +37,30 @@ public class JobFragment extends Fragment implements NavigationView.OnNavigation
 
     public JobFragment(){};
 
+    private ArrayList<Job> jobs = new ArrayList();
+    private DatabaseReference ref = ((MainActivity)getActivity()).dbJobRef;
+    private ChildEventListener childEventListener;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
-        /*
-        View jobRow = inflater.inflate(R.layout.job_row, container, false);
-        recyclerView = (RecyclerView) jobRow.findViewById(R.id.rv_job_view);
-        jobAdapter = new JobAdapter(getContext(), fillDummyData());
+
+        View jobView = inflater.inflate(R.layout.fragment_job, container, false);
+        recyclerView = (RecyclerView) jobView.findViewById(R.id.rv_job_view);
+
+        getJobs();
+
+        jobAdapter = new JobAdapter(getActivity(), jobs);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         recyclerView.setAdapter(jobAdapter);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        setGui(jobView);
 
-        setGui(jobRow);
-        */
-        return inflater.inflate(R.layout.fragment_job, container, false);
+        return jobView;
     }
 
 
@@ -54,13 +68,17 @@ public class JobFragment extends Fragment implements NavigationView.OnNavigation
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+    }
 
-
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        ref.removeEventListener(childEventListener);
     }
 
     private ArrayList<Job> fillDummyData()
     {
-        ArrayList<Job> jobs = new ArrayList();
 
         Random rand = new Random();
         for(int i = 0; i < 100; i++)
@@ -70,6 +88,59 @@ public class JobFragment extends Fragment implements NavigationView.OnNavigation
         }
 
         return jobs;
+    }
+
+    private void getJobs()
+    {
+        childEventListener = new ChildEventListener()
+        {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s)
+            {
+                Job job = dataSnapshot.getValue(Job.class);
+                addJob(job);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s)
+            {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot)
+            {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s)
+            {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError)
+            {
+
+            }
+        };
+        ref.addChildEventListener(childEventListener);
+    }
+
+
+    // Adds a new job to the recycler view
+    public void addJob(Job newJob)
+    {
+        jobs.add(newJob);
+        jobAdapter.notifyItemInserted(jobs.size() - 1);
+    }
+
+    public ArrayList<Job> saveJobData()
+    {
+        Job newJob = new Job("JobTitle", "Company Name");
+        ref.push().setValue(newJob);
+        return null;
     }
 
     private void setGui(View view)

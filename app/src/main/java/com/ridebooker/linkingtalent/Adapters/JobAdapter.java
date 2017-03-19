@@ -57,10 +57,11 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
     @Override
     public void onBindViewHolder(JobViewHolder holder, int position)
     {
-        Random rand = new Random();
-
-        holder.tvJobTitle.setText(jobs.get(rand.nextInt(5)).getTitle());
-        holder.tvJobCompany.setText(jobs.get(rand.nextInt(5)).getCompany());
+        for(int i = 0; i < jobs.size(); i++)
+        {
+            holder.tvJobTitle.setText(jobs.get(i).getTitle());
+            holder.tvJobTitle.setText(jobs.get(i).getCompany());
+        }
         //holder.ivJobImage.setImageResource(icon id here);
     }
 
