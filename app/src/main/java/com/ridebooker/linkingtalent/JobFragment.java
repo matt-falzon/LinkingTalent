@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,12 +20,16 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.ridebooker.linkingtalent.Adapters.JobAdapter;
 import com.ridebooker.linkingtalent.datatypes.Job;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class JobFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener
@@ -32,14 +37,11 @@ public class JobFragment extends Fragment implements NavigationView.OnNavigation
     private RecyclerView recyclerView;
     private JobAdapter jobAdapter;
 
-    private String[] companyNames = {"Sony", "Burton", "Apple", "Powerade", "Ridebooker", "Empowered Startups"};
-    private String[] jobTitles = {"Chef", "Developer", "Photographer", "Painter", "Doctor", "Server"};
-
     public JobFragment(){};
 
     private ArrayList<Job> jobs = new ArrayList();
     private DatabaseReference ref = ((MainActivity)getActivity()).dbJobRef;
-    private ChildEventListener childEventListener;
+    private ValueEventListener valueEventListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,49 +76,28 @@ public class JobFragment extends Fragment implements NavigationView.OnNavigation
     public void onStop()
     {
         super.onStop();
-        ref.removeEventListener(childEventListener);
-    }
-
-    private ArrayList<Job> fillDummyData()
-    {
-
-        Random rand = new Random();
-        for(int i = 0; i < 100; i++)
-        {
-            Job newJob = new Job(jobTitles[rand.nextInt(5)], companyNames[rand.nextInt(5)]);
-            jobs.add(newJob);
-        }
-
-        return jobs;
+        ref.removeEventListener(valueEventListener);
     }
 
     private void getJobs()
     {
-        childEventListener = new ChildEventListener()
+        valueEventListener = new ValueEventListener()
         {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s)
+            public void onDataChange(DataSnapshot dataSnapshot)
             {
-                Job job = dataSnapshot.getValue(Job.class);
-                addJob(job);
-            }
+                //ArrayList<Job> newJobs = new ArrayList<>();
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                for (DataSnapshot child: children)
+                {
+                    Job j = child.getValue(Job.class);
+                    Log.d("Child", j.getTitle());
+                    jobs.add(j);
+                    //addJob(j);
+                }
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s)
-            {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot)
-            {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s)
-            {
-
+                //addJobs(newJobs);
+                jobAdapter.notifyItemInserted(jobs.size() - 1);
             }
 
             @Override
@@ -125,29 +106,11 @@ public class JobFragment extends Fragment implements NavigationView.OnNavigation
 
             }
         };
-        ref.addChildEventListener(childEventListener);
-    }
-
-
-    // Adds a new job to the recycler view
-    public void addJob(Job newJob)
-    {
-        jobs.add(newJob);
-        jobAdapter.notifyItemInserted(jobs.size() - 1);
-    }
-
-    public ArrayList<Job> saveJobData()
-    {
-        Job newJob = new Job("JobTitle", "Company Name");
-        ref.push().setValue(newJob);
-        return null;
+        ref.addValueEventListener(valueEventListener);
     }
 
     private void setGui(View view)
     {
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener()
         {
@@ -158,14 +121,6 @@ public class JobFragment extends Fragment implements NavigationView.OnNavigation
                         .setAction("Action", null).show();
             }
         });
-        /*
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);*/
     }
 
     @Override

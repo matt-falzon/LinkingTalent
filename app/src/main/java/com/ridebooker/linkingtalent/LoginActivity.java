@@ -53,12 +53,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+/*
 import com.linkedin.platform.APIHelper;
 import com.linkedin.platform.LISession;
 import com.linkedin.platform.LISessionManager;
 import com.linkedin.platform.errors.LIAuthError;
 import com.linkedin.platform.listeners.AuthListener;
 import com.linkedin.platform.utils.Scope;
+import com.linkedin.platform.APIHelper;
+import com.linkedin.platform.LISessionManager;
+import com.linkedin.platform.errors.LIApiError;
+import com.linkedin.platform.listeners.ApiListener;
+import com.linkedin.platform.listeners.ApiResponse;*/
 
 import java.io.Console;
 import java.io.FileInputStream;
@@ -67,11 +73,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import com.linkedin.platform.APIHelper;
-import com.linkedin.platform.LISessionManager;
-import com.linkedin.platform.errors.LIApiError;
-import com.linkedin.platform.listeners.ApiListener;
-import com.linkedin.platform.listeners.ApiResponse;
+
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -165,7 +167,7 @@ public class LoginActivity extends AppCompatActivity
         }
         else//Linkedin request code
         {
-            LISessionManager.getInstance(getApplicationContext()).onActivityResult(this, requestCode, resultCode, data);
+            //LISessionManager.getInstance(getApplicationContext()).onActivityResult(this, requestCode, resultCode, data);
         }
     }
 
@@ -252,7 +254,7 @@ public class LoginActivity extends AppCompatActivity
     }
 
     //</editor-fold>
-
+/*
     //<editor-fold desc="Linkedin">
 
     public void onClickLinkedin(View view){
@@ -359,6 +361,6 @@ public class LoginActivity extends AppCompatActivity
     }
 
     //</editor-fold>
-
+*/
 }
 

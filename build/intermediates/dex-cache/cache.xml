@@ -3,15 +3,6 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_ef808375ce1134eb9a9d10a9ba89974fe1fd1b10\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
@@ -21,12 +12,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\linkedin-sdk\build\intermediates\bundles\default\libs\volley.jar"
+        jar="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="665cdcc34ce1b904988530a63132163e8fc1efba">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\8\volley_2a7e1db920f9e5b7c4a297bbb60f245f82bb5233\classes.dex" />
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_ef808375ce1134eb9a9d10a9ba89974fe1fd1b10\classes.dex" />
     </item>
 
 </items>
