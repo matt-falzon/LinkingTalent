@@ -60,8 +60,8 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
     public void onBindViewHolder(JobViewHolder holder, int position)
     {
             holder.tvJobTitle.setText(jobs.get(position).getTitle());
-            holder.tvJobTitle.setText(jobs.get(position).getCompany());
-
+            holder.tvJobCompany.setText(jobs.get(position).getCompany());
+            holder.key = jobs.get(position).getKey();
         //holder.ivJobImage.setImageResource(icon id here);
     }
 
@@ -72,7 +72,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
     }
 
     public interface ListItemClickListener {
-        void onListItemClick(int clickedItemIndex);
+        void onListItemClick(int clickedItemIndex, String id);
     }
 
 
@@ -84,6 +84,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
     {
         TextView tvJobTitle, tvJobCompany;
         ImageView ivJobImage;
+        String key;
 
         public JobViewHolder(View itemView) {
             super(itemView);
@@ -99,7 +100,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
         public void onClick(View v)
         {
             int clickedPos = getAdapterPosition();
-            mOnClickListener.onListItemClick(clickedPos);
+            mOnClickListener.onListItemClick(clickedPos, key);
         }
     }
 }

@@ -1,32 +1,72 @@
 package com.ridebooker.linkingtalent;
 
 
+import android.annotation.TargetApi;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
+import android.net.Uri;
+import android.nfc.Tag;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.identity.intents.Address;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+
 import com.ridebooker.linkingtalent.datatypes.Job;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
+import static com.google.android.gms.cast.CastRemoteDisplayLocalService.startService;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CreateJobFragment extends Fragment
+public class CreateJobFragment extends Fragment implements
+        ConnectionCallbacks, OnConnectionFailedListener
 {
 
+    private static final String TAG = "Create Job Fragment";
+
     Button btnButton;
-    EditText etCompany, etTitle, etFirstCat, etSecondcat, etBounty, etLocation, etDescription;
+    EditText etCompany, etTitle, etFirstCat, etSecondcat, etDescription;
     SeekBar bountySeekBar;
+    ImageButton btnLocation;
     Spinner minSpinner, maxSpinner;
-    TextView tvBounty;
+    TextView tvBounty, tvLocation;
+
+
+    protected GoogleApiClient googleApiClient;
+    protected Location location;
+    public static final int MY_PERMISSION_ACCESS_COARSE_LOCATION = 11;
+    Geocoder geocoder;
 
     public CreateJobFragment()
     {
@@ -45,18 +85,32 @@ public class CreateJobFragment extends Fragment
         etTitle = (EditText) view.findViewById(R.id.create_job_title);
         etFirstCat = (EditText) view.findViewById(R.id.create_job_first_cat);
         etSecondcat = (EditText) view.findViewById(R.id.create_job_second_cat);
-        etLocation = (EditText) view.findViewById(R.id.create_job_location);
+        tvLocation = (TextView) view.findViewById(R.id.create_job_location);
         etDescription = (EditText) view.findViewById(R.id.create_job_description);
         bountySeekBar = (SeekBar) view.findViewById(R.id.create_job_seekBar);
         minSpinner = (Spinner) view.findViewById(R.id.create_job_min_spinner);
         maxSpinner = (Spinner) view.findViewById(R.id.create_job_max_spinner);
         tvBounty = (TextView) view.findViewById(R.id.create_job_tv_bounty_value);
+        btnLocation = (ImageButton) view.findViewById(R.id.location_button);
 
         initGui();
 
+        buildGoogleApiClient();
+
+        geocoder = new Geocoder(getContext(), Locale.getDefault());
         // Inflate the layout for this fragment
         return view;
     }
+
+    protected synchronized void buildGoogleApiClient()
+    {
+        googleApiClient = new GoogleApiClient.Builder(getContext())
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+    }
+
 
     private void initGui()
     {
@@ -92,7 +146,7 @@ public class CreateJobFragment extends Fragment
                     min = Integer.parseInt(minSpinner.getSelectedItem().toString());
                     max = Integer.parseInt(maxSpinner.getSelectedItem().toString());
 
-                    Job j = new Job(etTitle.getText().toString(), etCompany.getText().toString());
+                    Job j = new Job(MainActivity.user.getId(), etTitle.getText().toString(), etCompany.getText().toString());
 
                     j.setFirstCategory(etFirstCat.getText().toString());
                     j.setSecondCategory(etSecondcat.getText().toString());
@@ -100,31 +154,133 @@ public class CreateJobFragment extends Fragment
                     j.setPayMax(max);
                     j.setBounty(bountySeekBar.getProgress());
                     j.setDescription(etDescription.getText().toString());
-                    j.setLocation(etLocation.getText().toString());
-                    MainActivity.dbJobRef.push().setValue(j);
+                    j.setLocation(tvLocation.getText().toString());
+
+                    //store unique key
+                    String key = MainActivity.dbJobRef.push().getKey();
+                    j.setKey(key);
+
+                    //push job to database
+                    MainActivity.dbJobRef.child(key).setValue(j);
                     Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
-                }
-                else
+                } else
                 {
                     Toast.makeText(getContext(), "Field empty", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+        btnLocation.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                getLocation();
+            }
+        });
     }
+
 
     private boolean checkFields()
     {
         if (etDescription.getText().toString().matches("") ||
-                etLocation.getText().toString().matches("") ||
+                tvLocation.getText().toString().matches("") ||
                 etSecondcat.getText().toString().matches("") ||
                 etFirstCat.getText().toString().matches("") ||
                 etTitle.getText().toString().matches("") ||
                 etCompany.getText().toString().matches("") ||
-                tvBounty.getText().toString().matches("")){
+                tvBounty.getText().toString().matches(""))
+        {
             return false;
         }
         return true;
 
     }
 
+    @Override
+    public void onConnected(@Nullable Bundle bundle)
+    {
+        // Provides a simple way of getting a device's location and is well suited for
+        // applications that do not require a fine-grained location and that do not need location
+        // updates. Gets the best and most recent location currently available, which may be null
+        // in rare cases when a location is not available.
+        getLocation();
+
+    }
+
+    private void checkLocationPermission()
+    {
+        if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+        {
+            requestPermissions(new String[] {  android.Manifest.permission.ACCESS_COARSE_LOCATION  },
+                    MY_PERMISSION_ACCESS_COARSE_LOCATION );
+        }
+    }
+
+    public void getLocation()
+    {
+        checkLocationPermission();
+
+        location = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+
+        if (location != null) {
+            try
+            {
+                List<android.location.Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                Log.d(TAG, "onConnected: ");
+                Log.d(TAG, "City: " + addresses.get(0).getLocality());
+                Log.d(TAG, "Country: " + addresses.get(0).getCountryName());
+                tvLocation.setText(addresses.get(0).getLocality() + ", " + addresses.get(0).getCountryName());
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        } else {
+            Log.d(TAG, "No Location Detected: ");
+        }
+    }
+
+    @Override
+    public void onConnectionSuspended(int i)
+    {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
+    {
+
+    }
+
+    //Gets the location once the user accepts location permission
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == MY_PERMISSION_ACCESS_COARSE_LOCATION)
+        {
+            getLocation();
+        }
+    }
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        googleApiClient.connect();
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+
+    }
+
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        googleApiClient.disconnect();
+    }
 }

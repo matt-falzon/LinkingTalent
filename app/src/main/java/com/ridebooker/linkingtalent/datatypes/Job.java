@@ -11,6 +11,8 @@ import java.util.Date;
 
 public class Job
 {
+    private String id;
+    private String key;
     private String title;
     private String company;
     private String firstCategory;
@@ -32,17 +34,30 @@ public class Job
         this.company = company;
     }
 
-    public Job(String title, String company)
+    public Job(String id, String title, String company)
     {
+        this.id = id;
         this.title = title;
         this.company = company;
         this.postDate = getPostDate();
     };
 
 
+    public String getKey()
+    {
+        return key;
+    }
+
+    public void setKey(String key)
+    {
+
+        this.key = key;
+    }
+
     public Job()
     {
         this.title = "null title";
+
         this.company = "null company";
         this.firstCategory = "null cat 1";
         this.secondCategory = "null cat 2";
@@ -144,5 +159,10 @@ public class Job
     public void setDescription(String description)
     {
         this.description = description;
+    }
+
+    public String getId()
+    {
+        return id;
     }
 }

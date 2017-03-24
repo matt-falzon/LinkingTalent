@@ -55,7 +55,9 @@ public class MainActivity extends AppCompatActivity
     //Firebase Database
     public static DatabaseReference dbRootRef = FirebaseDatabase.getInstance().getReference();
     public static DatabaseReference dbJobRef = dbRootRef.child("job");
+    public static DatabaseReference dbUsersRef = dbRootRef.child("users");
     private ChildEventListener jobChildEventListener;
+    public boolean viewingJob = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -67,15 +69,11 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        showHomeFragment();
         setupSharedPreferences();
-        //getHash();
-
-        //mainLayout = (RelativeLayout) findViewById(R.id.content_main);
 
         //Fill relevent fields with user data
-        onSignedInInitialize(mFirebaseAuth.getCurrentUser());
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -83,10 +81,12 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        setupMainNav();
+
 
         //check if user is loggin in and start login state listener
         loginState();
+
+        //setupMainNav();
     }
 
     //<editor-fold desc="Lifecycle">
@@ -149,9 +149,8 @@ public class MainActivity extends AppCompatActivity
 
         tvNavName = (TextView) header.findViewById(R.id.tv_nav_header_name);
         tvNavEmail = (TextView) header.findViewById(R.id.tv_nav_header_email);
-
-        tvNavName.setText(user.getName());
-        tvNavEmail.setText(user.getEmail());
+            tvNavName.setText(user.getName());
+            tvNavEmail.setText(user.getEmail());
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -177,7 +176,6 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this, "Terms", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.action_signout:
-                //Toast.makeText(this, "Facebook logged out", Toast.LENGTH_SHORT).show();
 
                 //remove preferences
                 SharedPreferences sharedPrefs = getSharedPreferences(getString(R.string.LOCAL_PREFERENCES), Context.MODE_PRIVATE);
@@ -187,12 +185,9 @@ public class MainActivity extends AppCompatActivity
 
                 //log out of firebase
                 mFirebaseAuth.signOut();
-
                 //log out of Facebook
                 LoginManager.getInstance().logOut();
-                //Start the login Activity again
-                //Intent i = new Intent(this, LoginActivity.class);
-                //startActivity(i);
+
                 return true;
             default:
 
@@ -242,6 +237,22 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void viewJob(String jobKey)
+    {
+        viewingJob = true;
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        ViewJobFragment viewJobFrag = new ViewJobFragment();
+        Bundle b = new Bundle();
+        b.putString("key", jobKey);
+        viewJobFrag.setArguments(b);
+        FragmentTransaction ft = fragmentManager.beginTransaction();;
+        ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        ft.addToBackStack("jobBoard");
+        ft.replace(R.id.content_main, viewJobFrag);
+        ft.commit();
+    }
+
     @Override
     public void onBackPressed()
     {
@@ -249,7 +260,20 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START))
         {
             drawer.closeDrawer(GravityCompat.START);
-        } else
+        }
+        else if(viewingJob == true)
+        {
+            viewingJob = false;
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            JobBoardFragment jobBoardFrag = new JobBoardFragment();
+            FragmentTransaction ft = fragmentManager.beginTransaction();;
+            ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+            ft.addToBackStack("jobBoard");
+            ft.replace(R.id.content_main, jobBoardFrag);
+            ft.commit();
+
+        }
+        else
         {
             super.onBackPressed();
         }
@@ -294,7 +318,6 @@ public class MainActivity extends AppCompatActivity
         //Ensures the users preferences are private
         SharedPreferences prefs = getSharedPreferences(getString(R.string.LOCAL_PREFERENCES), Context.MODE_PRIVATE);
         // Register the listener
-        //tvNavName.setText(prefs.getString(getString(R.string.key_name), null));
         prefs.registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -315,11 +338,11 @@ public class MainActivity extends AppCompatActivity
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Toast.makeText(MainActivity.this, "Logged in listener", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "onAuthStateChanged: Logged in");
                     onSignedInInitialize(user);
                 } else {
                     // User is signed out
-                    Toast.makeText(MainActivity.this, "Logged out listener", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "onAuthStateChanged: Logged out");
                     Intent i = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(i);
                 }
@@ -338,11 +361,12 @@ public class MainActivity extends AppCompatActivity
 
     private void onSignedInInitialize(FirebaseUser user)
     {
-        this.user = new TalentChamp(user.getUid(), user.getDisplayName(), user.getEmail(), "location");
-        //tvHomeName = (TextView) findViewById(R.id.tv_name);
-        //tvHomeName.setText(this.user.getName() + "\n \n" + this.user.getId());
-
+        this.user = new TalentChamp(user.getUid(), user.getDisplayName(), user.getEmail(), "location", true);
+        dbUsersRef.child(user.getUid().toString()).setValue(this.user);
+        setupMainNav();
+        showHomeFragment();
     }
+
 
     private void getHash(){
         try {

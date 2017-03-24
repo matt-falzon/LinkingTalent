@@ -6,17 +6,11 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <Button
-        android:id="@+id/db_button"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:text="insert into db"/>
-
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvHomeTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Home Fragment"
-        android:textSize="30dp"/>
+        android:textSize="22dp"/>
 
 </LinearLayout>

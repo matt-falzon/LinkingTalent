@@ -6,6 +6,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -109,7 +111,7 @@ public class JobBoardFragment extends Fragment implements NavigationView.OnNavig
             @Override
             public void onClick(View view)
             {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Create Job", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -122,11 +124,16 @@ public class JobBoardFragment extends Fragment implements NavigationView.OnNavig
     }
 
     @Override
-    public void onListItemClick(int clickedItemIndex)
+    public void onListItemClick(int clickedItemIndex, String jobKey)
     {
-        String message = "Item clicked: " + Integer.toString(clickedItemIndex);
+        String message = jobKey;
 
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+
+        //use key to open job fragment
+        //getView().setVisibility(View.GONE);
+        ((MainActivity)getActivity()).viewJob(jobKey);
+
     }
 
     /*

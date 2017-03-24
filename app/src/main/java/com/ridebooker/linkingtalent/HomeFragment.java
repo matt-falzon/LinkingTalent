@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.ridebooker.linkingtalent.datatypes.Job;
 
@@ -17,7 +18,8 @@ import com.ridebooker.linkingtalent.datatypes.Job;
  */
 public class HomeFragment extends Fragment
 {
-Button dbButton;
+
+    TextView tvHomeTitle;
 
     public HomeFragment()
     {
@@ -29,21 +31,13 @@ Button dbButton;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View homeView = inflater.inflate(R.layout.fragment_home, container, false);
-        dbButton = (Button) homeView.findViewById(R.id.db_button);
-        dbButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Job newJob = new Job("Job Title", "Company name");
-                Job blankJob = new Job();
-                MainActivity.dbJobRef.push().setValue(blankJob);
-                MainActivity.dbJobRef.push().setValue(newJob);
-            }
-        });
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        tvHomeTitle = (TextView) view.findViewById(R.id.tvHomeTitle);
+
+        tvHomeTitle.setText("Welcome back " + MainActivity.user.getName() + "!");
         // Inflate the layout for this fragment
-        return homeView;
+        return view;
     }
 
     @Override
@@ -58,4 +52,6 @@ Button dbButton;
         super.onCreate(savedInstanceState);
 
     }
+
+
 }

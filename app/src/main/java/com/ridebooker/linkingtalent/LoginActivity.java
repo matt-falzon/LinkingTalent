@@ -98,7 +98,6 @@ public class LoginActivity extends AppCompatActivity
     private View mProgressView;
     private View mLoginFormView;
     private LoginButton fbLoginButton;
-    private TextView tvLogin, tvLinkedin;
     private ProgressBar progressBar;
 
     CallbackManager cbManager;
@@ -121,8 +120,6 @@ public class LoginActivity extends AppCompatActivity
         fbLoginButton = (LoginButton) findViewById(R.id.fb_login_button);
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-        tvLogin = (TextView) findViewById(R.id.tv_login);
-        tvLinkedin = (TextView) findViewById(R.id.tv_linkedin);
         progressBar = (ProgressBar) findViewById(R.id.login_progress);
         progressBar.setVisibility(View.INVISIBLE);
 
@@ -211,12 +208,12 @@ public class LoginActivity extends AppCompatActivity
 
             @Override
             public void onCancel() {
-                tvLogin.setText("Facebook Login Cancelled");
+                Toast.makeText(getBaseContext(), "Login Cancelled", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(FacebookException exception) {
-                tvLogin.setText("Facebook Login Failed");
+                Toast.makeText(getBaseContext(), "Login Failed", Toast.LENGTH_SHORT).show();
 
             }
         });

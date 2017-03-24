@@ -31,47 +31,39 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hello"
-                android:textSize="16dp"
-                android:id="@+id/tv_login"/>
-
-
             <com.facebook.login.widget.LoginButton
                 android:id="@+id/fb_login_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
+                android:layout_marginTop="30dp"
                 android:visibility="gone"/>
 
             <ImageButton
                 android:id="@+id/fb_custom_button"
                 android:layout_width="213dp"
                 android:layout_height="42dp"
-                android:src="@drawable/fb_login"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:onClick="onClickFacebook"/>
+                android:onClick="onClickFacebook"
+                android:src="@drawable/fb_login"/>
 
             <ImageButton
                 android:id="@+id/li_login_button"
                 android:layout_width="213dp"
                 android:layout_height="42dp"
-                android:src="@drawable/linkedin_signin"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:onClick="onClickLinkedin"/>
+                android:onClick="onClickLinkedin"
+                android:src="@drawable/linkedin_signin"/>
 
             <TextView
+                android:id="@+id/tv_linkedin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Linkedin"
-                android:textSize="16dp"
-                android:id="@+id/tv_linkedin"/>
+                android:textSize="16dp"/>
 
         </LinearLayout>
     </ScrollView>
