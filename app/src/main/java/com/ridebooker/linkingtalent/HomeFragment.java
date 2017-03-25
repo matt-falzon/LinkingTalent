@@ -39,8 +39,6 @@ public class HomeFragment extends Fragment
 
         tvHomeTitle.setText("Welcome back " + MainActivity.user.getName() + "!");
         // Inflate the layout for this fragment
-        tvfacebookimg.setText(getArguments().getString("facebook"));
-        Log.d("sss", tvfacebookimg.getText().toString());
         return view;
     }
 

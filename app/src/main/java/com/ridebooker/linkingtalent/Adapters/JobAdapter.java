@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.ridebooker.linkingtalent.MainActivity;
 import com.ridebooker.linkingtalent.R;
 import com.ridebooker.linkingtalent.datatypes.Job;
@@ -61,6 +63,15 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
     {
             holder.tvJobTitle.setText(jobs.get(position).getTitle());
             holder.tvJobCompany.setText(jobs.get(position).getCompany());
+
+            if(jobs.get(position).getImageUrl() != null)
+            {
+                Glide.with(holder.ivJobImage.getContext())
+                        .using(new FirebaseImageLoader())
+                        .load(MainActivity.firebaseRootStorageRef.child(jobs.get(position).getImageUrl()))
+                        .into(holder.ivJobImage);
+            }
+
             holder.key = jobs.get(position).getKey();
         //holder.ivJobImage.setImageResource(icon id here);
     }
