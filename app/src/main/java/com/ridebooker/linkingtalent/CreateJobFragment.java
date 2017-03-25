@@ -37,6 +37,10 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.ridebooker.linkingtalent.datatypes.Job;
 
 import java.io.IOException;
@@ -54,19 +58,23 @@ public class CreateJobFragment extends Fragment implements
 {
 
     private static final String TAG = "Create Job Fragment";
+    private static final int RC_PHOTO_PICKER = 1234;
 
     Button btnButton;
     EditText etCompany, etTitle, etFirstCat, etSecondcat, etDescription;
     SeekBar bountySeekBar;
-    ImageButton btnLocation;
+    ImageButton btnLocation, btnPhotoPicker;
     Spinner minSpinner, maxSpinner;
     TextView tvBounty, tvLocation;
 
+    private Uri selectedImageUri;
 
     protected GoogleApiClient googleApiClient;
     protected Location location;
     public static final int MY_PERMISSION_ACCESS_COARSE_LOCATION = 11;
     Geocoder geocoder;
+
+    private final Job j = new Job(MainActivity.user.getId());
 
     public CreateJobFragment()
     {
@@ -91,7 +99,8 @@ public class CreateJobFragment extends Fragment implements
         minSpinner = (Spinner) view.findViewById(R.id.create_job_min_spinner);
         maxSpinner = (Spinner) view.findViewById(R.id.create_job_max_spinner);
         tvBounty = (TextView) view.findViewById(R.id.create_job_tv_bounty_value);
-        btnLocation = (ImageButton) view.findViewById(R.id.location_button);
+        btnLocation = (ImageButton) view.findViewById(R.id.create_job_location_button);
+        btnPhotoPicker = (ImageButton) view.findViewById(R.id.create_job_photo_picker);
 
         initGui();
 
@@ -146,7 +155,8 @@ public class CreateJobFragment extends Fragment implements
                     min = Integer.parseInt(minSpinner.getSelectedItem().toString());
                     max = Integer.parseInt(maxSpinner.getSelectedItem().toString());
 
-                    Job j = new Job(MainActivity.user.getId(), etTitle.getText().toString(), etCompany.getText().toString());
+                    j.setTitle(etTitle.getText().toString());
+                    j.setCompany(etCompany.getText().toString());
 
                     j.setFirstCategory(etFirstCat.getText().toString());
                     j.setSecondCategory(etSecondcat.getText().toString());
@@ -157,12 +167,16 @@ public class CreateJobFragment extends Fragment implements
                     j.setLocation(tvLocation.getText().toString());
 
                     //store unique key
-                    String key = MainActivity.dbJobRef.push().getKey();
+                    final String key = MainActivity.dbJobRef.push().getKey();
                     j.setKey(key);
+
 
                     //push job to database
                     MainActivity.dbJobRef.child(key).setValue(j);
-                    Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
+
+                   //open the view job fragment passing it the key of this job
+                    ((MainActivity)getActivity()).viewJob(key);
+
                 } else
                 {
                     Toast.makeText(getContext(), "Field empty", Toast.LENGTH_SHORT).show();
@@ -176,6 +190,19 @@ public class CreateJobFragment extends Fragment implements
             public void onClick(View v)
             {
                 getLocation();
+            }
+        });
+
+
+        btnPhotoPicker.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/jpeg");
+                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+                startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
             }
         });
     }
@@ -194,6 +221,34 @@ public class CreateJobFragment extends Fragment implements
             return false;
         }
         return true;
+
+    }
+
+    private void uploadImage()
+    {
+        btnButton.setVisibility(View.INVISIBLE);
+
+        StorageReference photoRef = MainActivity.firebaseRootStorageRef.child(selectedImageUri.getLastPathSegment());
+
+        UploadTask uploadTask = photoRef.putFile(selectedImageUri);
+        // Upload file to Firebase Storage
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
+        {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+            {
+                Uri downloadUri = taskSnapshot.getDownloadUrl();
+                j.setImageUrl(downloadUri.getLastPathSegment().toString());
+                btnButton.setVisibility(View.VISIBLE);
+            }
+        }).addOnFailureListener(new OnFailureListener()
+        {
+            @Override
+            public void onFailure(@NonNull Exception e)
+            {
+                Toast.makeText(getContext(), "Failed to upload Photo", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -260,6 +315,17 @@ public class CreateJobFragment extends Fragment implements
         if(requestCode == MY_PERMISSION_ACCESS_COARSE_LOCATION)
         {
             getLocation();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_PHOTO_PICKER && resultCode == -1) {
+            //selectedImageUri is the url for the image on the device
+                selectedImageUri = data.getData();
+            if(selectedImageUri != null)
+                uploadImage();
         }
     }
 

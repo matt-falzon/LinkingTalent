@@ -11,11 +11,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +35,7 @@ public class ViewJobFragment extends Fragment
 {
 
     private TextView tvTitle, tvCompany, tvFirstCat, tvSecondCat, tvLocation, tvDescription, tvPayMin, tvPayMax, tvBounty;
+    private ImageView imgJob;
     private String key;
     private DatabaseReference ref = ((MainActivity)getActivity()).dbJobRef;
     private ValueEventListener valueEventListener;
@@ -66,6 +70,7 @@ public class ViewJobFragment extends Fragment
         tvPayMin = (TextView) view.findViewById(R.id.view_job_min);
         tvPayMax = (TextView) view.findViewById(R.id.view_job_max);
         tvBounty = (TextView) view.findViewById(R.id.view_job_bounty_value);
+        imgJob = (ImageView) view.findViewById(R.id.view_job_image);
 
         return view;
     }
@@ -94,6 +99,15 @@ public class ViewJobFragment extends Fragment
                 tvPayMax.setText("$" + Integer.toString(viewedJob.getPayMax()));
                 tvPayMin.setText("$" + Integer.toString(viewedJob.getPayMin()));
                 tvDescription.setText(viewedJob.getDescription());
+
+                //check if there is an image with this job
+                if(viewedJob.getImageUrl() != null)
+                {
+                    Glide.with(imgJob.getContext())
+                            .using(new FirebaseImageLoader())
+                            .load(MainActivity.firebaseRootStorageRef.child(viewedJob.getImageUrl()))
+                            .into(imgJob);
+                }
             }
 
             @Override

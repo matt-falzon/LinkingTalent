@@ -87,10 +87,7 @@ public class JobBoardFragment extends Fragment implements NavigationView.OnNavig
                     Job j = child.getValue(Job.class);
                     Log.d("Child", j.getTitle());
                     jobs.add(j);
-                    //addJob(j);
                 }
-
-                //addJobs(newJobs);
                 jobAdapter.notifyItemInserted(jobs.size() - 1);
             }
 
@@ -131,7 +128,6 @@ public class JobBoardFragment extends Fragment implements NavigationView.OnNavig
         //Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
 
         //use key to open job fragment
-        //getView().setVisibility(View.GONE);
         ((MainActivity)getActivity()).viewJob(jobKey);
 
     }

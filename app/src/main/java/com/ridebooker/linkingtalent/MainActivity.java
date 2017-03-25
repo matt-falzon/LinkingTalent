@@ -21,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,15 +37,19 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.ridebooker.linkingtalent.datatypes.Job;
 import com.ridebooker.linkingtalent.datatypes.TalentChamp;
+import com.ridebooker.linkingtalent.Helpers.ImageLoadTask;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, SharedPreferences.OnSharedPreferenceChangeListener
 {
 
     private static final String TAG = "MainActivity";
-    private TextView tvNavName, tvNavEmail, tvHomeName;
+    private TextView tvNavName, tvNavEmail;
+    private ImageView imgNav;
     //private RelativeLayout mainLayout;
     private static boolean PREFERENCES_HAVE_BEEN_UPDATED = false;
     public static TalentChamp user;
@@ -57,6 +62,11 @@ public class MainActivity extends AppCompatActivity
     public static DatabaseReference dbJobRef = dbRootRef.child("job");
     public static DatabaseReference dbUsersRef = dbRootRef.child("users");
     private ChildEventListener jobChildEventListener;
+    //Firebase Storage
+    private FirebaseStorage firebaseStorage;
+    public static StorageReference firebaseRootStorageRef;
+    public static StorageReference firebaseCompanyImageRef;
+    public static StorageReference firebaseProfileImageRef;
     public boolean viewingJob = false;
 
     @Override
@@ -66,15 +76,17 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         //Initialize Firebase Variables
         mFirebaseAuth = FirebaseAuth.getInstance();
+        //Firebase storage references
+        firebaseStorage = FirebaseStorage.getInstance();
+        firebaseRootStorageRef = firebaseStorage.getReference();
+        firebaseCompanyImageRef = firebaseStorage.getReference().child("company_images");
+        firebaseProfileImageRef = firebaseStorage.getReference().child("profile_images");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setupSharedPreferences();
 
-        //Fill relevent fields with user data
-
-
-
+        //Navigation drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -149,8 +161,12 @@ public class MainActivity extends AppCompatActivity
 
         tvNavName = (TextView) header.findViewById(R.id.tv_nav_header_name);
         tvNavEmail = (TextView) header.findViewById(R.id.tv_nav_header_email);
+        imgNav = (ImageView) header.findViewById(R.id.nav_image);
             tvNavName.setText(user.getName());
             tvNavEmail.setText(user.getEmail());
+        SharedPreferences sharedPrefs = getSharedPreferences(getString(R.string.LOCAL_PREFERENCES), Context.MODE_PRIVATE);
+        //get facebook image
+        new ImageLoadTask(sharedPrefs.getString(getResources().getString(R.string.key_user_img), null), imgNav).execute();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -223,6 +239,7 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_create:
+                viewingJob = true;
                 CreateJobFragment createFrag = new CreateJobFragment();
                 transaction.replace(R.id.content_main, createFrag, "create_fragment");
                 transaction.commit();
@@ -364,7 +381,11 @@ public class MainActivity extends AppCompatActivity
         this.user = new TalentChamp(user.getUid(), user.getDisplayName(), user.getEmail(), "location", true);
         dbUsersRef.child(user.getUid().toString()).setValue(this.user);
         setupMainNav();
-        showHomeFragment();
+
+        //Curently using this to stop the home fragment showing
+        //when another intent creates a new activity eg photo picker
+        if(viewingJob == false)
+            showHomeFragment();
     }
 
 

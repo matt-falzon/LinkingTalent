@@ -196,8 +196,8 @@ public class LoginActivity extends AppCompatActivity
                 //set user preferences
                 editor.putString(getResources().getString(R.string.key_user_id), profile.getId());
                 editor.putString(getResources().getString(R.string.key_name), profile.getFirstName() + " " + profile.getLastName());
+                editor.putString(getResources().getString(R.string.key_user_img), profile.getProfilePictureUri(100, 100).toString());
                 editor.apply();
-
                 //get access token and take to Firebase
                 handleFacebookAccessToken(AccessToken.getCurrentAccessToken());
                 //mFirebaseAuth.

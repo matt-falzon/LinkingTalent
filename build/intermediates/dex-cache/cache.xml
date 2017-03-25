@@ -452,6 +452,15 @@
         <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\bolts-applinks-1.4.0_7b5dd8ca1a23c6dbbdc97b5b3b4f5c2eda9877ab.jar" />
     </item>
     <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\glide-3.7.0_b55828e372d23ccda92323f77b25f86c4dca01c8\classes.dex" />
+    </item>
+    <item
         is-multidex="false"
         jar="C:\Users\mattf\.android\build-cache\0d92a47c617b9ac1de6f67cbe96469fd502e30ca\output\jars\classes.jar"
         jumboMode="false"
@@ -603,6 +612,15 @@
         revision="25.0.2"
         sha1="734e80dffea7bd76c18ae256822a124c30d85850">
         <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_7a5667ae73a7bcb524d73874d2feb2deac08316a.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\6426b7af92a0aef92b157a5937dc711016098467\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3c433e48557e476290f45fb6cb568d1a103c9978">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_138a9616753ec964854e12309ce6f0d11a7fc287\classes.dex" />
     </item>
     <item
         is-multidex="false"

@@ -23,6 +23,34 @@ public class Job
     private String location;
     private String description;
     private String postDate;
+    private String imageUrl;
+
+
+    public Job(String id, String title, String company)
+    {
+        this.id = id;
+        this.title = title;
+        this.company = company;
+        this.postDate = getPostDate();
+    };
+
+    public Job(String id)
+    {
+        this.id = id;
+    }
+
+    public Job(){}
+
+    public String getImageUrl()
+    {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl)
+    {
+
+        this.imageUrl = imageUrl;
+    }
 
     public void setTitle(String title)
     {
@@ -33,15 +61,6 @@ public class Job
     {
         this.company = company;
     }
-
-    public Job(String id, String title, String company)
-    {
-        this.id = id;
-        this.title = title;
-        this.company = company;
-        this.postDate = getPostDate();
-    };
-
 
     public String getKey()
     {
@@ -54,20 +73,6 @@ public class Job
         this.key = key;
     }
 
-    public Job()
-    {
-        this.title = "null title";
-
-        this.company = "null company";
-        this.firstCategory = "null cat 1";
-        this.secondCategory = "null cat 2";
-        this.location = "null location";
-        this.description = "null job description";
-        this.postDate = getTime();
-        this.payMax = 0;
-        this.payMin = 0;
-        this.bounty = 0;
-    }
 
     private String getTime()
     {
