@@ -239,10 +239,7 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_create:
-                viewingJob = true;
-                CreateJobFragment createFrag = new CreateJobFragment();
-                transaction.replace(R.id.content_main, createFrag, "create_fragment");
-                transaction.commit();
+                createJob();
                 break;
             default:
                 Toast.makeText(this, "TBC", Toast.LENGTH_SHORT).show();
@@ -252,6 +249,17 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void createJob()
+    {
+        viewingJob = true;
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        CreateJobFragment createFrag = new CreateJobFragment();
+        transaction.replace(R.id.content_main, createFrag, "create_fragment");
+        transaction.commit();
     }
 
     public void viewJob(String jobKey)
@@ -269,6 +277,16 @@ public class MainActivity extends AppCompatActivity
         ft.replace(R.id.content_main, viewJobFrag);
         ft.commit();
     }
+
+    private void showHomeFragment()
+    {
+        HomeFragment frag = new HomeFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(R.id.content_main, frag, "home_fragment");
+        transaction.commit();
+    }
+
 
     @Override
     public void onBackPressed()
@@ -367,14 +385,6 @@ public class MainActivity extends AppCompatActivity
         };
     }
 
-    private void showHomeFragment()
-    {
-        HomeFragment frag = new HomeFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(R.id.content_main, frag, "home_fragment");
-        transaction.commit();
-    }
 
     private void onSignedInInitialize(FirebaseUser user)
     {

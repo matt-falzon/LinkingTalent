@@ -6,7 +6,6 @@
     android:id="@+id/content_main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.ridebooker.linkingtalent.MainActivity"
     tools:showIn="@layout/app_bar_main">

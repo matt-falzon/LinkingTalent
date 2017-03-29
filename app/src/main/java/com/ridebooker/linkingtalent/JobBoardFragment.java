@@ -108,8 +108,7 @@ public class JobBoardFragment extends Fragment implements NavigationView.OnNavig
             @Override
             public void onClick(View view)
             {
-                Snackbar.make(view, "Create Job", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                ((MainActivity)getActivity()).createJob();
             }
         });
     }

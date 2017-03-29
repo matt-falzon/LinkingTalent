@@ -5,7 +5,7 @@
               android:layout_height="wrap_content"
                 android:id="@+id/job_frag">
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/lt_symbol"
         android:id="@+id/iv_job_image"/>

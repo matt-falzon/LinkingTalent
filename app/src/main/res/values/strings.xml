@@ -48,6 +48,7 @@
     <string name="create_job_location_hint">Location</string>
     <string name="create_job_descrition_hint">Description</string>
     <string name="create_job_bounty">Bounty</string>
+
     <string-array name="pay_array">
         <item>5000</item>
         <item>10000</item>
@@ -61,4 +62,6 @@
         <item>50000</item>
     </string-array>
 
+    <!-- View Job -->
+    <string name="view_job_text_view_size">15dp</string>
 </resources>

@@ -113,6 +113,11 @@
         android:entries="@array/pay_array">
     </Spinner>
 
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+    </Spinner>
+
 
     <Button
         android:layout_width="wrap_content"
