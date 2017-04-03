@@ -64,7 +64,7 @@ public class CreateJobFragment extends Fragment implements
     EditText etCompany, etTitle, etFirstCat, etSecondcat, etDescription;
     SeekBar bountySeekBar;
     ImageButton btnLocation, btnPhotoPicker;
-    Spinner minSpinner, maxSpinner;
+    Spinner minSpinner, maxSpinner, employmentTypeSpinner;
     TextView tvBounty, tvLocation;
 
     private Uri selectedImageUri;
@@ -98,6 +98,7 @@ public class CreateJobFragment extends Fragment implements
         bountySeekBar = (SeekBar) view.findViewById(R.id.create_job_seekBar);
         minSpinner = (Spinner) view.findViewById(R.id.create_job_min_spinner);
         maxSpinner = (Spinner) view.findViewById(R.id.create_job_max_spinner);
+        employmentTypeSpinner = (Spinner) view.findViewById(R.id.create_job_employment_type);
         tvBounty = (TextView) view.findViewById(R.id.create_job_tv_bounty_value);
         btnLocation = (ImageButton) view.findViewById(R.id.create_job_location_button);
         btnPhotoPicker = (ImageButton) view.findViewById(R.id.create_job_photo_picker);
@@ -162,6 +163,7 @@ public class CreateJobFragment extends Fragment implements
                     j.setSecondCategory(etSecondcat.getText().toString());
                     j.setPayMin(min);
                     j.setPayMax(max);
+                    j.setEmploymentType(employmentTypeSpinner.getSelectedItem().toString());
                     j.setBounty(bountySeekBar.getProgress());
                     j.setDescription(etDescription.getText().toString());
                     j.setLocation(tvLocation.getText().toString());

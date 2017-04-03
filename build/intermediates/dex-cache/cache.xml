@@ -2,706 +2,679 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\bc6d322629bbe81d7b6b9f6ebbb8a27949fbffc1\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="bd75f9f0296fe220da6d0ad961831b04541c4452">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_941319a0e4c6fb54f1f7ca0847e3ee5897a36a8c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\picasso-2.5.2_9a8e34ae5b59cba5afacbd28a56ca8b91074ff6f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\ad17e3a83d2ba5ebd6cbbb904e63d837885c88e0\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="654b294d429b56fd18392f2b68ad79954f431f8e">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_9bb3be673655c1110a2dcfa7077d8578fe4c08d5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.4.0\d85884acf6810a3bbbecb587f239005cbc846dc4\bolts-tasks-1.4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\bolts-tasks-1.4.0_239ec3d598ee563f92606887bfb3dc07b4819544.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\507ae232e0a3bb90598c3173690678ce0b28b0e0\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="1bab75be1918fc9871be4da7afe38d7e4d308303">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_97419ebc640359275f4bd378c03c23427baee081.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\a1038f9d3db13fe1192e206c6e3449f4b02c43ff\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="a61e7010aa7be5da53cd1bc5279630510c9a4912">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_cf4835ab59f87238afe8c6f9e547f5bf3c6f726e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.6.1\86b122e640af09b0723e1fa44083c354ba6d9089\glide-3.6.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="86b122e640af09b0723e1fa44083c354ba6d9089">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\glide-3.6.1_6c52b7f6c295c576ee7d46a2092cbfad46fdac7d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\e152797b72b16f558e5f4545ea5e1b8d727ca8a2\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="3f4483afd050f3be12db7838422309446a45daa1">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_019bf45cfeb236230544002c554e2fe05081a685.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\9d05ff0ebc4dc431093f16d3762d26b5bcec35c1\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="45e0953544711e0b5a2d227732e88cccb82793bc">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_005e00b40ad97a29ed0394b06c4ba008da5588c2.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\18b04585ccf7ac3893b2aa47e9e44a97e1ec6f8c\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="3d13e510077b35fe8e49930a627dd849ad5da0dc">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_1198aecb72e74a6f6f0857912f32f883c56b56ed.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\51fc7ce080e2c4f558a55f20a8513725ab391334\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="90270132a5f1a33584f453c571257dd35e728201">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_cd3d9fe36938d6890bc4d809b2f9771aa0c11e6f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\7f295e33c9042224c4d9d7748879bc427f5b9d8f\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ea03bbfaed89818f233ee9918fac493f2b63895a">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_1dc2eb82879bdc3f62ad40bde1d1b75aac9274ee.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\888e892ab1a5f4437ad28a0531c9a51ebbf6fd6d\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="aa23e4589287adb431ef59d6c78af79ab8885682">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_8d1f927a9165ae40760bbf2cda4a4b5ad1ad22cd.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\4727399e4b5a8b85f57c4e018d8624312fcbea9b\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="421a5cebe9ff187c98075c59786e9464c5c67d36">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_271f671334a72461ec2ec3f295ed556115f44535.jar" />
-    </item>
-    <item
         is-multidex="true"
-        jar="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_ef808375ce1134eb9a9d10a9ba89974fe1fd1b10\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\mattf\.android\build-cache\f5172efe8b45c91605733c1b5c761b57b72f36f4\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="a9493f008850469ed3fab9b28658919562882aed">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_df4f4755bcb92213fdeb38a372f16e26626d81fd.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.1\constraint-layout-solver-1.0.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="1ad79631209e77b0a2730fc112b4cc0c66a95132">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.1_515bde60f7f16eaf2baeac84dc088e190a070664.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\08163f31ecde4746bf52153b55c55afc455a3c43\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="857ce7350acf811749c8fd0254d3d39b02aa71f5">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_b1607aea711508b697e9d7a4f01dcb5b01ba1f5a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\6db4bf2181dea8b418ad99872d346be01a7f3ce5\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0e301f24b283f14b564f660c9abe863af6be5896">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_a2c43c8b9a9fb309883a7c547cda90976a9a48d5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\07b4bcb6697c62e90ca565feac239fae3c55c731\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8fd2e9eadc9d214966ee7f60d6c5a17a335d7533">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_dbe78389b6bb475f41801ecb8442754a9a61735b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\a5242ae4b7d231c7d54dee5471389ee05930cab0\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="48532a016bb0dfbe7970c147ce784598a515406b">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_69f5533e11e43cf5a1f0411aa3e60c8f591b55de.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\56804c6b904120e1dc9c15b19779f0de71b808a1\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_ef9e85ed38d3c710d93fa418977469c96d7b80aa.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\e6e76e090b246a017ad2fc4fce6e07a419629acc\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="444f9de23145e8caba7bf1c1772acad142ea6013">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_b35076996a1e7559f7df78a2032e3026d9cbe536.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\677d15c2d64462eb73fb8761c9fb0b13c73e247e\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_b61619d50ecc3b0d640eaa04b368d500dcd70c71.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\dc99878a450745e574b08d12cbfd360c2684ffa5\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d08bb32b88df3dbcbe1d498c3c57f020b8c521ec">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_debd256cea0bc1b9e1f55e7e1b65056c0966371b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\68084cae1310e9370c65633caf276b4ebd85de74\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ac6948cce36f694f3eb3d73a135e298dc4b3527a">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_77a617ba7403809f1c6d918f6d37208f3b7a39ea.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\948e106bf8fb3f2b5983afae86005d228951b15d\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="74c5a91d6510ad42410e8a047d90d2ea6721a0e0">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_ce3048a20f2f5945b1a894d272d424c3ca3f32a7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\11a475dc998182c45cc3220b6a31494a791f1c9c\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="75575883f0348fc5d2be85f23bd10b050095cf17">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_a5c4850c591072a8021a2b8ce238d0ea459c5c93.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.1\support-annotations-25.1.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\support-annotations-25.1.1_b99665049711028084c8737f4a993cc6a895f95e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\422bad3e4ea5589d6ad866ff524f9c77d18a23f4\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="1fbf3733f36fea63e70373212796e70f9079981f">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_2414080c20978b49ad2d7c5080e5a6bc0ed8c29e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\48e19cefdeb57efaf3735a54669486356f4c39dc\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="1df6d719c4e264d66bb98baa5cb637495b8cca66">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_119468f1e79752940b5eb241c934574150de3842.jar" />
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_df4f4755bcb92213fdeb38a372f16e26626d81fd\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="fa9a92ac7968648f6b19ea7714f9e2d806bf7d0d">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_dd435598e048b8557128d23f2269ce4f980ff9b9\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\b9d56abf3a255f0fcf16c3d600c0b49b3d78d8e3\output\jars\classes.jar"
+        jar="C:\Users\mattf\.android\build-cache\888e892ab1a5f4437ad28a0531c9a51ebbf6fd6d\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="94ba691efc31bf53264db0716d9c9ec03843ea31">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_e4604060b6288a0e89c5137208ae5c39a6ffb966.jar" />
+        sha1="aa23e4589287adb431ef59d6c78af79ab8885682">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8d1f927a9165ae40760bbf2cda4a4b5ad1ad22cd\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\412629a63d0a49d90fc33a8a38602ebd55e567ae\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\a1038f9d3db13fe1192e206c6e3449f4b02c43ff\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_27d037656bba1f555805cb29d1eda4ab6da656ac.jar" />
+        sha1="a61e7010aa7be5da53cd1bc5279630510c9a4912">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_cf4835ab59f87238afe8c6f9e547f5bf3c6f726e\classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\028bfd90800ab176b4f0e55d036bac74ec59eeb9\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="646b2c48e147b943f0a39842457fdc66d501e4b6">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b4236959144d3bd7129c058422e5ead877fd224f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\4727399e4b5a8b85f57c4e018d8624312fcbea9b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="421a5cebe9ff187c98075c59786e9464c5c67d36">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_271f671334a72461ec2ec3f295ed556115f44535\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\9d05ff0ebc4dc431093f16d3762d26b5bcec35c1\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="45e0953544711e0b5a2d227732e88cccb82793bc">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_005e00b40ad97a29ed0394b06c4ba008da5588c2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\mattf\.android\build-cache\ea4bc189b968ccc648130089f0abf3851a0f6cbf\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="8438c64f9eb581429dc592f7c9b3156a3d071653">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_99498761cadcae836556b6e23a6fddc16036f9d3.jar" />
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_99498761cadcae836556b6e23a6fddc16036f9d3\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\32f4112a88cc3dd9340e222fd17ca5701387d346\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\18b04585ccf7ac3893b2aa47e9e44a97e1ec6f8c\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="94fca868854457ede6df15c902938468c71d579e">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_58c7b96ce8711f370f6783a29438708ecb91fc18.jar" />
+        sha1="3d13e510077b35fe8e49930a627dd849ad5da0dc">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1198aecb72e74a6f6f0857912f32f883c56b56ed\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\eea68ec6122f8c3557d9afa2d7758965c3785447\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\507ae232e0a3bb90598c3173690678ce0b28b0e0\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="ddb7fed808f4331174b59428ccfc46b3696c9812">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_02af92abcd53ca4dc833c03a24b221edef62613c.jar" />
+        sha1="1bab75be1918fc9871be4da7afe38d7e4d308303">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_97419ebc640359275f4bd378c03c23427baee081\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\254bb29d2a75d91d897eb5d01a06f34f6197b80f\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\68084cae1310e9370c65633caf276b4ebd85de74\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_1df21efee1cd3b8fc8a230ca1fde29b1caed5af8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\3ef8dcebe6047553e61b16cde0038c3d42158d27\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8e1d31656bc9f1889283836e025e6cb703acd38a">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_3f8b939123d12858524e6cfd7cb744b78a41fc98.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\0c012d0e939295b46fecc3b9e0bb100c52cf8fc5\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="3aaf1e7b5fe9f4d3ff22c4edc0ead631f7389d30">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_6e5dfe6c84d9a9a68219aecb8cb30683ca33c718.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\85d1b6e3f481225940ed4ed531fe32c04fc13c6c\output\jars\libs\internal_impl-24.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b6763651ec29b4c95e7bbe63fc393ffcc8c4c2c5">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\internal_impl-24.0.0_e139e65be087842dcbb090aa3af3451f5cbb8386.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\70e7dad6edacbb30174cb5f42b87bd199dfa825c\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="4ef2d91da513c4d7e773ae438fe04d0e4c135957">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_33a90140cf2c08f6ede664de659be9c3362ab111.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\7f34c01b54dd6cc95bd8d45c13d5c7ae5578e843\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="cb2ef781533c3f11c4e80341cbaebad275c66586">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_526b7a1e9090302e2529622c288dff1e785220b6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\25be10e30993957472fb67c8f12fc5b69ab9da98\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_58a3d326c06ebeb75d0a93a22110a57faf5d8a74.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\9b53ee48de9c4def785bcc1ae172eba6683a0d1f\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="68485f21eeb5d6c9ed82c445d520b9fc81c87108">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_94d6aa9d29fededce8cc005116bf21bff51a54ac.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\62e3d02159235eb9143b16a4df5bf74c56d73696\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="a3f7595ca32e614b454ceb7b7e241bb037a28e86">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_84869e86aa5a50f43bdd977b6d292dc2583d7c44.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\f1c2c46248355daf3e084492605cbbdd486be155\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6da05b7498da036b5b37c3beb861cd2060929dcd">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_c1270ffff42e1d5235a636c91a4b06d34aaab017.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\52cf4f286b19d243123a29481217de333cc8dee5\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ce9112e08a027c8620ae693983e38cdbb9f6371b">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_e63480d741b6844b4a34e27c59b137ee5a19f685.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\57c81a8614da22271fbcf746819a4692ed37eb32\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0f58195bee8a08f35e7d4ee7fd4b0479e570e172">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_cc558cf14c3edcbf5a8ba93db9588f1e2945a38d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-applinks\1.4.0\8ad21bf21784dacce5f2043afb97218cc377e835\bolts-applinks-1.4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\bolts-applinks-1.4.0_7b5dd8ca1a23c6dbbdc97b5b3b4f5c2eda9877ab.jar" />
+        sha1="ac6948cce36f694f3eb3d73a135e298dc4b3527a">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_77a617ba7403809f1c6d918f6d37208f3b7a39ea\classes.dex" />
     </item>
     <item
         is-multidex="true"
         jar="C:\Users\mattf\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
         <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\glide-3.7.0_b55828e372d23ccda92323f77b25f86c4dca01c8\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\0d92a47c617b9ac1de6f67cbe96469fd502e30ca\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\e6e76e090b246a017ad2fc4fce6e07a419629acc\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="a8ae156c2726ac9c56daaf4b49452ec2cdb7bba9">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_9a23c9c27a67bf63d316dac42c62947c71d71817.jar" />
+        sha1="444f9de23145e8caba7bf1c1772acad142ea6013">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b35076996a1e7559f7df78a2032e3026d9cbe536\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\1eb336df3586d1f99485ef9ca392d342b517b0fc\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\677d15c2d64462eb73fb8761c9fb0b13c73e247e\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="423fb69e69759d8b726fa4a4fb6a1ea9fc86d1cd">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_5d3a0d89eabfd62ad317feedeb3a895ea7e5b642.jar" />
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b61619d50ecc3b0d640eaa04b368d500dcd70c71\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\189cd4fab728da74a3e9ba08bdfd2e5107203808\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\e152797b72b16f558e5f4545ea5e1b8d727ca8a2\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="1ac56e5801e986583cbe27f2cce57f626cc7ff93">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_1b082615de0101593eb96ff757e5bdd57218ac40.jar" />
+        sha1="3f4483afd050f3be12db7838422309446a45daa1">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_019bf45cfeb236230544002c554e2fe05081a685\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\55a92bda63ee5b1162b8271a2072ef93c93e735b\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\6db4bf2181dea8b418ad99872d346be01a7f3ce5\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="7113302c965566b66df46c6ca75ea301576114a5">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_06d341309c57fddb015931b7146b9a51b113a678.jar" />
+        sha1="0e301f24b283f14b564f660c9abe863af6be5896">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a2c43c8b9a9fb309883a7c547cda90976a9a48d5\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\fabc6ff7485f41b17fe6c2926bdddf5fdd01eae3\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\08163f31ecde4746bf52153b55c55afc455a3c43\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_fec7e924b478a936394fa17478abeb365abd6072.jar" />
+        sha1="857ce7350acf811749c8fd0254d3d39b02aa71f5">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b1607aea711508b697e9d7a4f01dcb5b01ba1f5a\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\d27a6a2b49a3b2fa988c10bfcfacda39fca7360f\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\bc6d322629bbe81d7b6b9f6ebbb8a27949fbffc1\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_58dae3c2f22849ef40ed1851c768afcd9fa2e55f.jar" />
+        sha1="bd75f9f0296fe220da6d0ad961831b04541c4452">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_941319a0e4c6fb54f1f7ca0847e3ee5897a36a8c\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\a76cc8aca5354296514dbcda8e922609c26f0ba1\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ca82d5800780b1d53f0f9ab43678d8634a34cddc">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_7806ad639740bb7c5541e74cda95ee917ebef44c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\d63bb1d6c960ec7d6515a062bd337bd9f1643534\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e7157a9577c983651d6c6ee313813424fe2d8ab6">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_17225508d42b41bc3dc884e61d7ba6e469afd738.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\1734f5c36deb7991d470f7509b785dd5b19f74df\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="3d6951cb416ebf8c66a32b9480808ca247b68344">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_fa793567ef71501dc51afd2c7b9b89cb32093f33.jar" />
-    </item>
-    <item
-        is-multidex="false"
+        is-multidex="true"
         jar="C:\Users\mattf\.android\build-cache\85d1b6e3f481225940ed4ed531fe32c04fc13c6c\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="b327fbe2fad414bc38cf0ce8f7efe1a38f572837">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_78637ce18815becfa69165b1aeab0fb335c6a60c.jar" />
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_78637ce18815becfa69165b1aeab0fb335c6a60c\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\46f6e108140b4f430ad70a04c48e52d20ddc29f2\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\d63bb1d6c960ec7d6515a062bd337bd9f1643534\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="b831d3902674d096189451d46fce219e2c2904b7">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_eae535f955f42a5317d5b303fb89468199e75100.jar" />
+        sha1="e7157a9577c983651d6c6ee313813424fe2d8ab6">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_17225508d42b41bc3dc884e61d7ba6e469afd738\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\dc81026e5480dce78341d426ea6ae8a8dc9f5056\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_68a3db4385036848452345c61011f25255150aa4.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\19a44b70c2521dc9a96c036ce207aa780831b173\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_3eb376c0f7fdad8dc63cccf2e805d96f4ea204b4.jar" />
-    </item>
-    <item
-        is-multidex="false"
+        is-multidex="true"
         jar="C:\Users\mattf\.android\build-cache\e929d2424c3374219650e812ca8b145996609660\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_e4ffc34b2e60bd86f2f50d5256bbb33f97bb3f8c.jar" />
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e4ffc34b2e60bd86f2f50d5256bbb33f97bb3f8c\classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\51fc7ce080e2c4f558a55f20a8513725ab391334\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="90270132a5f1a33584f453c571257dd35e728201">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_cd3d9fe36938d6890bc4d809b2f9771aa0c11e6f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\mattf\.android\build-cache\1dac1bcdd00ca9b3fd2692815dc58508ba367f63\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="ab0c7fe28f9506302eb39adf1ebf5858732e18ec">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_7d2c05e27f1a8775f09f53a8fbf362e560971802.jar" />
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7d2c05e27f1a8775f09f53a8fbf362e560971802\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\232fdd30e72b2c0043174353b70da8612a5829c8\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_62cafcb9b7c0a69c556a53ce8e02f2d08f867355.jar" />
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\picasso-2.5.2_9a8e34ae5b59cba5afacbd28a56ca8b91074ff6f\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\293141b38a6759a33395a929e510f64f5ff42489\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\7f295e33c9042224c4d9d7748879bc427f5b9d8f\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="734e80dffea7bd76c18ae256822a124c30d85850">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_7a5667ae73a7bcb524d73874d2feb2deac08316a.jar" />
+        sha1="ea03bbfaed89818f233ee9918fac493f2b63895a">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1dc2eb82879bdc3f62ad40bde1d1b75aac9274ee\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\ad17e3a83d2ba5ebd6cbbb904e63d837885c88e0\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="654b294d429b56fd18392f2b68ad79954f431f8e">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9bb3be673655c1110a2dcfa7077d8578fe4c08d5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\eea68ec6122f8c3557d9afa2d7758965c3785447\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ddb7fed808f4331174b59428ccfc46b3696c9812">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_02af92abcd53ca4dc833c03a24b221edef62613c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\254bb29d2a75d91d897eb5d01a06f34f6197b80f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1df21efee1cd3b8fc8a230ca1fde29b1caed5af8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\55a92bda63ee5b1162b8271a2072ef93c93e735b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7113302c965566b66df46c6ca75ea301576114a5">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_06d341309c57fddb015931b7146b9a51b113a678\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\dc99878a450745e574b08d12cbfd360c2684ffa5\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d08bb32b88df3dbcbe1d498c3c57f020b8c521ec">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_debd256cea0bc1b9e1f55e7e1b65056c0966371b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\56804c6b904120e1dc9c15b19779f0de71b808a1\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ef9e85ed38d3c710d93fa418977469c96d7b80aa\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\48e19cefdeb57efaf3735a54669486356f4c39dc\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1df6d719c4e264d66bb98baa5cb637495b8cca66">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_119468f1e79752940b5eb241c934574150de3842\classes.dex" />
     </item>
     <item
         is-multidex="true"
         jar="C:\Users\mattf\.android\build-cache\6426b7af92a0aef92b157a5937dc711016098467\output\jars\classes.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="3c433e48557e476290f45fb6cb568d1a103c9978">
         <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_138a9616753ec964854e12309ce6f0d11a7fc287\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\71d6a402ab36e54ec1261324dfa6f010eee7dbe6\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.1\support-annotations-25.1.1.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="4e01b82d664e1a8253b2b9658e74b5da35c8771d">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_ddb05a52059d4a09a4af19ef6ba7923d5dbff45b.jar" />
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.1.1_b99665049711028084c8737f4a993cc6a895f95e\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\a358693aff357225acd66b49aa09f8a668389a60\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\07b4bcb6697c62e90ca565feac239fae3c55c731\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="db4aca1c1ec60f2c098d3b6c91cedfb7838f83ed">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_b171d631ab502b78bad674ca512f106dd63c6abe.jar" />
+        sha1="8fd2e9eadc9d214966ee7f60d6c5a17a335d7533">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_dbe78389b6bb475f41801ecb8442754a9a61735b\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\d84cbefe42759caeb6f21b6d4045ed7c9c9da058\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\32f4112a88cc3dd9340e222fd17ca5701387d346\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_4c6ee5568c72b931bf594865498e979716d8392c.jar" />
+        sha1="94fca868854457ede6df15c902938468c71d579e">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_58c7b96ce8711f370f6783a29438708ecb91fc18\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\028bfd90800ab176b4f0e55d036bac74ec59eeb9\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\b9d56abf3a255f0fcf16c3d600c0b49b3d78d8e3\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="646b2c48e147b943f0a39842457fdc66d501e4b6">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_b4236959144d3bd7129c058422e5ead877fd224f.jar" />
+        sha1="94ba691efc31bf53264db0716d9c9ec03843ea31">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e4604060b6288a0e89c5137208ae5c39a6ffb966\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\1c656c7a893231a7d3f9f156860750b01b23a523\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\a5242ae4b7d231c7d54dee5471389ee05930cab0\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="db48dfabe8ecc46681ceca418d6bd61a5339f818">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_96e0c9768b590ceeff32b9ffeac500f57dc00de7.jar" />
+        sha1="48532a016bb0dfbe7970c147ce784598a515406b">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_69f5533e11e43cf5a1f0411aa3e60c8f591b55de\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\090e32bf0333f6573021215a6e627b784e463f48\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\422bad3e4ea5589d6ad866ff524f9c77d18a23f4\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="9d1d0e1270310e34e2d65afda2bc18605c14cd46">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_621a92f39fc88981650177097e1f05f8fef5bca0.jar" />
+        sha1="1fbf3733f36fea63e70373212796e70f9079981f">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2414080c20978b49ad2d7c5080e5a6bc0ed8c29e\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\mattf\.android\build-cache\56b0d0260a4642d73e53135b6172bd1d89e025be\output\jars\classes.jar"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\948e106bf8fb3f2b5983afae86005d228951b15d\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="0d5cbbbfe040201c7569478b70a13b58fd11aab4">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_3bd474f551b8c40a37ba55a65da42357e5eb0ee8.jar" />
+        sha1="74c5a91d6510ad42410e8a047d90d2ea6721a0e0">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ce3048a20f2f5945b1a894d272d424c3ca3f32a7\classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\9b53ee48de9c4def785bcc1ae172eba6683a0d1f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="68485f21eeb5d6c9ed82c445d520b9fc81c87108">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_94d6aa9d29fededce8cc005116bf21bff51a54ac\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\412629a63d0a49d90fc33a8a38602ebd55e567ae\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_27d037656bba1f555805cb29d1eda4ab6da656ac\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\11a475dc998182c45cc3220b6a31494a791f1c9c\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="75575883f0348fc5d2be85f23bd10b050095cf17">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a5c4850c591072a8021a2b8ce238d0ea459c5c93\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\62e3d02159235eb9143b16a4df5bf74c56d73696\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a3f7595ca32e614b454ceb7b7e241bb037a28e86">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_84869e86aa5a50f43bdd977b6d292dc2583d7c44\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\mattf\.android\build-cache\42a2944ad3623faadad9941e2b44410c3072d1dd\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="7d14fe9bd2283b2eb7fcab08458aa0357917e138">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_4f4045a288cce25d5573152a8b00fc1415d26557.jar" />
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4f4045a288cce25d5573152a8b00fc1415d26557\classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\7f34c01b54dd6cc95bd8d45c13d5c7ae5578e843\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cb2ef781533c3f11c4e80341cbaebad275c66586">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_526b7a1e9090302e2529622c288dff1e785220b6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\1eb336df3586d1f99485ef9ca392d342b517b0fc\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="423fb69e69759d8b726fa4a4fb6a1ea9fc86d1cd">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5d3a0d89eabfd62ad317feedeb3a895ea7e5b642\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\3ef8dcebe6047553e61b16cde0038c3d42158d27\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8e1d31656bc9f1889283836e025e6cb703acd38a">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3f8b939123d12858524e6cfd7cb744b78a41fc98\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\0c012d0e939295b46fecc3b9e0bb100c52cf8fc5\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3aaf1e7b5fe9f4d3ff22c4edc0ead631f7389d30">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_6e5dfe6c84d9a9a68219aecb8cb30683ca33c718\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\70e7dad6edacbb30174cb5f42b87bd199dfa825c\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4ef2d91da513c4d7e773ae438fe04d0e4c135957">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_33a90140cf2c08f6ede664de659be9c3362ab111\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\85d1b6e3f481225940ed4ed531fe32c04fc13c6c\output\jars\libs\internal_impl-24.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b6763651ec29b4c95e7bbe63fc393ffcc8c4c2c5">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.0.0_e139e65be087842dcbb090aa3af3451f5cbb8386\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\fabc6ff7485f41b17fe6c2926bdddf5fdd01eae3\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_fec7e924b478a936394fa17478abeb365abd6072\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\57c81a8614da22271fbcf746819a4692ed37eb32\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0f58195bee8a08f35e7d4ee7fd4b0479e570e172">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_cc558cf14c3edcbf5a8ba93db9588f1e2945a38d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\189cd4fab728da74a3e9ba08bdfd2e5107203808\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1ac56e5801e986583cbe27f2cce57f626cc7ff93">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1b082615de0101593eb96ff757e5bdd57218ac40\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\d27a6a2b49a3b2fa988c10bfcfacda39fca7360f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_58dae3c2f22849ef40ed1851c768afcd9fa2e55f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-applinks\1.4.0\8ad21bf21784dacce5f2043afb97218cc377e835\bolts-applinks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\bolts-applinks-1.4.0_7b5dd8ca1a23c6dbbdc97b5b3b4f5c2eda9877ab\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\52cf4f286b19d243123a29481217de333cc8dee5\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ce9112e08a027c8620ae693983e38cdbb9f6371b">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e63480d741b6844b4a34e27c59b137ee5a19f685\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\0d92a47c617b9ac1de6f67cbe96469fd502e30ca\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a8ae156c2726ac9c56daaf4b49452ec2cdb7bba9">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9a23c9c27a67bf63d316dac42c62947c71d71817\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\dc81026e5480dce78341d426ea6ae8a8dc9f5056\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_68a3db4385036848452345c61011f25255150aa4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\232fdd30e72b2c0043174353b70da8612a5829c8\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_62cafcb9b7c0a69c556a53ce8e02f2d08f867355\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.1\constraint-layout-solver-1.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1ad79631209e77b0a2730fc112b4cc0c66a95132">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.1_515bde60f7f16eaf2baeac84dc088e190a070664\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\1734f5c36deb7991d470f7509b785dd5b19f74df\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3d6951cb416ebf8c66a32b9480808ca247b68344">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_fa793567ef71501dc51afd2c7b9b89cb32093f33\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\293141b38a6759a33395a929e510f64f5ff42489\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="734e80dffea7bd76c18ae256822a124c30d85850">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7a5667ae73a7bcb524d73874d2feb2deac08316a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\19a44b70c2521dc9a96c036ce207aa780831b173\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3eb376c0f7fdad8dc63cccf2e805d96f4ea204b4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\46f6e108140b4f430ad70a04c48e52d20ddc29f2\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b831d3902674d096189451d46fce219e2c2904b7">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_eae535f955f42a5317d5b303fb89468199e75100\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\d84cbefe42759caeb6f21b6d4045ed7c9c9da058\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4c6ee5568c72b931bf594865498e979716d8392c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.4.0\d85884acf6810a3bbbecb587f239005cbc846dc4\bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\bolts-tasks-1.4.0_239ec3d598ee563f92606887bfb3dc07b4819544\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\56b0d0260a4642d73e53135b6172bd1d89e025be\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d5cbbbfe040201c7569478b70a13b58fd11aab4">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3bd474f551b8c40a37ba55a65da42357e5eb0ee8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\71d6a402ab36e54ec1261324dfa6f010eee7dbe6\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4e01b82d664e1a8253b2b9658e74b5da35c8771d">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ddb05a52059d4a09a4af19ef6ba7923d5dbff45b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\f1c2c46248355daf3e084492605cbbdd486be155\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6da05b7498da036b5b37c3beb861cd2060929dcd">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c1270ffff42e1d5235a636c91a4b06d34aaab017\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\mattf\.android\build-cache\ada0b5e9983750ea814c2dca7a37071ed7274b38\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="101393e975eaf36e3ff40b277ee9a019e077afef">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\pre-dexed\debug\classes_e31e2e968fee0b81c82da4ddced08e27bc0d23b2.jar" />
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e31e2e968fee0b81c82da4ddced08e27bc0d23b2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\1c656c7a893231a7d3f9f156860750b01b23a523\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="db48dfabe8ecc46681ceca418d6bd61a5339f818">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_96e0c9768b590ceeff32b9ffeac500f57dc00de7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\090e32bf0333f6573021215a6e627b784e463f48\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9d1d0e1270310e34e2d65afda2bc18605c14cd46">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_621a92f39fc88981650177097e1f05f8fef5bca0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\25be10e30993957472fb67c8f12fc5b69ab9da98\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_58a3d326c06ebeb75d0a93a22110a57faf5d8a74\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\a76cc8aca5354296514dbcda8e922609c26f0ba1\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ca82d5800780b1d53f0f9ab43678d8634a34cddc">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7806ad639740bb7c5541e74cda95ee917ebef44c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\a358693aff357225acd66b49aa09f8a668389a60\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="db4aca1c1ec60f2c098d3b6c91cedfb7838f83ed">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b171d631ab502b78bad674ca512f106dd63c6abe\classes.dex" />
     </item>
 
 </items>

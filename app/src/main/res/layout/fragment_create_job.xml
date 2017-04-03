@@ -114,8 +114,10 @@
     </Spinner>
 
     <Spinner
+        android:id="@+id/create_job_employment_type"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:entries="@array/employment_array">
     </Spinner>
 
 

@@ -24,6 +24,7 @@ public class Job
     private String description;
     private String postDate;
     private String imageUrl;
+    private String employmentType;
 
 
     public Job(String id, String title, String company)
@@ -169,5 +170,15 @@ public class Job
     public String getId()
     {
         return id;
+    }
+
+    public String getEmploymentType()
+    {
+        return employmentType;
+    }
+
+    public void setEmploymentType(String employmentType)
+    {
+        this.employmentType = employmentType;
     }
 }

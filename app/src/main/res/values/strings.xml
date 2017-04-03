@@ -43,6 +43,7 @@
     <!-- Create Job -->
     <string name="create_job_title_hint">Job title</string>
     <string name="create_job_company_hint">Company name</string>
+    <string name="create_job_category_hint">Job Category</string>
     <string name="create_job_first_cat_hint">Primary Category</string>
     <string name="create_job_second_cat_hint">Secondary Category</string>
     <string name="create_job_location_hint">Location</string>
@@ -62,6 +63,19 @@
         <item>50000</item>
     </string-array>
 
+    <string-array name="employment_array">
+        <item>Full Time</item>
+        <item>Part Time</item>
+        <item>Temporary</item>
+        <item>Contract</item>
+    </string-array>
+
     <!-- View Job -->
     <string name="view_job_text_view_size">15dp</string>
+    <string name="view_job_employment_type">Employment Type</string>
+
+    <!--View job menu -->
+    <string name="view_job_menu_share">Share</string>
+    <string name="view_job_menu_send">Send</string>
+    <string name="view_job_menu_apply">Apply</string>
 </resources>
