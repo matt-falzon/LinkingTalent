@@ -129,7 +129,7 @@ public class CreateJobFragment extends Fragment implements
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
             {
-                tvBounty.setText("$" + Integer.toString(progress));
+                tvBounty.setText("$" + Integer.toString(((progress + 99) / 100 ) * 100));
             }
 
             @Override

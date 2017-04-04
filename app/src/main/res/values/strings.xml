@@ -76,6 +76,6 @@
 
     <!--View job menu -->
     <string name="view_job_menu_share">Share</string>
-    <string name="view_job_menu_send">Send</string>
+    <string name="view_job_menu_info">More Info</string>
     <string name="view_job_menu_apply">Apply</string>
 </resources>
