@@ -201,6 +201,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\mattf\.android\build-cache\cf58ead2a991138742fa91f2e373d6e6eb9153dc\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6a70160a70685ce25bda1c6e094c73676a399039">
+        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5456a50c20ebaa208a779e898936a7c435244e4c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\mattf\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
         jumboMode="false"
         optimize="true"
@@ -396,15 +405,6 @@
         revision="25.0.2"
         sha1="7d14fe9bd2283b2eb7fcab08458aa0357917e138">
         <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4f4045a288cce25d5573152a8b00fc1415d26557\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\mattf\.android\build-cache\7f34c01b54dd6cc95bd8d45c13d5c7ae5578e843\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="cb2ef781533c3f11c4e80341cbaebad275c66586">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_526b7a1e9090302e2529622c288dff1e785220b6\classes.dex" />
     </item>
     <item
         is-multidex="true"

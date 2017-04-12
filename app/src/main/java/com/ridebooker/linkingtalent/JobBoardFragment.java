@@ -122,10 +122,6 @@ public class JobBoardFragment extends Fragment implements NavigationView.OnNavig
     @Override
     public void onListItemClick(int clickedItemIndex, String jobKey)
     {
-        String message = jobKey;
-
-        //Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-
         //use key to open job fragment
         ((MainActivity)getActivity()).viewJob(jobKey);
 

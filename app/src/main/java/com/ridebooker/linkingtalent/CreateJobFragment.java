@@ -240,7 +240,8 @@ public class CreateJobFragment extends Fragment implements
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
             {
                 Uri downloadUri = taskSnapshot.getDownloadUrl();
-                j.setImageUrl(downloadUri.getLastPathSegment().toString());
+                j.setImageUrl(downloadUri.toString());
+                j.setImageName(downloadUri.getLastPathSegment().toString());
                 btnButton.setVisibility(View.VISIBLE);
             }
         }).addOnFailureListener(new OnFailureListener()

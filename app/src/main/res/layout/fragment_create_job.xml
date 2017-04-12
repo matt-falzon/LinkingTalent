@@ -1,11 +1,16 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context="com.ridebooker.linkingtalent.CreateJobFragment"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<LinearLayout android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical"
-              tools:context="com.ridebooker.linkingtalent.CreateJobFragment">
+              android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
+
 
 <LinearLayout
     android:layout_width="wrap_content"
@@ -128,3 +133,5 @@
         android:id="@+id/create_job_insert_button"/>
 
 </LinearLayout>
+
+</ScrollView>

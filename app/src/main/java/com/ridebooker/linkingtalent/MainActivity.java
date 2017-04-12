@@ -6,12 +6,15 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,7 +24,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +56,7 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = "MainActivity";
     private TextView tvNavName, tvNavEmail;
     private ImageView imgNav;
+    private PopupWindow popupWindow;
     //private RelativeLayout mainLayout;
     private static boolean PREFERENCES_HAVE_BEEN_UPDATED = false;
     public static TalentChamp user;
@@ -186,10 +193,76 @@ public class MainActivity extends AppCompatActivity
 
         switch(id){
             case R.id.action_about:
-                Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+                LayoutInflater aboutInflater = (LayoutInflater) this.getSystemService(this.LAYOUT_INFLATER_SERVICE);
+                View aboutPopupView = aboutInflater.inflate(R.layout.popup_about,null);
+
+                if(popupWindow != null)
+                    if(popupWindow.isShowing())
+                        popupWindow.dismiss();
+
+                popupWindow = new PopupWindow(
+                        aboutPopupView,
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                );
+
+                popupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
+
+                // Set an elevation value for popup window
+                // Call requires API level 21
+                if(Build.VERSION.SDK_INT>=21){
+                    popupWindow.setElevation(5.0f);
+                }
+
+                // Get a reference for the popup view close button
+                ImageButton closeButton = (ImageButton) aboutPopupView.findViewById(R.id.ib_close);
+
+                closeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Dismiss the popup window
+                        popupWindow.dismiss();
+                    }
+                });
+
+                // Finally, show the popup window at the center location of root relative layout
+                popupWindow.showAtLocation(aboutPopupView, Gravity.CENTER,0,0);
                 return true;
             case R.id.action_terms:
-                Toast.makeText(this, "Terms", Toast.LENGTH_SHORT).show();
+                LayoutInflater termsInflater = (LayoutInflater) this.getSystemService(this.LAYOUT_INFLATER_SERVICE);
+                View popupView = termsInflater.inflate(R.layout.popup_terms,null);
+
+                if(popupWindow != null)
+                    if(popupWindow.isShowing())
+                        popupWindow.dismiss();
+
+                popupWindow = new PopupWindow(
+                        popupView,
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                );
+
+                popupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
+
+                // Set an elevation value for popup window
+                // Call requires API level 21
+                if(Build.VERSION.SDK_INT>=21){
+                    popupWindow.setElevation(5.0f);
+                }
+
+                // Get a reference for the popup view close button
+                ImageButton termsCloseButton = (ImageButton) popupView.findViewById(R.id.ib_close);
+
+                termsCloseButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Dismiss the popup window
+                        popupWindow.dismiss();
+                    }
+                });
+
+                // Finally, show the popup window at the center location of root relative layout
+                popupWindow.showAtLocation(popupView, Gravity.CENTER,0,0);
                 return true;
             case R.id.action_signout:
 

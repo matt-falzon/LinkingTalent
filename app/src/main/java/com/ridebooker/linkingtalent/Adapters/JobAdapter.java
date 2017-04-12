@@ -64,11 +64,11 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
             holder.tvJobTitle.setText(jobs.get(position).getTitle());
             holder.tvJobCompany.setText(jobs.get(position).getCompany());
 
-            if(jobs.get(position).getImageUrl() != null)
+            if(jobs.get(position).getImageName() != null)
             {
                 Glide.with(holder.ivJobImage.getContext())
                         .using(new FirebaseImageLoader())
-                        .load(MainActivity.firebaseRootStorageRef.child(jobs.get(position).getImageUrl()))
+                        .load(MainActivity.firebaseRootStorageRef.child(jobs.get(position).getImageName()))
                         .into(holder.ivJobImage);
             }
 

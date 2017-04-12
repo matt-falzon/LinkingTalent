@@ -24,6 +24,7 @@ public class Job
     private String description;
     private String postDate;
     private String imageUrl;
+    private String imageName;
     private String employmentType;
 
 
@@ -180,5 +181,16 @@ public class Job
     public void setEmploymentType(String employmentType)
     {
         this.employmentType = employmentType;
+    }
+
+    public void setImageName(String imageName)
+    {
+        this.imageName = imageName;
+    }
+
+    public String getImageName()
+    {
+
+        return imageName;
     }
 }
