@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity
     public static StorageReference firebaseRootStorageRef;
     public static StorageReference firebaseCompanyImageRef;
     public static StorageReference firebaseProfileImageRef;
-    public boolean viewingJob = false;
+    public String currentFrag = "home";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -296,12 +296,16 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         switch(id){
             case R.id.nav_home:
+                currentFrag = "home";
                 HomeFragment homeFrag = new HomeFragment();
+                transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 transaction.replace(R.id.content_main, homeFrag, "job_fragment");
                 transaction.commit();
                 break;
             case R.id.nav_jobs:
+                currentFrag = "jobBoard";
                 JobBoardFragment jobFrag = new JobBoardFragment();
+                transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 transaction.replace(R.id.content_main, jobFrag, "job_fragment");
                 transaction.commit();
                 break;
@@ -312,7 +316,7 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_create:
-                createJob();
+                createJob("createJob");
                 break;
             default:
                 Toast.makeText(this, "TBC", Toast.LENGTH_SHORT).show();
@@ -324,12 +328,12 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void createJob()
+    public void createJob(String method)
     {
-        viewingJob = true;
+        currentFrag = method;
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-
+        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         CreateJobFragment createFrag = new CreateJobFragment();
         transaction.replace(R.id.content_main, createFrag, "create_fragment");
         transaction.commit();
@@ -337,8 +341,7 @@ public class MainActivity extends AppCompatActivity
 
     public void viewJob(String jobKey)
     {
-        viewingJob = true;
-
+        currentFrag = "viewJob";
         FragmentManager fragmentManager = getSupportFragmentManager();
         ViewJobFragment viewJobFrag = new ViewJobFragment();
         Bundle b = new Bundle();
@@ -353,10 +356,12 @@ public class MainActivity extends AppCompatActivity
 
     private void showHomeFragment()
     {
+        currentFrag = "home";
         HomeFragment frag = new HomeFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(R.id.content_main, frag, "home_fragment");
+        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        transaction.replace(R.id.content_main, frag, "home_fragment");
         transaction.commit();
     }
 
@@ -369,21 +374,40 @@ public class MainActivity extends AppCompatActivity
         {
             drawer.closeDrawer(GravityCompat.START);
         }
-        else if(viewingJob == true)
-        {
-            viewingJob = false;
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            JobBoardFragment jobBoardFrag = new JobBoardFragment();
-            FragmentTransaction ft = fragmentManager.beginTransaction();;
-            ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-            ft.addToBackStack("jobBoard");
-            ft.replace(R.id.content_main, jobBoardFrag);
-            ft.commit();
 
-        }
-        else
-        {
-            super.onBackPressed();
+        switch(currentFrag){
+            case "home" :
+                finish();
+                break;
+            case "viewJob" :
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                JobBoardFragment jobBoardFrag = new JobBoardFragment();
+                FragmentTransaction ft = fragmentManager.beginTransaction();;
+                ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                ft.addToBackStack("jobBoard");
+                ft.replace(R.id.content_main, jobBoardFrag);
+                currentFrag = "jobBoard";
+                ft.commit();
+                break;
+            case "createJob":
+                showHomeFragment();
+                break;
+            case "jobBoard" :
+                showHomeFragment();
+                break;
+            case "createJobFromViewJob" ://if the user creates a job from the view job fragment
+                FragmentManager frag = getSupportFragmentManager();
+                JobBoardFragment jFrag = new JobBoardFragment();
+                FragmentTransaction fragTran = frag.beginTransaction();;
+                fragTran.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                fragTran.addToBackStack("jobBoard");
+                fragTran.replace(R.id.content_main, jFrag);
+                currentFrag = "jobBoard";
+                fragTran.commit();
+                break;
+            default:
+                super.onBackPressed();
+
         }
     }
 
@@ -467,7 +491,6 @@ public class MainActivity extends AppCompatActivity
 
         //Curently using this to stop the home fragment showing
         //when another intent creates a new activity eg photo picker
-        if(viewingJob == false)
             showHomeFragment();
     }
 

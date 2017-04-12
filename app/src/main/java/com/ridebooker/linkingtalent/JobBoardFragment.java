@@ -42,9 +42,13 @@ public class JobBoardFragment extends Fragment implements NavigationView.OnNavig
                              Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
-
         View jobView = inflater.inflate(R.layout.fragment_job_board, container, false);
         recyclerView = (RecyclerView) jobView.findViewById(R.id.rv_job_view);
+
+        //remove previous fragments as this is the start of the stack
+        if (container != null) {
+            container.removeAllViews();
+        }
 
         getJobs();
         //create new adapter, this = click listener
@@ -108,7 +112,7 @@ public class JobBoardFragment extends Fragment implements NavigationView.OnNavig
             @Override
             public void onClick(View view)
             {
-                ((MainActivity)getActivity()).createJob();
+                ((MainActivity)getActivity()).createJob("createJobFromViewJob");
             }
         });
     }
@@ -124,6 +128,7 @@ public class JobBoardFragment extends Fragment implements NavigationView.OnNavig
     {
         //use key to open job fragment
         ((MainActivity)getActivity()).viewJob(jobKey);
+        ((MainActivity)getActivity()).currentFrag = "viewJob";
 
     }
 

@@ -88,6 +88,11 @@ public class CreateJobFragment extends Fragment implements
     {
         View view = inflater.inflate(R.layout.fragment_create_job, container, false);
 
+        //remove previous fragments as this is the start of the stack
+        if (container != null) {
+            container.removeAllViews();
+        }
+
         btnButton = (Button) view.findViewById(R.id.create_job_insert_button);
         etCompany = (EditText) view.findViewById(R.id.create_job_company_name);
         etTitle = (EditText) view.findViewById(R.id.create_job_title);
@@ -164,7 +169,8 @@ public class CreateJobFragment extends Fragment implements
                     j.setPayMin(min);
                     j.setPayMax(max);
                     j.setEmploymentType(employmentTypeSpinner.getSelectedItem().toString());
-                    j.setBounty(bountySeekBar.getProgress());
+                    //round to nearest 100
+                    j.setBounty(((bountySeekBar.getProgress() + 99) / 100 ) * 100);
                     j.setDescription(etDescription.getText().toString());
                     j.setLocation(tvLocation.getText().toString());
 
