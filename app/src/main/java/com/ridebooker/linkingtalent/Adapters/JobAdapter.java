@@ -45,6 +45,16 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
         this.context = context;
     }
 
+    public void add(Job j)
+    {
+        jobs.add(j);
+    }
+
+    public int getLength()
+    {
+        return jobs.size();
+    }
+
     @Override
     public JobViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {

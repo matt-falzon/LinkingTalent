@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,7 +36,7 @@ public class JobBoardFragment extends Fragment implements NavigationView.OnNavig
 
     private ArrayList<Job> jobs = new ArrayList();
     private DatabaseReference ref = ((MainActivity)getActivity()).dbJobRef;
-    private ValueEventListener valueEventListener;
+    private ChildEventListener childEventListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,17 +75,19 @@ public class JobBoardFragment extends Fragment implements NavigationView.OnNavig
     public void onStop()
     {
         super.onStop();
-        ref.removeEventListener(valueEventListener);
+        ref.removeEventListener(childEventListener);
     }
 
     private void getJobs()
     {
-        valueEventListener = new ValueEventListener()
+        childEventListener = new ChildEventListener()
         {
+
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
+            public void onChildAdded(DataSnapshot dataSnapshot, String s)
             {
                 //ArrayList<Job> newJobs = new ArrayList<>();
+                /*
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
                 for (DataSnapshot child: children)
                 {
@@ -92,7 +95,29 @@ public class JobBoardFragment extends Fragment implements NavigationView.OnNavig
                     Log.d("Child", j.getTitle());
                     jobs.add(j);
                 }
-                jobAdapter.notifyItemInserted(jobs.size() - 1);
+                jobAdapter.notifyItemInserted(jobs.size() - 1);*/
+
+                Job job = dataSnapshot.getValue(Job.class);
+                jobAdapter.add(job);
+                jobAdapter.notifyItemInserted(jobAdapter.getLength());
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s)
+            {
+                
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot)
+            {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s)
+            {
+
             }
 
             @Override
@@ -101,7 +126,7 @@ public class JobBoardFragment extends Fragment implements NavigationView.OnNavig
 
             }
         };
-        ref.addValueEventListener(valueEventListener);
+        ref.addChildEventListener(childEventListener);
     }
 
     private void setGui(View view)
