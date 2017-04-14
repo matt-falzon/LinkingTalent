@@ -491,6 +491,11 @@ public class MainActivity extends AppCompatActivity
 
         //Curently using this to stop the home fragment showing
         //when another intent creates a new activity eg photo picker
+        if(currentFrag == "createJob" || currentFrag == "createJobFromViewJob")
+        {
+            //createJob("createJob");
+        }
+        else
             showHomeFragment();
     }
 

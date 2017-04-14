@@ -236,9 +236,9 @@ public class CreateJobFragment extends Fragment implements
     {
         btnButton.setVisibility(View.INVISIBLE);
 
-        StorageReference photoRef = MainActivity.firebaseRootStorageRef.child(selectedImageUri.getLastPathSegment());
+        StorageReference photoRef = MainActivity.firebaseRootStorageRef.child(MainActivity.user.getId() + '/');
 
-        UploadTask uploadTask = photoRef.putFile(selectedImageUri);
+        UploadTask uploadTask = photoRef.child(selectedImageUri.getLastPathSegment()).putFile(selectedImageUri);
         // Upload file to Firebase Storage
         uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
         {
