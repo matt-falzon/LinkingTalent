@@ -78,4 +78,78 @@
     <string name="view_job_menu_share">Share</string>
     <string name="view_job_menu_info">More Info</string>
     <string name="view_job_menu_apply">Apply</string>
+
+    <string-array name="job_category_array">
+        <item>Accounting</item>
+        <item>Administrative / Clerical</item>
+        <item>Advertising / Promotion / PR</item>
+        <item>Agriculture / Forestry</item>
+        <item>Airlines / Tourism</item>
+        <item>Architecture / Interior Design</item>
+        <item>Arts / Design</item>
+        <item>Auditing</item>
+        <item>Auto / Automotive</item>
+        <item>Banking</item>
+        <item>Chemical / Biochemical</item>
+        <item>Civil / Construction</item>
+        <item>Consulting</item>
+        <item>Customer Service</item>
+        <item>Doctors</item>
+        <item>Doctors / Nurses</item>
+        <item>Education / Training</item>
+        <item>Electrical / Electronics</item>
+        <item>Entry Level</item>
+        <item>Environment / Waste Services</item>
+        <item>Executive Management</item>
+        <item>Expatriate jobs in Vietnam</item>
+        <item>Export-Import</item>
+        <item>Fashion / Lifestyle</item>
+        <item>Geology / Mineral</item>
+        <item>Finance / Investment</item>
+        <item>FMCG</item>
+        <item>Food &amp; Beverage</item>
+        <item>Freight / Logistics</item>
+        <item>Health / Medical Care</item>
+        <item>High Technology</item>
+        <item>Household</item>
+        <item>HSE</item>
+        <item>Human Resources</item>
+        <item>HVAC</item>
+        <item>Industrial Products</item>
+        <item>Insurance</item>
+        <item>Internet / Online Media</item>
+        <item>Interpreter / Translator</item>
+        <item>IT - Hardware / Networking</item>
+        <item>IT - Software</item>
+        <item>Legal / Contracts</item>
+        <item>Luxury Goods</item>
+        <item>Maintenance</item>
+        <item>Marine</item>
+        <item>Marketing</item>
+        <item>Mechanical</item>
+        <item>Merchandising / Purchasing / Supply Chain</item>
+        <item>NGO / Non-Profit</item>
+        <item>Oil / Gas</item>
+        <item>Overseas Jobs</item>
+        <item>Pharmaceutical / Biotech</item>
+        <item>Pharmaceutical representatives</item>
+        <item>Pharmacist</item>
+        <item>Planning / projects</item>
+        <item>Printing</item>
+        <item>Production / Process</item>
+        <item>QA / QC</item>
+        <item>Real Estate</item>
+        <item>Restaurant / Hotel</item>
+        <item>Retail / Wholesale</item>
+        <item>Sales</item>
+        <item>Sales Technical</item>
+        <item>Securities &amp; Trading</item>
+        <item>Telecommunications</item>
+        <item>Temporary / Contract</item>
+        <item>Textiles / Garments / Footwear</item>
+        <item>TV / Media / Newspaper</item>
+        <item>Warehouse</item>
+        <item>Others</item>
+    </string-array>
+
 </resources>

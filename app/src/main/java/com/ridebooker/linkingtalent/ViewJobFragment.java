@@ -167,7 +167,7 @@ public class ViewJobFragment extends Fragment
                 viewedJob = dataSnapshot.child(key).getValue(Job.class);
                 tvTitle.setText(viewedJob.getTitle());
                 tvCompany.setText(viewedJob.getCompany());
-                tvCategory.setText(viewedJob.getFirstCategory() + ", " + viewedJob.getSecondCategory());
+                tvCategory.setText(viewedJob.getCategory());
                 tvLocation.setText(viewedJob.getLocation());
                 tvBounty.setText("Bounty" + ": " + "$" + Integer.toString(viewedJob.getBounty()));
                 tvPay.setText("Pay" + ": " + "$" + Integer.toString(viewedJob.getPayMin()) + " - $" + Integer.toString(viewedJob.getPayMax()));

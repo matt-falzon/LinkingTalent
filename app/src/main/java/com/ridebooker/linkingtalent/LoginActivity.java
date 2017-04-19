@@ -19,6 +19,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 
+
+
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -53,18 +55,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-/*
-import com.linkedin.platform.APIHelper;
-import com.linkedin.platform.LISession;
-import com.linkedin.platform.LISessionManager;
-import com.linkedin.platform.errors.LIAuthError;
-import com.linkedin.platform.listeners.AuthListener;
-import com.linkedin.platform.utils.Scope;
-import com.linkedin.platform.APIHelper;
-import com.linkedin.platform.LISessionManager;
-import com.linkedin.platform.errors.LIApiError;
-import com.linkedin.platform.listeners.ApiListener;
-import com.linkedin.platform.listeners.ApiResponse;*/
 
 import java.io.Console;
 import java.io.FileInputStream;
@@ -74,9 +64,19 @@ import java.util.List;
 import java.util.logging.Logger;
 
 
+import com.linkedin.platform.APIHelper;
+import com.linkedin.platform.LISession;
+import com.linkedin.platform.LISessionManager;
+import com.linkedin.platform.errors.LIApiError;
+import com.linkedin.platform.errors.LIAuthError;
+import com.linkedin.platform.listeners.ApiListener;
+import com.linkedin.platform.listeners.ApiResponse;
+import com.linkedin.platform.listeners.AuthListener;
+import com.linkedin.platform.utils.Scope;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -99,11 +99,14 @@ public class LoginActivity extends AppCompatActivity
     private View mLoginFormView;
     private LoginButton fbLoginButton;
     private ProgressBar progressBar;
+    private TextView tvLinkedin;
+
+    private String linkedinUid;
 
     CallbackManager cbManager;
 
     //Firebase Auth
-    FirebaseAuth mFirebaseAuth;
+    FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
     //private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     @Override
@@ -122,18 +125,10 @@ public class LoginActivity extends AppCompatActivity
         mProgressView = findViewById(R.id.login_progress);
         progressBar = (ProgressBar) findViewById(R.id.login_progress);
         progressBar.setVisibility(View.INVISIBLE);
+        tvLinkedin = (TextView) findViewById(R.id.tv_linkedin);
 
         fbLoginButton.setReadPermissions("email", "public_profile");
 
-
-        try
-        {
-            Log.d(TAG, "File Input Stream");
-            FileInputStream serviceAccount = new FileInputStream("path/to/custom_auth.json");
-        } catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -164,7 +159,7 @@ public class LoginActivity extends AppCompatActivity
         }
         else//Linkedin request code
         {
-            //LISessionManager.getInstance(getApplicationContext()).onActivityResult(this, requestCode, resultCode, data);
+            LISessionManager.getInstance(getApplicationContext()).onActivityResult(this, requestCode, resultCode, data);
         }
     }
 
@@ -251,16 +246,16 @@ public class LoginActivity extends AppCompatActivity
     }
 
     //</editor-fold>
-/*
+
     //<editor-fold desc="Linkedin">
 
     public void onClickLinkedin(View view){
         LISessionManager.getInstance(getApplicationContext()).init(this, buildScope(), new AuthListener() {
             @Override
             public void onAuthSuccess() {
+                Log.d("Linkedin", " asdf");
                 setUpdateState();
                 getUserData();
-                Toast.makeText(getApplicationContext(), "Linkedin Success!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -275,13 +270,16 @@ public class LoginActivity extends AppCompatActivity
         LISessionManager sessionManager = LISessionManager.getInstance(getApplicationContext());
         LISession session = sessionManager.getSession();
         boolean accessTokenValid = session.isValid();
-        String token = session.getAccessToken().toString();
+
+        String token = session.getAccessToken().getValue();
         //FirebaseAuth.getInstance().createCustomToken(token);
 
+        tvLinkedin.setText(session.getAccessToken().toString());
 
-
-        signInWithToken(token);
-        tvLogin.setText("Your token= " + token);
+        //FirebaseAuth.getInstance().createCustomToken(session.getAccessToken().getValue());
+        //FirebaseAuth.getInstance().create
+        signInWithToken(session.getAccessToken().toString());
+        Log.d("Linkedin login", "Your token= " + token);
 
         System.out.println(token);
     }
@@ -321,14 +319,15 @@ public class LoginActivity extends AppCompatActivity
     {
         try
         {
-            tvLinkedin.setText("Linkedin \n" + "ID: " + response.get("id") + "\n" +
+            Log.d("Linkedin login", "Linkedin \n" + "ID: " + response.get("id").toString() + "\n" +
                     "Name: " + response.get("formattedName").toString() + "\n"
-                    + "Email: " + response.get("emailAddress").toString() + "\n"
+                    + "Email: " + response.get("emailAddress").toString() + "\n");
 
-            );
+            linkedinUid = response.get("id").toString();
 
+                    //tvLinkedin.setText(response.get("token").toString());
 
-            //Picasso.with(this).load(response.getString("pictureUrl")).into(profile_pic);
+           //Picasso.with(this).load(response.getString("pictureUrl")).into(profile_pic);
 
         } catch (Exception e)
         {
@@ -358,6 +357,6 @@ public class LoginActivity extends AppCompatActivity
     }
 
     //</editor-fold>
-*/
+
 }
 

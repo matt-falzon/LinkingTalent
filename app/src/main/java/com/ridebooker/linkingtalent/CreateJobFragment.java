@@ -1,17 +1,13 @@
 package com.ridebooker.linkingtalent;
 
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationManager;
 import android.net.Uri;
-import android.nfc.Tag;
-import android.os.Build;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -32,11 +28,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.identity.intents.Address;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.StorageReference;
@@ -46,8 +38,6 @@ import com.ridebooker.linkingtalent.datatypes.Job;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-
-import static com.google.android.gms.cast.CastRemoteDisplayLocalService.startService;
 
 
 /**
@@ -61,10 +51,10 @@ public class CreateJobFragment extends Fragment implements
     private static final int RC_PHOTO_PICKER = 1234;
 
     Button btnButton;
-    EditText etCompany, etTitle, etFirstCat, etSecondcat, etDescription;
+    EditText etCompany, etTitle, etDescription;
     SeekBar bountySeekBar;
     ImageButton btnLocation, btnPhotoPicker;
-    Spinner minSpinner, maxSpinner, employmentTypeSpinner;
+    Spinner minSpinner, maxSpinner, employmentTypeSpinner, spJobCat;
     TextView tvBounty, tvLocation;
 
     private Uri selectedImageUri;
@@ -96,8 +86,7 @@ public class CreateJobFragment extends Fragment implements
         btnButton = (Button) view.findViewById(R.id.create_job_insert_button);
         etCompany = (EditText) view.findViewById(R.id.create_job_company_name);
         etTitle = (EditText) view.findViewById(R.id.create_job_title);
-        etFirstCat = (EditText) view.findViewById(R.id.create_job_first_cat);
-        etSecondcat = (EditText) view.findViewById(R.id.create_job_second_cat);
+        spJobCat = (Spinner) view.findViewById(R.id.create_job_cat);
         tvLocation = (TextView) view.findViewById(R.id.create_job_location);
         etDescription = (EditText) view.findViewById(R.id.create_job_description);
         bountySeekBar = (SeekBar) view.findViewById(R.id.create_job_seekBar);
@@ -163,9 +152,7 @@ public class CreateJobFragment extends Fragment implements
 
                     j.setTitle(etTitle.getText().toString());
                     j.setCompany(etCompany.getText().toString());
-
-                    j.setFirstCategory(etFirstCat.getText().toString());
-                    j.setSecondCategory(etSecondcat.getText().toString());
+                    j.setCategory(spJobCat.getSelectedItem().toString());
                     j.setPayMin(min);
                     j.setPayMax(max);
                     j.setEmploymentType(employmentTypeSpinner.getSelectedItem().toString());
@@ -197,7 +184,7 @@ public class CreateJobFragment extends Fragment implements
             @Override
             public void onClick(View v)
             {
-                getLocation();
+                //getLocation();
             }
         });
 
@@ -220,8 +207,6 @@ public class CreateJobFragment extends Fragment implements
     {
         if (etDescription.getText().toString().matches("") ||
                 tvLocation.getText().toString().matches("") ||
-                etSecondcat.getText().toString().matches("") ||
-                etFirstCat.getText().toString().matches("") ||
                 etTitle.getText().toString().matches("") ||
                 etCompany.getText().toString().matches("") ||
                 tvBounty.getText().toString().matches(""))
@@ -232,6 +217,7 @@ public class CreateJobFragment extends Fragment implements
 
     }
 
+    //deprecated for async task
     private void uploadImage()
     {
         btnButton.setVisibility(View.INVISIBLE);
@@ -268,7 +254,7 @@ public class CreateJobFragment extends Fragment implements
         // applications that do not require a fine-grained location and that do not need location
         // updates. Gets the best and most recent location currently available, which may be null
         // in rare cases when a location is not available.
-        getLocation();
+        new LocationTask().execute();
 
     }
 
@@ -278,29 +264,6 @@ public class CreateJobFragment extends Fragment implements
         {
             requestPermissions(new String[] {  android.Manifest.permission.ACCESS_COARSE_LOCATION  },
                     MY_PERMISSION_ACCESS_COARSE_LOCATION );
-        }
-    }
-
-    public void getLocation()
-    {
-        checkLocationPermission();
-
-        location = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-
-        if (location != null) {
-            try
-            {
-                List<android.location.Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                Log.d(TAG, "onConnected: ");
-                Log.d(TAG, "City: " + addresses.get(0).getLocality());
-                Log.d(TAG, "Country: " + addresses.get(0).getCountryName());
-                tvLocation.setText(addresses.get(0).getLocality() + ", " + addresses.get(0).getCountryName());
-            } catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-        } else {
-            Log.d(TAG, "No Location Detected: ");
         }
     }
 
@@ -323,7 +286,7 @@ public class CreateJobFragment extends Fragment implements
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(requestCode == MY_PERMISSION_ACCESS_COARSE_LOCATION)
         {
-            getLocation();
+            new LocationTask().execute();
         }
     }
 
@@ -334,7 +297,7 @@ public class CreateJobFragment extends Fragment implements
             //selectedImageUri is the url for the image on the device
                 selectedImageUri = data.getData();
             if(selectedImageUri != null)
-                uploadImage();
+               new ImageUploadTask().execute();
         }
     }
 
@@ -358,4 +321,87 @@ public class CreateJobFragment extends Fragment implements
         super.onStop();
         googleApiClient.disconnect();
     }
+
+    class LocationTask extends AsyncTask<Void, Void, Void>{
+
+        List<android.location.Address> addresses;
+
+        @Override
+        protected Void doInBackground(Void... params)
+        {
+            checkLocationPermission();
+
+            location = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+            if (location != null) {
+                try
+                {
+                    addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                    Log.d(TAG, "onConnected: ");
+                    Log.d(TAG, "City: " + addresses.get(0).getLocality());
+                    Log.d(TAG, "Country: " + addresses.get(0).getCountryName());
+                } catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            } else {
+                Log.d(TAG, "No Location Detected: ");
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid)
+        {
+            tvLocation.setText(addresses.get(0).getLocality() + ", " + addresses.get(0).getCountryName());
+        }
+    }
+
+    class ImageUploadTask extends AsyncTask<Void, Void, Void>{
+
+        @Override
+        protected void onPreExecute()
+        {
+            btnButton.setVisibility(View.INVISIBLE);
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid)
+        {
+            btnButton.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Void doInBackground(Void... params)
+        {
+            StorageReference photoRef = MainActivity.firebaseRootStorageRef.child(MainActivity.user.getId() + '/');
+
+            UploadTask uploadTask = photoRef.child(selectedImageUri.getLastPathSegment()).putFile(selectedImageUri);
+            // Upload file to Firebase Storage
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
+            {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+                {
+                    Uri downloadUri = taskSnapshot.getDownloadUrl();
+                    j.setImageUrl(downloadUri.toString());
+                    j.setImageName(downloadUri.getLastPathSegment().toString());
+
+                }
+            }).addOnFailureListener(new OnFailureListener()
+            {
+                @Override
+                public void onFailure(@NonNull Exception e)
+                {
+                    Toast.makeText(getContext(), "Failed to upload Photo", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            return null;
+        }
+
+    }
+
+
+
 }

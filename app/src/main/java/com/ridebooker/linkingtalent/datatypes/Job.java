@@ -15,8 +15,7 @@ public class Job
     private String key;
     private String title;
     private String company;
-    private String firstCategory;
-    private String secondCategory;
+    private String category;
     private int payMin;
     private int payMax;
     private int bounty;
@@ -93,15 +92,11 @@ public class Job
         return company;
     }
 
-    public String getFirstCategory()
+    public String getCategory()
     {
-        return firstCategory;
+        return category;
     }
 
-    public String getSecondCategory()
-    {
-        return secondCategory;
-    }
 
     public int getPayMin()
     {
@@ -133,14 +128,9 @@ public class Job
         return postDate;
     }
 
-    public void setFirstCategory(String firstCategory)
+    public void setCategory(String category)
     {
-        this.firstCategory = firstCategory;
-    }
-
-    public void setSecondCategory(String secondCategory)
-    {
-        this.secondCategory = secondCategory;
+        this.category = category;
     }
 
     public void setPayMin(int payMin)

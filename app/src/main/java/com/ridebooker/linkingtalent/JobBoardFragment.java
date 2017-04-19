@@ -105,7 +105,7 @@ public class JobBoardFragment extends Fragment implements NavigationView.OnNavig
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s)
             {
-                
+
             }
 
             @Override

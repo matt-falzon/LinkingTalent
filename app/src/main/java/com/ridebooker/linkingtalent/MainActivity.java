@@ -31,11 +31,16 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import com.facebook.login.LoginManager;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.auth.FirebaseCredentials;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -88,6 +93,24 @@ public class MainActivity extends AppCompatActivity
         firebaseRootStorageRef = firebaseStorage.getReference();
         firebaseCompanyImageRef = firebaseStorage.getReference().child("company_images");
         firebaseProfileImageRef = firebaseStorage.getReference().child("profile_images");
+
+        /*
+        FileInputStream serviceAccount = null;
+        try
+        {
+            serviceAccount = new FileInputStream("firebase_admin.json");
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+
+        FirebaseOptions options = new FirebaseOptions.Builder()
+                .setCredential(FirebaseCredentials.fromCertificate(serviceAccount))
+                .setDatabaseUrl("https://linkingtalent-e8c2d.firebaseio.com")
+                .build();
+
+        FirebaseApp.initializeApp(options);
+        */
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
