@@ -36,6 +36,7 @@ import java.io.FileNotFoundException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import com.auth0.android.result.UserProfile;
 import com.facebook.login.LoginManager;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -81,6 +82,10 @@ public class MainActivity extends AppCompatActivity
     public static StorageReference firebaseProfileImageRef;
     public String currentFrag = "home";
 
+    public static UserProfile userProfile;
+    public static String tokenId;
+    public static long tokenExpires;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -94,24 +99,6 @@ public class MainActivity extends AppCompatActivity
         firebaseCompanyImageRef = firebaseStorage.getReference().child("company_images");
         firebaseProfileImageRef = firebaseStorage.getReference().child("profile_images");
 
-        /*
-        FileInputStream serviceAccount = null;
-        try
-        {
-            serviceAccount = new FileInputStream("firebase_admin.json");
-        } catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-
-        FirebaseOptions options = new FirebaseOptions.Builder()
-                .setCredential(FirebaseCredentials.fromCertificate(serviceAccount))
-                .setDatabaseUrl("https://linkingtalent-e8c2d.firebaseio.com")
-                .build();
-
-        FirebaseApp.initializeApp(options);
-        */
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setupSharedPreferences();
@@ -123,7 +110,7 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-
+        getHash();
 
         //check if user is loggin in and start login state listener
         loginState();

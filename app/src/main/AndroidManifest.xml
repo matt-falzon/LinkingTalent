@@ -38,11 +38,27 @@
         <activity
             android:name=".LoginActivity"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTask">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ridebooker.linkingtalent.MainActivity"/>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="falzonm.auth0.com"
+                    android:pathPrefix="/android/com.ridebooker.linkingtalent/callback"
+                    android:scheme="https" />
+            </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.auth0.android.provider.WebAuthActivity"/>
+
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"

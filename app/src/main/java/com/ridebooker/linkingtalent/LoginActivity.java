@@ -3,6 +3,7 @@ package com.ridebooker.linkingtalent;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -38,6 +39,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.auth0.android.Auth0;
+import com.auth0.android.authentication.AuthenticationAPIClient;
+import com.auth0.android.authentication.AuthenticationException;
+import com.auth0.android.callback.BaseCallback;
+import com.auth0.android.provider.AuthCallback;
+import com.auth0.android.provider.WebAuthProvider;
+import com.auth0.android.result.Credentials;
+import com.auth0.android.result.Delegation;
+import com.auth0.android.result.UserProfile;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -60,7 +70,9 @@ import java.io.Console;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 
@@ -73,6 +85,7 @@ import com.linkedin.platform.listeners.ApiListener;
 import com.linkedin.platform.listeners.ApiResponse;
 import com.linkedin.platform.listeners.AuthListener;
 import com.linkedin.platform.utils.Scope;
+import com.ridebooker.linkingtalent.Helpers.Credentials.CredentialsManager;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -91,7 +104,6 @@ public class LoginActivity extends AppCompatActivity
     private static final String host = "api.linkedin.com";
     private static final String topCardUrl = "https://" + host + "/v1/people/~:(id,email-address,formatted-name,phone-numbers,public-profile-url,picture-url,picture-urls::(original))";
 
-
     private final static Logger LOGGER = Logger.getLogger(LoginActivity.class.getName());
 
     //UI References
@@ -101,7 +113,10 @@ public class LoginActivity extends AppCompatActivity
     private ProgressBar progressBar;
     private TextView tvLinkedin;
 
+
     private String linkedinUid;
+    private Auth0 auth0;
+    private UserProfile _profile;
 
     CallbackManager cbManager;
 
@@ -118,6 +133,18 @@ public class LoginActivity extends AppCompatActivity
         cbManager = CallbackManager.Factory.create();
         //Firebase Auth
         mFirebaseAuth = FirebaseAuth.getInstance();
+
+        auth0 = new Auth0(getString(R.string.auth0_client_id), getString(R.string.auth0_domain));
+
+        if(CredentialsManager.getCredentials(this).getIdToken() == null) {
+            // Prompt Login screen.
+            Log.d(TAG, "onCreate: No token exists");
+
+        }
+        else {
+            validateToken(CredentialsManager.getCredentials(this).getIdToken(), auth0);
+        }
+
 
         // Set up the login form.
         fbLoginButton = (LoginButton) findViewById(R.id.fb_login_button);
@@ -250,19 +277,33 @@ public class LoginActivity extends AppCompatActivity
     //<editor-fold desc="Linkedin">
 
     public void onClickLinkedin(View view){
-        LISessionManager.getInstance(getApplicationContext()).init(this, buildScope(), new AuthListener() {
-            @Override
-            public void onAuthSuccess() {
-                Log.d("Linkedin", " asdf");
-                setUpdateState();
-                getUserData();
-            }
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("scope", "name email displayName openid offline_access ");
+        //parameters.put()
+        WebAuthProvider.init(auth0)
+                .withConnection("linkedin")
+                .withParameters(parameters)
+                .start(this, new AuthCallback() {
+                    @Override
+                    public void onFailure(@NonNull Dialog dialog) {
+                        // Show error Dialog to user
+                        Log.d(TAG, "onFailure: error logging in");
+                    }
 
-            @Override
-            public void onAuthError(LIAuthError error) {
-                Toast.makeText(getApplicationContext(), "failed " + error.toString(), Toast.LENGTH_LONG).show();
-            }
-        }, true);
+                    @Override
+                    public void onFailure(AuthenticationException exception) {
+                        // Show error to user
+                        Log.d(TAG, "onFailure: " + exception.toString());
+                    }
+
+                    @Override
+                    public void onSuccess(@NonNull Credentials credentials) {
+                        // Store credentials
+                        // Navigate to your main activity
+                        Log.d("success", "token: " + credentials.getAccessToken());
+                        CredentialsManager.saveCredentials(LoginActivity.this, credentials);
+                    }
+                });
     }
 
     //get Linkedin Session
@@ -276,8 +317,6 @@ public class LoginActivity extends AppCompatActivity
 
         tvLinkedin.setText(session.getAccessToken().toString());
 
-        //FirebaseAuth.getInstance().createCustomToken(session.getAccessToken().getValue());
-        //FirebaseAuth.getInstance().create
         signInWithToken(session.getAccessToken().toString());
         Log.d("Linkedin login", "Your token= " + token);
 
@@ -314,6 +353,14 @@ public class LoginActivity extends AppCompatActivity
         });
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        if (WebAuthProvider.resume(intent)) {
+            return;
+        }
+        super.onNewIntent(intent);
+    }
+
     ///Parse the Linkedin JSON Data
     public void  parseData(JSONObject response)
     {
@@ -325,10 +372,6 @@ public class LoginActivity extends AppCompatActivity
 
             linkedinUid = response.get("id").toString();
 
-                    //tvLinkedin.setText(response.get("token").toString());
-
-           //Picasso.with(this).load(response.getString("pictureUrl")).into(profile_pic);
-
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -336,26 +379,123 @@ public class LoginActivity extends AppCompatActivity
 
     }
 
+    private void validateToken(final String token, Auth0 auth0)
+    {
+        // Try to make an automatic login
+        Log.d(TAG, "onCreate: Validating current token");
+        final AuthenticationAPIClient authClient = new AuthenticationAPIClient(auth0);
+        authClient.tokenInfo(token)
+                .start(new BaseCallback<UserProfile, AuthenticationException>() {
+                    @Override
+                    public void onSuccess(UserProfile payload) {
+                        // Valid ID
+                        Log.d(TAG, "onSuccess: Current token valid \n" + payload.getName() + "\n" + payload.getId());
+                        Log.d(TAG, "onSuccess: Refreshing token \n current token:" + token);
+                        _profile = payload;
+                        //getFirebaseToken(token, authClient);
+                        refreshToken(token, authClient);
+                    }
+
+                    @Override
+                    public void onFailure(AuthenticationException error) {
+                        // Invalid ID Scenario
+                        Log.d(TAG, "onSuccess: Current token expired");
+                        authClient.delegationWithRefreshToken(token)
+                                .start(new BaseCallback<Delegation, AuthenticationException>() {
+
+                                    @Override
+                                    public void onSuccess(Delegation payload) {
+                                        Log.d(TAG, "onSuccess: refreshed token \n token: " + payload.getIdToken());
+                                        MainActivity.tokenId = payload.getIdToken(); // New ID Token
+                                        MainActivity.tokenExpires = payload.getExpiresIn();// New ID Token Expire Date
+                                        try
+                                        {
+                                            Log.d(TAG, "onSuccess: " + MainActivity.userProfile.getGivenName());
+                                        }catch (Exception e){
+                                            Log.d(TAG, "onSuccess: failed to get given name" + e.toString());
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(AuthenticationException error) {
+                                        Log.d(TAG, "onFailure: unable to get refresh token");
+                                    }
+                                });
+                    }
+                });
+    }
+
+    private void refreshToken(String token, final AuthenticationAPIClient client)
+    {
+        //refresh token
+        client.delegationWithIdToken(token)
+                .start(new BaseCallback<Delegation, AuthenticationException>() {
+
+                    @Override
+                    public void onSuccess(Delegation payload) {
+                        Log.d(TAG, "onSuccess: Refreshed token \n token: " + payload.getIdToken());
+                        MainActivity.tokenId = payload.getIdToken(); // New ID Token
+                        MainActivity.tokenExpires = payload.getExpiresIn(); // New ID Token Expire Date
+
+                        //get token for firebase
+                        getFirebaseToken(payload.getIdToken(), client);
+                    }
+
+                    @Override
+                    public void onFailure(AuthenticationException error) {
+                        //Show error to the user
+                        Log.d(TAG, "onFailure: Cannot refresh token");
+                    }
+                });
+    }
+
+    private void getFirebaseToken(String token, AuthenticationAPIClient client)
+    {
+        String apiType = "firebase";
+        client.delegationWithIdToken(token, apiType)
+                .start(new BaseCallback<Map<String, Object>, AuthenticationException>() {
+
+                    @Override
+                    public void onSuccess(Map<String, Object> payload) {
+                        Log.d(TAG, "getFirebaseToken onSuccess: \n" + payload.toString()
+                                + "\n payload size: " + payload.size() + " keyset: " + payload.keySet());
+                        //Your Firebase token will be in payload
+                        signInWithToken(payload.get("id_token").toString());
+                    }
+
+                    @Override
+                    public void onFailure(AuthenticationException error) {
+                        //Delegation call failed
+                    }
+                });
+    }
+
     public void signInWithToken(String token){
+
+        Log.d(TAG, "signInWithToken: attempt to sign in with custom token...");
         mFirebaseAuth.signInWithCustomToken(token)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signInWithCustomToken:onComplete:" + task.isSuccessful());
+                        Log.d(TAG, "signInWithCustomToken: " + task.isSuccessful());
 
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                            Log.w(TAG, "signInWithCustomToken", task.getException());
-                            Toast.makeText(LoginActivity.this, "Linkedin Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            Log.w(TAG, "signInWithCustomTokenFailed: ", task.getException());
+
+                        }
+                        else
+                        {
+                            Log.d(TAG, "onComplete: signInWithCustomToken successful! \n " +
+                                    "Profile name: " + _profile.getName());
 
                         }
                     }
                 });
     }
-
     //</editor-fold>
 
 }

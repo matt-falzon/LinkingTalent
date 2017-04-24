@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="jwtdecode-1.1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/656d7d8666c4461e0d5395582861d501f69c0d5e/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/656d7d8666c4461e0d5395582861d501f69c0d5e/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.auth0.android/jwtdecode/1.1.0/b4857a6113e2a70cb229fadaf58755c62cbf944/jwtdecode-1.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

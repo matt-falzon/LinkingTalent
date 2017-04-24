@@ -79,6 +79,10 @@
     <string name="view_job_menu_info">More Info</string>
     <string name="view_job_menu_apply">Apply</string>
 
+    <!-- Oauth -->
+    <string name="auth0_client_id">38C3pMcJ42qugdzK39MJ0gModxV1neI0</string>
+    <string name="auth0_domain">falzonm.auth0.com</string>
+
     <string-array name="job_category_array">
         <item>Accounting</item>
         <item>Administrative / Clerical</item>
