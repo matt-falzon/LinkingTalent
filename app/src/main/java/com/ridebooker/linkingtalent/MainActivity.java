@@ -51,6 +51,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.ridebooker.linkingtalent.Helpers.Credentials.CredentialsManager;
 import com.ridebooker.linkingtalent.datatypes.Job;
 import com.ridebooker.linkingtalent.datatypes.TalentChamp;
 import com.ridebooker.linkingtalent.Helpers.ImageLoadTask;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity
 {
 
     private static final String TAG = "MainActivity";
-    private TextView tvNavName, tvNavEmail;
+    private TextView tvNavName;
     private ImageView imgNav;
     private PopupWindow popupWindow;
     //private RelativeLayout mainLayout;
@@ -110,9 +111,9 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        getHash();
+        //getHash();
 
-        //check if user is loggin in and start login state listener
+        //check if user is logged in and start login state listener
         loginState();
 
         //setupMainNav();
@@ -177,13 +178,11 @@ public class MainActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
 
         tvNavName = (TextView) header.findViewById(R.id.tv_nav_header_name);
-        tvNavEmail = (TextView) header.findViewById(R.id.tv_nav_header_email);
         imgNav = (ImageView) header.findViewById(R.id.nav_image);
-            tvNavName.setText(user.getName());
-            tvNavEmail.setText(user.getEmail());
+        tvNavName.setText(user.getFirstName());
         SharedPreferences sharedPrefs = getSharedPreferences(getString(R.string.LOCAL_PREFERENCES), Context.MODE_PRIVATE);
-        //get facebook image
-        new ImageLoadTask(sharedPrefs.getString(getResources().getString(R.string.key_user_img), null), imgNav).execute();
+        //get profile image
+        new ImageLoadTask(user.getPhoto().toString(), imgNav).execute();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -284,7 +283,10 @@ public class MainActivity extends AppCompatActivity
 
                 //log out of firebase
                 mFirebaseAuth.signOut();
-                //log out of Facebook
+                //clear current user
+                user = null;
+                //log out of social network
+                CredentialsManager.deleteCredentials(this);
                 LoginManager.getInstance().logOut();
 
                 return true;
@@ -473,12 +475,14 @@ public class MainActivity extends AppCompatActivity
 
     //</editor-fold>
 
+    //</editor-fold desc="login initialization">
     private void loginState()
     {
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+                //Toast.makeText(MainActivity.this, user.getDisplayName(), Toast.LENGTH_SHORT).show();
                 if (user != null) {
                     Log.d(TAG, "onAuthStateChanged: Logged in");
                     onSignedInInitialize(user);
@@ -492,11 +496,12 @@ public class MainActivity extends AppCompatActivity
         };
     }
 
-
-    private void onSignedInInitialize(FirebaseUser user)
+    private void onSignedInInitialize(FirebaseUser firebaseUser)
     {
-        this.user = new TalentChamp(user.getUid(), user.getDisplayName(), user.getEmail(), "location", true);
-        dbUsersRef.child(user.getUid().toString()).setValue(this.user);
+        user = new TalentChamp(firebaseUser.getUid(), firebaseUser.getDisplayName(), firebaseUser.getEmail(), "location", true);
+        user.setPhoto(firebaseUser.getPhotoUrl().toString());
+        dbUsersRef.child(firebaseUser.getUid()).setValue(user);
+
         setupMainNav();
 
         //Curently using this to stop the home fragment showing
@@ -506,9 +511,18 @@ public class MainActivity extends AppCompatActivity
             //createJob("createJob");
         }
         else
-            showHomeFragment();
+        {
+            //I dont use the normal home fragment method so there is not animation the first time the app loads
+            currentFrag = "home";
+            HomeFragment frag = new HomeFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.content_main, frag, "home_fragment");
+            transaction.commit();
+        }
     }
 
+    //</editor-fold>
 
     private void getHash(){
         try {

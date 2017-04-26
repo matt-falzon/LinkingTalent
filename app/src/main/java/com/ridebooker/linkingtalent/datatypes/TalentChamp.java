@@ -1,5 +1,7 @@
 package com.ridebooker.linkingtalent.datatypes;
 
+import android.net.Uri;
+
 import java.net.URL;
 
 /**
@@ -10,10 +12,24 @@ public class TalentChamp
 {
     private String id;
     private String name;
+    private String firstName;
+    private String lastName;
     private String email;
     private String location;
     private boolean isTalentChamp;
-    private URL photo;
+    private String photo;
+    private Uri photoUri;
+
+    public void setPhotoUri(Uri photoUri)
+    {
+        this.photoUri = photoUri;
+    }
+
+    public Uri getPhotoUri()
+    {
+
+        return photoUri;
+    }
 
     public String getName()
     {
@@ -35,9 +51,24 @@ public class TalentChamp
         return id;
     }
 
-    public URL getPhoto()
+    public String getPhoto()
     {
         return photo;
+    }
+
+    public void setPhoto(String photo)
+    {
+        this.photo = photo;
+    }
+
+    public String getFirstName()
+    {
+        return firstName;
+    }
+
+    public String getLastName()
+    {
+        return lastName;
     }
 
     public TalentChamp(String id, String name, String email, String location, boolean isTalentChamp)
@@ -47,5 +78,11 @@ public class TalentChamp
         this.email = email;
         this.location = location;
         this.isTalentChamp = isTalentChamp;
+        String[] names = name.split(" ");
+        this.firstName = names[0];
+        this.lastName = names[1];
+
     };
+
+    public TalentChamp(){};
 }

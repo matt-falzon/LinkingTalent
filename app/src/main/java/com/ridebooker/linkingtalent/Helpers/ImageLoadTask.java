@@ -9,6 +9,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/*
+downloads image from firebase storage
+ */
 public class ImageLoadTask extends AsyncTask<Void, Void, Bitmap>
 {
 

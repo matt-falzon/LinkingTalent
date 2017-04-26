@@ -123,6 +123,7 @@ public class CreateJobFragment extends Fragment implements
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
             {
+                //Bounty rounded to nearest 100
                 tvBounty.setText("$" + Integer.toString(((progress + 99) / 100 ) * 100));
             }
 

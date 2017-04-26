@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment
         tvHomeTitle = (TextView) view.findViewById(R.id.tvHomeTitle);
         tvfacebookimg = (TextView) view.findViewById(R.id.facebook_img_uri);
 
-        tvHomeTitle.setText("Welcome back " + MainActivity.user.getName() + "!");
+        tvHomeTitle.setText("Welcome back " + MainActivity.user.getFirstName() + "!");
         // Inflate the layout for this fragment
         return view;
     }
