@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.test.mock.MockPackageManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -185,7 +186,7 @@ public class CreateJobFragment extends Fragment implements
             @Override
             public void onClick(View v)
             {
-                //getLocation();
+                new LocationTask().execute();
             }
         });
 
@@ -285,10 +286,14 @@ public class CreateJobFragment extends Fragment implements
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
     {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == MY_PERMISSION_ACCESS_COARSE_LOCATION)
+        if (requestCode == MY_PERMISSION_ACCESS_COARSE_LOCATION)
         {
-            new LocationTask().execute();
+            if (grantResults.length == 1 && grantResults[0] == MockPackageManager.PERMISSION_GRANTED )
+            {
+                new LocationTask().execute();
+            }
         }
+
     }
 
     @Override
@@ -323,9 +328,15 @@ public class CreateJobFragment extends Fragment implements
         googleApiClient.disconnect();
     }
 
-    class LocationTask extends AsyncTask<Void, Void, Void>{
+    private class LocationTask extends AsyncTask<Void, Void, Void>{
 
         List<android.location.Address> addresses;
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
 
         @Override
         protected Void doInBackground(Void... params)
@@ -333,6 +344,7 @@ public class CreateJobFragment extends Fragment implements
             checkLocationPermission();
 
             location = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+
             if (location != null) {
                 try
                 {
@@ -354,11 +366,14 @@ public class CreateJobFragment extends Fragment implements
         @Override
         protected void onPostExecute(Void aVoid)
         {
-            tvLocation.setText(addresses.get(0).getLocality() + ", " + addresses.get(0).getCountryName());
+            if (location != null)
+                tvLocation.setText(addresses.get(0).getLocality() + ", " + addresses.get(0).getCountryName());
+            else
+                Toast.makeText(getContext(), "Unable to get location, check your network status", Toast.LENGTH_LONG).show();
         }
     }
 
-    class ImageUploadTask extends AsyncTask<Void, Void, Void>{
+    private class ImageUploadTask extends AsyncTask<Void, Void, Void>{
 
         @Override
         protected void onPreExecute()
@@ -370,6 +385,7 @@ public class CreateJobFragment extends Fragment implements
         protected void onPostExecute(Void aVoid)
         {
             btnButton.setVisibility(View.VISIBLE);
+            //Toast.makeText(getContext(), "Image uploaded!", Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -385,9 +401,10 @@ public class CreateJobFragment extends Fragment implements
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
                 {
                     Uri downloadUri = taskSnapshot.getDownloadUrl();
+                    //String imageName  = .toString().split("/")[1];
                     j.setImageUrl(downloadUri.toString());
-                    j.setImageName(downloadUri.getLastPathSegment().toString());
-
+                    j.setImageName(downloadUri.getLastPathSegment().split("/")[1]);
+                    Log.d(TAG, "onSuccess: " + downloadUri.toString() + "\n" + downloadUri.getLastPathSegment().split("/")[1]);
                 }
             }).addOnFailureListener(new OnFailureListener()
             {

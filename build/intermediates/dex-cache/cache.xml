@@ -3,57 +3,12 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\mattf\.android\build-cache\656d7d8666c4461e0d5395582861d501f69c0d5e\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="089e0e8c2da90cfc6499f6653755124b21f6f3b9">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_24f87ddb4817d27e601641ca8a6b5393ae937e31\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\linkedin-sdk\build\intermediates\bundles\default\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="ff0dbd51b176ea277d0eb2359b37338041922a82">
         <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\4\classes_83c44da6fb0f51f5a87c0cfacaafdaf0e266f723\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\mattf\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="98476622f10715998eacf9240d6b479f12c66143">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.6.0_70382916372a663b4c5fd0341432b8547be9aaea\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\mattf\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\logging-interceptor\2.7.5\229decd4f18b3133eeabb0005e1d3f6e66074528\logging-interceptor-2.7.5.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="229decd4f18b3133eeabb0005e1d3f6e66074528">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\logging-interceptor-2.7.5_9c4972e5269e30f8296cd0fa16ad002fc26c77d5\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\mattf\.android\build-cache\b6eb3ca64c8604e01709b52f66f7d9a8201002c2\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8a30b6340a9d9c5a57480a68a2c3ebb9afb2d041">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_168386295a4818a85de48f3f42f0a4cc409a4a9c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\mattf\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.7.5\7a15a7db50f86c4b64aa3367424a60e3a325b8f1\okhttp-2.7.5.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="7a15a7db50f86c4b64aa3367424a60e3a325b8f1">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-2.7.5_252f90f9fb27352155c80477b3e2fa55e673c7bb\classes.dex" />
     </item>
     <item
         is-multidex="true"

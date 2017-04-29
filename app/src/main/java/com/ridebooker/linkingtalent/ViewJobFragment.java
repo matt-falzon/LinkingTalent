@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -25,6 +26,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.ridebooker.linkingtalent.datatypes.Job;
 
 
@@ -101,7 +104,7 @@ public class ViewJobFragment extends Fragment
                         applyIntent.setType("message/rfc822");
                         applyIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"mattf@ridebooker.com"});
                         applyIntent.putExtra(Intent.EXTRA_SUBJECT, tvTitle.getText().toString() + " application");
-                        applyIntent.putExtra(Intent.EXTRA_TEXT, "I wanna apply for this job" );
+                        applyIntent.putExtra(Intent.EXTRA_TEXT, "Job application template goes here" );
                         startActivity(applyIntent);
                         break;
                     case R.id.job_action_info:
@@ -174,12 +177,14 @@ public class ViewJobFragment extends Fragment
                 tvDescription.setText(viewedJob.getDescription());
                 tvEmploymentType.setText("Employment Type: " + viewedJob.getEmploymentType());
 
+                StorageReference imageRef =  FirebaseStorage.getInstance().getReference().child(viewedJob.getId());
                 //check if there is an image with this job
                 if(viewedJob.getImageUrl() != null)
                 {
+                    Log.d("ViewJobFragment", "onDataChange: getting image => " + viewedJob.getImageName());
                     Glide.with(imgJob.getContext())
                             .using(new FirebaseImageLoader())
-                            .load(MainActivity.firebaseRootStorageRef.child(viewedJob.getImageName()))
+                            .load(imageRef.child(viewedJob.getImageName()))
                             .into(imgJob);
                 }
             }

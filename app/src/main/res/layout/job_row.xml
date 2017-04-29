@@ -2,11 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
+              android:layout_height="80dp"
                 android:id="@+id/job_frag">
+
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
         android:src="@drawable/lt_symbol"
         android:id="@+id/iv_job_image"/>
 
@@ -15,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Job Title"
-        android:textSize="30dp"
+        android:textSize="26dp"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/iv_job_image"
         android:layout_toEndOf="@+id/iv_job_image"/>
@@ -25,9 +26,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Company Name"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:layout_below="@+id/tv_job_title"
         android:layout_toRightOf="@+id/iv_job_image"
         android:layout_toEndOf="@+id/iv_job_image"/>
+
+    <TextView
+        android:id="@+id/tv_job_bounty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bounty"
+        android:textSize="18dp"
+        android:textColor="#0bb7dd"
+        android:layout_below="@+id/tv_job_company"
+        android:layout_toRightOf="@+id/iv_job_image"
+        android:layout_toEndOf="@+id/iv_job_image"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/iv_job_image"/>
 
 </RelativeLayout>

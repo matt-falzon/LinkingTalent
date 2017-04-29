@@ -512,12 +512,20 @@ public class MainActivity extends AppCompatActivity
         }
         else
         {
+            /*
             //I dont use the normal home fragment method so there is not animation the first time the app loads
             currentFrag = "home";
             HomeFragment frag = new HomeFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.replace(R.id.content_main, frag, "home_fragment");
+            transaction.commit();
+            */
+            //this will go to the job board for now
+            JobBoardFragment frag = new JobBoardFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.content_main, frag, "JobBoardFragment");
             transaction.commit();
         }
     }

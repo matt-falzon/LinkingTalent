@@ -12,45 +12,54 @@
     <!-- TODO: Update blank fragment layout -->
 
 
-<LinearLayout
+<RelativeLayout
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="120dp"
+    android:orientation="horizontal">
 
     <EditText
         android:id="@+id/create_job_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
         android:hint="@string/create_job_title_hint"
-        />
-
-    <ImageButton
-        android:id="@+id/create_job_photo_picker"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:background="@android:drawable/ic_menu_gallery" />
-</LinearLayout>
-
+        android:textSize="30dp"
+        android:layout_above="@+id/create_job_company_name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="13dp"/>
 
     <EditText
         android:id="@+id/create_job_company_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/create_job_company_hint"
-        />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/create_job_photo_picker"
+        android:layout_toStartOf="@+id/create_job_photo_picker"/>
+
+    <ImageButton
+        android:id="@+id/create_job_photo_picker"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@android:drawable/ic_menu_gallery"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+</RelativeLayout>
+
+
+
 
     <Spinner
         android:id="@+id/create_job_cat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:entries="@array/job_category_array">
+        android:entries="@array/job_category_array"
+        >
     </Spinner>
 
-    <EditText
-        android:id="@+id/create_job_second_cat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/create_job_second_cat_hint"
-        />
     <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="30dp">

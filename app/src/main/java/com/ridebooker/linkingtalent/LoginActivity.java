@@ -291,6 +291,8 @@ public class LoginActivity extends AppCompatActivity
 
             @Override
             public void onSuccess(LoginResult loginResult) {
+                /* We do not need to save facebook details to shared preferences
+                   Keeping code for possible future use
                 //get facebook profile
                 Profile profile = Profile.getCurrentProfile();
 
@@ -302,6 +304,7 @@ public class LoginActivity extends AppCompatActivity
                 editor.putString(getResources().getString(R.string.key_name), profile.getFirstName() + " " + profile.getLastName());
                 editor.putString(getResources().getString(R.string.key_user_img), profile.getProfilePictureUri(100, 100).toString());
                 editor.apply();
+                */
                 //get access token and take to Firebase
                 handleFacebookAccessToken(AccessToken.getCurrentAccessToken());
                 //mFirebaseAuth.
@@ -340,7 +343,7 @@ public class LoginActivity extends AppCompatActivity
                         }
                         else
                         {
-                            progressBar.setVisibility(View.INVISIBLE);
+                            //progressBar.setVisibility(View.INVISIBLE);
                             finish();
                         }
 

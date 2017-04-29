@@ -6,6 +6,7 @@ package com.ridebooker.linkingtalent.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -59,14 +60,11 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
     public JobViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         Context context = parent.getContext();
-        int layoutIdForListItem = R.layout.job_row;
         inflator = LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately = false;
         View view = inflator.inflate(R.layout.job_row, parent, shouldAttachToParentImmediately);
 
-        JobViewHolder holder = new JobViewHolder(view);
-
-        return holder;
+        return  new JobViewHolder(view);
     }
 
     @Override
@@ -74,12 +72,15 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
     {
             holder.tvJobTitle.setText(jobs.get(position).getTitle());
             holder.tvJobCompany.setText(jobs.get(position).getCompany());
-            StorageReference photoRef = MainActivity.firebaseRootStorageRef.child(jobs.get(position).getId() + '/');
+            String bounty = Integer.toString(jobs.get(position).getBounty());
+            holder.tvJobBounty.setText("$" + bounty);
+            StorageReference photoRef = MainActivity.firebaseRootStorageRef.child(jobs.get(position).getId());
             if(jobs.get(position).getImageName() != null)
             {
+                Log.d("ViewJobFragment", "onDataChange: getting image => " + jobs.get(position).getImageName());
                 Glide.with(holder.ivJobImage.getContext())
                         .using(new FirebaseImageLoader())
-                        .load(MainActivity.firebaseRootStorageRef.child(jobs.get(position).getImageName()))
+                        .load(photoRef.child(jobs.get(position).getImageName()))
                         .into(holder.ivJobImage);
             }
 
@@ -104,7 +105,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
     public class JobViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener
     {
-        TextView tvJobTitle, tvJobCompany;
+        TextView tvJobTitle, tvJobCompany, tvJobBounty;
         ImageView ivJobImage;
         String key;
 
@@ -114,6 +115,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
             tvJobTitle = (TextView) itemView.findViewById(R.id.tv_job_title);
             tvJobCompany = (TextView) itemView.findViewById(R.id.tv_job_company);
             ivJobImage = (ImageView) itemView.findViewById(R.id.iv_job_image);
+            tvJobBounty = (TextView) itemView.findViewById(R.id.tv_job_bounty);
 
             itemView.setOnClickListener(this);
         }
