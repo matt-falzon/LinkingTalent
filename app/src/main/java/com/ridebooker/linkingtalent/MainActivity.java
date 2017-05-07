@@ -9,6 +9,7 @@ import android.content.pm.Signature;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Base64;
@@ -25,6 +26,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -57,13 +59,14 @@ import com.ridebooker.linkingtalent.datatypes.TalentChamp;
 import com.ridebooker.linkingtalent.Helpers.ImageLoadTask;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, SharedPreferences.OnSharedPreferenceChangeListener
+        implements NavigationView.OnNavigationItemSelectedListener, SharedPreferences.OnSharedPreferenceChangeListener, FragmentManager.OnBackStackChangedListener
 {
 
     private static final String TAG = "MainActivity";
     private TextView tvNavName;
     private ImageView imgNav;
-    private PopupWindow popupWindow;
+    public static PopupWindow popupWindow;
+    FragmentManager fragmentManager = getSupportFragmentManager();
     //private RelativeLayout mainLayout;
     private static boolean PREFERENCES_HAVE_BEEN_UPDATED = false;
     public static TalentChamp user;
@@ -104,13 +107,13 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         setupSharedPreferences();
 
+        //track stack changes for on change method
+        fragmentManager.addOnBackStackChangedListener(this);
+
         //Navigation drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
 
+        setUpDrawer(drawer, toolbar);
         //getHash();
 
         //check if user is logged in and start login state listener
@@ -184,13 +187,22 @@ public class MainActivity extends AppCompatActivity
         //get profile image
         new ImageLoadTask(user.getPhoto().toString(), imgNav).execute();
     }
+
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
+        //close keyboard
+        InputMethodManager inputMethodManager = (InputMethodManager)  this.getSystemService(MainActivity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
+
         return true;
     }
+
+     top right popup menu, not using for now
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
@@ -202,79 +214,50 @@ public class MainActivity extends AppCompatActivity
 
         switch(id){
             case R.id.action_about:
-                LayoutInflater aboutInflater = (LayoutInflater) this.getSystemService(this.LAYOUT_INFLATER_SERVICE);
-                View aboutPopupView = aboutInflater.inflate(R.layout.popup_about,null);
 
-                if(popupWindow != null)
-                    if(popupWindow.isShowing())
-                        popupWindow.dismiss();
-
-                popupWindow = new PopupWindow(
-                        aboutPopupView,
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT
-                );
-
-                popupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
-
-                // Set an elevation value for popup window
-                // Call requires API level 21
-                if(Build.VERSION.SDK_INT>=21){
-                    popupWindow.setElevation(5.0f);
-                }
-
-                // Get a reference for the popup view close button
-                ImageButton closeButton = (ImageButton) aboutPopupView.findViewById(R.id.ib_close);
-
-                closeButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // Dismiss the popup window
-                        popupWindow.dismiss();
-                    }
-                });
-
-                // Finally, show the popup window at the center location of root relative layout
-                popupWindow.showAtLocation(aboutPopupView, Gravity.CENTER,0,0);
                 return true;
             case R.id.action_terms:
-                LayoutInflater termsInflater = (LayoutInflater) this.getSystemService(this.LAYOUT_INFLATER_SERVICE);
-                View popupView = termsInflater.inflate(R.layout.popup_terms,null);
 
-                if(popupWindow != null)
-                    if(popupWindow.isShowing())
-                        popupWindow.dismiss();
-
-                popupWindow = new PopupWindow(
-                        popupView,
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT
-                );
-
-                popupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
-
-                // Set an elevation value for popup window
-                // Call requires API level 21
-                if(Build.VERSION.SDK_INT>=21){
-                    popupWindow.setElevation(5.0f);
-                }
-
-                // Get a reference for the popup view close button
-                ImageButton termsCloseButton = (ImageButton) popupView.findViewById(R.id.ib_close);
-
-                termsCloseButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // Dismiss the popup window
-                        popupWindow.dismiss();
-                    }
-                });
-
-                // Finally, show the popup window at the center location of root relative layout
-                popupWindow.showAtLocation(popupView, Gravity.CENTER,0,0);
                 return true;
             case R.id.action_signout:
 
+
+
+                return true;
+            default:
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    */
+    //Menu Navigation
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item)
+    {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+        switch(id){
+            case R.id.nav_home:
+                navHome();
+                break;
+            case R.id.nav_jobs:
+                navJobBoard();
+                break;
+            case R.id.nav_profile:
+                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_create:
+                navCreateJob();
+                break;
+            case R.id.nav_about:
+                navAbout();
+                break;
+            case R.id.nav_terms:
+                navTerms();
+                break;
+            case R.id.nav_logout:
                 //remove preferences
                 SharedPreferences sharedPrefs = getSharedPreferences(getString(R.string.LOCAL_PREFERENCES), Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPrefs.edit();
@@ -288,47 +271,6 @@ public class MainActivity extends AppCompatActivity
                 //log out of social network
                 CredentialsManager.deleteCredentials(this);
                 LoginManager.getInstance().logOut();
-
-                return true;
-            default:
-
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    //Menu Navigation
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item)
-    {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        switch(id){
-            case R.id.nav_home:
-                currentFrag = "home";
-                HomeFragment homeFrag = new HomeFragment();
-                transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                transaction.replace(R.id.content_main, homeFrag, "job_fragment");
-                transaction.commit();
-                break;
-            case R.id.nav_jobs:
-                currentFrag = "jobBoard";
-                JobBoardFragment jobFrag = new JobBoardFragment();
-                transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                transaction.replace(R.id.content_main, jobFrag, "job_fragment");
-                transaction.commit();
-                break;
-            case R.id.nav_search:
-                Toast.makeText(this, "Search Jobs", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_profile:
-                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_create:
-                createJob("createJob");
                 break;
             default:
                 Toast.makeText(this, "TBC", Toast.LENGTH_SHORT).show();
@@ -340,41 +282,167 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void createJob(String method)
+    private void navHome()
     {
-        currentFrag = method;
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        //popFragmentStack();
+        //if user is trying to open the same fragment return
+        if(checkSameFragment("home"))
+            return;
+
+        HomeFragment fragment = new HomeFragment();
+        fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-        CreateJobFragment createFrag = new CreateJobFragment();
-        transaction.replace(R.id.content_main, createFrag, "create_fragment");
+        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        transaction.add(R.id.content_main, fragment, "home fragment");
+        transaction.addToBackStack("home");
         transaction.commit();
     }
 
-    public void viewJob(String jobKey)
+    private void navJobBoard()
     {
-        currentFrag = "viewJob";
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        ViewJobFragment viewJobFrag = new ViewJobFragment();
+        //popFragmentStack();
+        //if user is trying to open the same fragment return
+        if(checkSameFragment("jobBoard"))
+            return;
+
+        JobBoardFragment fragment = new JobBoardFragment();
+        fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        transaction.add(R.id.content_main, fragment, "job fragment");
+        transaction.addToBackStack("jobBoard");
+        transaction.commit();
+    }
+
+    public void navCreateJob()
+    {
+        //if user is trying to open the same fragment return
+        if(checkSameFragment("createJob"))
+            return;
+
+        //if the user did not navigate here from the job board pop the fragment stack
+        //if(fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName() != "jobBoard")
+            //popFragmentStack();
+
+        fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_in_left, android.R.anim.slide_out_right );
+        CreateJobFragment fragment = new CreateJobFragment();
+        transaction.add(R.id.content_main, fragment, "create_fragment");
+        transaction.addToBackStack("createJob");
+        transaction.commit();
+    }
+
+    public void navViewJob(String jobKey)
+    {
+        fragmentManager = getSupportFragmentManager();
+        ViewJobFragment fragment = new ViewJobFragment();
+
+        //create bundle with job key
         Bundle b = new Bundle();
         b.putString("key", jobKey);
-        viewJobFrag.setArguments(b);
+        fragment.setArguments(b);
+
         FragmentTransaction ft = fragmentManager.beginTransaction();;
-        ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-        ft.addToBackStack("jobBoard");
-        ft.replace(R.id.content_main, viewJobFrag);
+        ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_in_left, android.R.anim.slide_out_right );
+        ft.add(R.id.content_main, fragment);
+        ft.addToBackStack("viewJob");
         ft.commit();
     }
 
-    private void showHomeFragment()
+    private void navTerms()
     {
-        currentFrag = "home";
-        HomeFragment frag = new HomeFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-        transaction.replace(R.id.content_main, frag, "home_fragment");
-        transaction.commit();
+        LayoutInflater termsInflater = (LayoutInflater) this.getSystemService(MainActivity.LAYOUT_INFLATER_SERVICE);
+        View popupView = termsInflater.inflate(R.layout.popup_terms,null);
+
+        if(popupWindow != null)
+            if(popupWindow.isShowing())
+                popupWindow.dismiss();
+
+        popupWindow = new PopupWindow(
+                popupView,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+
+        popupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
+
+        // Set an elevation value for popup window
+        // Call requires API level 21
+        if(Build.VERSION.SDK_INT>=21){
+            popupWindow.setElevation(5.0f);
+        }
+
+        // Get a reference for the popup view close button
+        ImageButton termsCloseButton = (ImageButton) popupView.findViewById(R.id.ib_close);
+
+        termsCloseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Dismiss the popup window
+                popupWindow.dismiss();
+            }
+        });
+
+        // Finally, show the popup window at the center location of root relative layout
+        popupWindow.showAtLocation(popupView, Gravity.CENTER,0,0);
+    }
+
+    private void navAbout()
+    {
+        LayoutInflater aboutInflater = (LayoutInflater) this.getSystemService(MainActivity.LAYOUT_INFLATER_SERVICE);
+        View aboutPopupView = aboutInflater.inflate(R.layout.popup_about,null);
+
+        if(popupWindow != null)
+            if(popupWindow.isShowing())
+                popupWindow.dismiss();
+
+        popupWindow = new PopupWindow(
+                aboutPopupView,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+
+        popupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
+
+        // Set an elevation value for popup window
+        // Call requires API level 21
+        if(Build.VERSION.SDK_INT>=21){
+            popupWindow.setElevation(5.0f);
+        }
+
+        // Get a reference for the popup view close button
+        ImageButton closeButton = (ImageButton) aboutPopupView.findViewById(R.id.ib_close);
+
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Dismiss the popup window
+                popupWindow.dismiss();
+            }
+        });
+
+        // Finally, show the popup window at the center location of root relative layout
+        popupWindow.showAtLocation(aboutPopupView, Gravity.CENTER,0,0);
+    }
+    //Checks if the fragment the user is trying to open is the same as the current fragment
+    public boolean checkSameFragment(String fragmentClicked)
+    {
+        fragmentManager = getSupportFragmentManager();
+        String fragmentTag = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName();
+        if(fragmentTag.equals(fragmentClicked))
+            return true;
+        else
+            return false;
+    }
+
+    //pops the fragment stack when selecting a new root stack
+    private void popFragmentStack()
+    {
+        fragmentManager = this.getSupportFragmentManager();
+        for(int i = 0; i < fragmentManager.getBackStackEntryCount(); ++i) {
+            fragmentManager.popBackStack();
+        }
     }
 
 
@@ -386,41 +454,53 @@ public class MainActivity extends AppCompatActivity
         {
             drawer.closeDrawer(GravityCompat.START);
         }
-
-        switch(currentFrag){
-            case "home" :
-                finish();
-                break;
-            case "viewJob" :
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                JobBoardFragment jobBoardFrag = new JobBoardFragment();
-                FragmentTransaction ft = fragmentManager.beginTransaction();;
-                ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                ft.addToBackStack("jobBoard");
-                ft.replace(R.id.content_main, jobBoardFrag);
-                currentFrag = "jobBoard";
-                ft.commit();
-                break;
-            case "createJob":
-                showHomeFragment();
-                break;
-            case "jobBoard" :
-                showHomeFragment();
-                break;
-            case "createJobFromViewJob" ://if the user creates a job from the view job fragment
-                FragmentManager frag = getSupportFragmentManager();
-                JobBoardFragment jFrag = new JobBoardFragment();
-                FragmentTransaction fragTran = frag.beginTransaction();;
-                fragTran.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                fragTran.addToBackStack("jobBoard");
-                fragTran.replace(R.id.content_main, jFrag);
-                currentFrag = "jobBoard";
-                fragTran.commit();
-                break;
-            default:
-                super.onBackPressed();
-
+        //If the popup window is open close it
+        try{
+            if(popupWindow.isShowing())
+            {
+                popupWindow.dismiss();
+                return;
+            }
+        }catch(NullPointerException e){
+            Log.d(TAG, "onBackPressed: " + e);
         }
+
+        //if we are at the end of the fragment stack close the app
+        if(fragmentManager.getBackStackEntryCount() == 1)
+        {
+            finish();
+        }
+        else //Otherwise pop stack
+        {
+            fragmentManager.popBackStack();
+        }
+    }
+
+    private void setUpDrawer( DrawerLayout drawer, Toolbar toolbar)
+    {
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(MainActivity.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(MainActivity.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+                super.onDrawerOpened(drawerView);
+            }
+        };
+
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
     }
 
     //</editor-fold>
@@ -504,28 +584,15 @@ public class MainActivity extends AppCompatActivity
 
         setupMainNav();
 
-        //Curently using this to stop the home fragment showing
-        //when another intent creates a new activity eg photo picker
-        if(currentFrag == "createJob" || currentFrag == "createJobFromViewJob")
+        //stops app randomly launching a second home fragment
+        if(!checkSameFragment("home"))
         {
-            //createJob("createJob");
-        }
-        else
-        {
-            /*
-            //I dont use the normal home fragment method so there is not animation the first time the app loads
-            currentFrag = "home";
-            HomeFragment frag = new HomeFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
+            HomeFragment fragment = new HomeFragment();
+            fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.content_main, frag, "home_fragment");
-            transaction.commit();
-            */
-            //this will go to the job board for now
-            JobBoardFragment frag = new JobBoardFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.content_main, frag, "JobBoardFragment");
+            transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
+            transaction.add(R.id.content_main, fragment, "home fragment");
+            transaction.addToBackStack("home");
             transaction.commit();
         }
     }
@@ -549,4 +616,20 @@ public class MainActivity extends AppCompatActivity
 
         }
     }
+
+    @Override
+    public void onBackStackChanged()
+    {
+        //log stack
+        for(int i = 0; i < fragmentManager.getBackStackEntryCount(); i++)
+        {
+            if(i == 0)
+                Log.d(TAG, "onBackStackChanged: " + fragmentManager.getBackStackEntryAt(i) + " stack count: " + fragmentManager.getBackStackEntryCount());
+            else
+                System.out.println(fragmentManager.getBackStackEntryAt(i));
+        }
+
+    }
+
+
 }

@@ -77,7 +77,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
             StorageReference photoRef = MainActivity.firebaseRootStorageRef.child(jobs.get(position).getId());
             if(jobs.get(position).getImageName() != null)
             {
-                Log.d("ViewJobFragment", "onDataChange: getting image => " + jobs.get(position).getImageName());
+                //Log.d("ViewJobFragment", "onDataChange: getting image => " + jobs.get(position).getImageName());
                 Glide.with(holder.ivJobImage.getContext())
                         .using(new FirebaseImageLoader())
                         .load(photoRef.child(jobs.get(position).getImageName()))

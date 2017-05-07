@@ -34,6 +34,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.ridebooker.linkingtalent.Helpers.ImageLoadTask;
 import com.ridebooker.linkingtalent.datatypes.Job;
 
 import java.io.IOException;
@@ -78,11 +79,6 @@ public class CreateJobFragment extends Fragment implements
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_create_job, container, false);
-
-        //remove previous fragments as this is the start of the stack
-        if (container != null) {
-            container.removeAllViews();
-        }
 
         btnButton = (Button) view.findViewById(R.id.create_job_insert_button);
         etCompany = (EditText) view.findViewById(R.id.create_job_company_name);
@@ -172,7 +168,7 @@ public class CreateJobFragment extends Fragment implements
                     MainActivity.dbJobRef.child(key).setValue(j);
 
                    //open the view job fragment passing it the key of this job
-                    ((MainActivity)getActivity()).viewJob(key);
+                    ((MainActivity)getActivity()).navViewJob(key);
 
                 } else
                 {
@@ -301,7 +297,7 @@ public class CreateJobFragment extends Fragment implements
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_PHOTO_PICKER && resultCode == -1) {
             //selectedImageUri is the url for the image on the device
-                selectedImageUri = data.getData();
+            selectedImageUri = data.getData();
             if(selectedImageUri != null)
                new ImageUploadTask().execute();
         }
@@ -378,12 +374,14 @@ public class CreateJobFragment extends Fragment implements
         @Override
         protected void onPreExecute()
         {
+            super.onPreExecute();
             btnButton.setVisibility(View.INVISIBLE);
         }
 
         @Override
         protected void onPostExecute(Void aVoid)
         {
+            super.onPostExecute(aVoid);
             btnButton.setVisibility(View.VISIBLE);
             //Toast.makeText(getContext(), "Image uploaded!", Toast.LENGTH_SHORT).show();
         }
@@ -405,6 +403,7 @@ public class CreateJobFragment extends Fragment implements
                     j.setImageUrl(downloadUri.toString());
                     j.setImageName(downloadUri.getLastPathSegment().split("/")[1]);
                     Log.d(TAG, "onSuccess: " + downloadUri.toString() + "\n" + downloadUri.getLastPathSegment().split("/")[1]);
+                    new ImageLoadTask(downloadUri.toString(), btnPhotoPicker).execute();
                 }
             }).addOnFailureListener(new OnFailureListener()
             {

@@ -86,6 +86,8 @@ import java.util.logging.Logger;
 
 
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.linkedin.platform.APIHelper;
@@ -126,13 +128,15 @@ public class LoginActivity extends AppCompatActivity
     private ProgressBar progressBar;
     private EditText etEmail, etPassword;
     private PopupWindow popupWindow;
-    public ImageView imgProfile;
+    private  ImageView imgProfile;
+    public static DatabaseReference dbRootRef = FirebaseDatabase.getInstance().getReference();
+    public static DatabaseReference dbUsersRef = dbRootRef.child("users");
 
     private String linkedinUid;
     private Auth0 auth0;
     private UserProfile _profile;
     private Uri selectedImageUri;
-    private TalentChamp champ = new TalentChamp();
+    private TalentChamp champ;
 
     CallbackManager cbManager;
 
@@ -636,11 +640,46 @@ public class LoginActivity extends AppCompatActivity
         imgProfile = (ImageView) popupView.findViewById(R.id.register_profile_img);
         Button btnRegister = (Button) popupView.findViewById(R.id.btn_register_submit);
 
+        final EditText registerFirstName = (EditText) popupView.findViewById(R.id.register_first_name);
+        final EditText registerLastName = (EditText) popupView.findViewById(R.id.register_last_name);
+        final EditText registerEmail = (EditText) popupView.findViewById(R.id.register_email);
+        final EditText registerPassword = (EditText) popupView.findViewById(R.id.register_password);
+        final EditText registerPassword2 = (EditText) popupView.findViewById(R.id.register_password2);
+
         btnRegister.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v)
             {
-                popupWindow.dismiss();
+                if(imgProfile.getDrawable() == null)
+                {
+                    Toast.makeText(getBaseContext(), "Upload a profile image", Toast.LENGTH_SHORT).show();
+                    //return;
+                }
+                else if(registerFirstName.getText() == null ||
+                        registerLastName.getText() == null ||
+                        registerEmail.getText() == null ||
+                        registerPassword.getText() == null ||
+                        registerPassword2.getText() == null)
+                {
+                    Toast.makeText(getBaseContext(), "Please fill all the fields", Toast.LENGTH_SHORT).show();
+                }
+                else if(registerPassword != registerPassword2)
+                {
+                    Toast.makeText(getBaseContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    champ.setEmail(registerEmail.getText().toString());
+                    champ.setFirstName(registerFirstName.getText().toString());
+                    champ.setLastName(registerLastName.getText().toString());
+                    champ.setLocation("location");
+                    createEmailUser(registerEmail.getText().toString(), registerPassword.getText().toString());
+                    //TODO
+                    // get upload image and add user to database
+                    popupWindow.dismiss();
+                }
+
+
             }
         });
         closeButton.setOnClickListener(new View.OnClickListener() {
@@ -654,6 +693,32 @@ public class LoginActivity extends AppCompatActivity
         // Finally, show the popup window at the center location of root relative layout
         popupWindow.showAtLocation(view, Gravity.CENTER,0,0);
 
+    }
+
+    private void createEmailUser(String email, String password)
+    {
+        _firebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
+                {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task)
+                    {
+                        if(task.isSuccessful())
+                        {
+                            Log.d(TAG, "createUserWithEmail:success");
+                            FirebaseUser user = _firebaseAuth.getCurrentUser();
+                            champ.setId(user.getUid());
+                            dbUsersRef.child(user.getUid()).setValue(champ);
+                        }
+                        else
+                        {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     public void onClickProfileImage(View view)
@@ -689,6 +754,7 @@ public class LoginActivity extends AppCompatActivity
                     champ.setPhotoUri(downloadUri);
                     champ.setPhoto(downloadUri.toString());
                     Log.d(TAG, "onSuccess: image uploaded " + champ.getPhotoUri().toString());
+                    //set image on popup
                     new ImageLoadTask(downloadUri.toString(), imgProfile).execute();
                 }
             }).addOnFailureListener(new OnFailureListener()
@@ -712,6 +778,8 @@ public class LoginActivity extends AppCompatActivity
             Log.d(TAG, "onPostExecute: executed ");
         }
     }
+
+
 
     //</editor-fold>
 }

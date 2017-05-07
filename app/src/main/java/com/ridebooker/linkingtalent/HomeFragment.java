@@ -22,6 +22,8 @@ public class HomeFragment extends Fragment
 
     TextView tvHomeTitle, tvfacebookimg;
 
+    private static final String TAG = "HomeFragment";
+
     public HomeFragment()
     {
         // Required empty public constructor
@@ -55,5 +57,10 @@ public class HomeFragment extends Fragment
 
     }
 
-
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        Log.d(TAG, "onResume: Home");
+    }
 }

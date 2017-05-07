@@ -43,7 +43,6 @@ public class ViewJobFragment extends Fragment
     private BottomNavigationView bottomNavView;
     private DatabaseReference ref = ((MainActivity)getActivity()).dbJobRef;
     private ValueEventListener valueEventListener;
-    private PopupWindow popupWindow;
 
     private Job viewedJob;
 
@@ -111,22 +110,22 @@ public class ViewJobFragment extends Fragment
                         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(getContext().LAYOUT_INFLATER_SERVICE);
                         View popupView = inflater.inflate(R.layout.popup_job_info,null);
 
-                        if(popupWindow != null)
-                            if(popupWindow.isShowing())
-                                popupWindow.dismiss();
+                        if(MainActivity.popupWindow != null)
+                            if(MainActivity.popupWindow.isShowing())
+                                MainActivity.popupWindow.dismiss();
 
-                        popupWindow = new PopupWindow(
+                        MainActivity.popupWindow = new PopupWindow(
                                 popupView,
                                 LayoutParams.WRAP_CONTENT,
                                 LayoutParams.WRAP_CONTENT
                         );
 
-                        popupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
+                        MainActivity.popupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
 
                         // Set an elevation value for popup window
                         // Call requires API level 21
                         if(Build.VERSION.SDK_INT>=21){
-                            popupWindow.setElevation(5.0f);
+                            MainActivity.popupWindow.setElevation(5.0f);
                         }
 
                         // Get a reference for the popup view close button
@@ -136,12 +135,12 @@ public class ViewJobFragment extends Fragment
                             @Override
                             public void onClick(View view) {
                                 // Dismiss the popup window
-                                popupWindow.dismiss();
+                                MainActivity.popupWindow.dismiss();
                             }
                         });
 
                         // Finally, show the popup window at the center location of root relative layout
-                        popupWindow.showAtLocation(view, Gravity.CENTER,0,0);
+                        MainActivity.popupWindow.showAtLocation(view, Gravity.CENTER,0,0);
 
                         break;
 
@@ -197,5 +196,7 @@ public class ViewJobFragment extends Fragment
         };
         ref.addValueEventListener(valueEventListener);
     }
+
+
 
 }
