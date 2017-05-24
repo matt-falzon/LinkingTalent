@@ -73,7 +73,7 @@ public class ViewJobFragment extends Fragment
         tvPay = (TextView) view.findViewById(R.id.view_job_pay);
         tvBounty = (TextView) view.findViewById(R.id.view_job_bounty_value);
         tvEmploymentType = (TextView) view.findViewById(R.id.view_job_employment_type);
-        imgJob = (ImageView) view.findViewById(R.id.view_job_image);
+        //imgJob = (ImageView) view.findViewById(R.id.view_job_image);
         bottomNavView = (BottomNavigationView) view.findViewById(R.id.view_job_bottom_navigation);
 
 

@@ -50,6 +50,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -68,7 +69,6 @@ public class MainActivity extends AppCompatActivity
     public static PopupWindow popupWindow;
     FragmentManager fragmentManager = getSupportFragmentManager();
     //private RelativeLayout mainLayout;
-    private static boolean PREFERENCES_HAVE_BEEN_UPDATED = false;
     public static TalentChamp user;
 
     //Firebase Auth
@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity
     public static StorageReference firebaseRootStorageRef;
     public static StorageReference firebaseCompanyImageRef;
     public static StorageReference firebaseProfileImageRef;
-    public String currentFrag = "home";
 
     public static UserProfile userProfile;
     public static String tokenId;
@@ -429,11 +428,15 @@ public class MainActivity extends AppCompatActivity
     public boolean checkSameFragment(String fragmentClicked)
     {
         fragmentManager = getSupportFragmentManager();
-        String fragmentTag = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName();
-        if(fragmentTag.equals(fragmentClicked))
-            return true;
-        else
-            return false;
+        if(fragmentManager.getBackStackEntryCount() > 0)
+        {
+            String fragmentTag = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName();
+            if (fragmentTag.equals(fragmentClicked))
+                return true;
+            else
+                return false;
+        }
+        return false;
     }
 
     //pops the fragment stack when selecting a new root stack
@@ -568,6 +571,7 @@ public class MainActivity extends AppCompatActivity
                     onSignedInInitialize(user);
                 } else {
                     // User is signed out
+                    mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
                     Log.d(TAG, "onAuthStateChanged: Logged out");
                     Intent i = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(i);
@@ -578,9 +582,32 @@ public class MainActivity extends AppCompatActivity
 
     private void onSignedInInitialize(FirebaseUser firebaseUser)
     {
-        user = new TalentChamp(firebaseUser.getUid(), firebaseUser.getDisplayName(), firebaseUser.getEmail(), "location", true);
+        user = new TalentChamp(firebaseUser.getUid(), firebaseUser.getDisplayName(), firebaseUser.getEmail());
         user.setPhoto(firebaseUser.getPhotoUrl().toString());
-        dbUsersRef.child(firebaseUser.getUid()).setValue(user);
+
+        Query query = dbUsersRef.equalTo(firebaseUser.getUid());
+        query.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                //TalentChamp t = dataSnapshot.getValue(TalentChamp.class);
+                //Log.d(TAG, "Got TC: " + t.getName() + " " + t.getEmail());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError)
+            {
+
+            }
+        });
+
+        String[] names = user.getName().split(" ");
+        user.setFirstName(names[0]);
+        user.setLastName(names[1]);
+
+        //sync user data
+        //dbUsersRef.child(firebaseUser.getUid()).setValue(user);
 
         setupMainNav();
 
@@ -590,7 +617,7 @@ public class MainActivity extends AppCompatActivity
             HomeFragment fragment = new HomeFragment();
             fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
+            transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.slide_out_right, android.R.anim.fade_in, android.R.anim.slide_out_right);
             transaction.add(R.id.content_main, fragment, "home fragment");
             transaction.addToBackStack("home");
             transaction.commit();

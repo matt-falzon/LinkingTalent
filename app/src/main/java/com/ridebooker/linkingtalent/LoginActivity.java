@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -118,6 +119,7 @@ public class LoginActivity extends AppCompatActivity
     private static final String host = "api.linkedin.com";
     private static final String topCardUrl = "https://" + host + "/v1/people/~:(id,email-address,formatted-name,phone-numbers,public-profile-url,picture-url,picture-urls::(original))";
     private static final int RC_PHOTO_PICKER = 1234;
+    private Uri imageUri;
 
     private final static Logger LOGGER = Logger.getLogger(LoginActivity.class.getName());
 
@@ -136,7 +138,6 @@ public class LoginActivity extends AppCompatActivity
     private Auth0 auth0;
     private UserProfile _profile;
     private Uri selectedImageUri;
-    private TalentChamp champ;
 
     CallbackManager cbManager;
 
@@ -225,7 +226,11 @@ public class LoginActivity extends AppCompatActivity
             //selectedImageUri is the url for the image on the device
             selectedImageUri = data.getData();
             if(selectedImageUri != null)
+            {
                 imgProfile.setImageURI(selectedImageUri);
+                //store image Uri for later use
+                imageUri = selectedImageUri;
+            }
                 //new ImageUploadTask().execute();
         }
     }
@@ -270,12 +275,10 @@ public class LoginActivity extends AppCompatActivity
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = _firebaseAuth.getCurrentUser();
-                            //updateUI(user);
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            //updateUI(null);
                         }
 
                         // ...
@@ -613,6 +616,7 @@ public class LoginActivity extends AppCompatActivity
 
     public void register(View view)
     {
+        MainActivity.user = new TalentChamp();
         LayoutInflater inflater = (LayoutInflater) LoginActivity.this.getSystemService(LoginActivity.this.LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_register,null);
 
@@ -650,7 +654,7 @@ public class LoginActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                if(imgProfile.getDrawable() == null)
+                if(imageUri == null)
                 {
                     Toast.makeText(getBaseContext(), "Upload a profile image", Toast.LENGTH_SHORT).show();
                     //return;
@@ -663,20 +667,24 @@ public class LoginActivity extends AppCompatActivity
                 {
                     Toast.makeText(getBaseContext(), "Please fill all the fields", Toast.LENGTH_SHORT).show();
                 }
-                else if(registerPassword != registerPassword2)
+                else if(!registerPassword.getText().toString().equals(registerPassword2.getText().toString()))
                 {
                     Toast.makeText(getBaseContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    champ.setEmail(registerEmail.getText().toString());
-                    champ.setFirstName(registerFirstName.getText().toString());
-                    champ.setLastName(registerLastName.getText().toString());
-                    champ.setLocation("location");
+                    ProgressDialog.show(LoginActivity.this, "",
+                            "Creating Account...", true);
+                    MainActivity.user.setEmail(registerEmail.getText().toString());
+                    MainActivity.user.setFirstName(registerFirstName.getText().toString());
+                    MainActivity.user.setLastName(registerLastName.getText().toString());
+                    MainActivity.user.setLocation("location");
+                    MainActivity.user.setName(MainActivity.user.getFirstName() + " " + MainActivity.user.getLastName());
                     createEmailUser(registerEmail.getText().toString(), registerPassword.getText().toString());
+
                     //TODO
                     // get upload image and add user to database
-                    popupWindow.dismiss();
+
                 }
 
 
@@ -707,15 +715,20 @@ public class LoginActivity extends AppCompatActivity
                         {
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = _firebaseAuth.getCurrentUser();
-                            champ.setId(user.getUid());
-                            dbUsersRef.child(user.getUid()).setValue(champ);
+                            MainActivity.user.setId(user.getUid());
+                            //upload TC's Image
+                            new ImageUploadTask().execute(MainActivity.user);
+
+                            //dbUsersRef.child(user.getUid()).setValue(champ);
                         }
                         else
                         {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            if(task.getException().toString().isEmpty())
+                                Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            else
+                                Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -729,7 +742,7 @@ public class LoginActivity extends AppCompatActivity
             startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
     }
 
-    private class ImageUploadTask extends AsyncTask<Void, Void, Void>{
+    private class ImageUploadTask extends AsyncTask<TalentChamp, Void, Void>{
 
         @Override
         protected void onPreExecute()
@@ -739,23 +752,41 @@ public class LoginActivity extends AppCompatActivity
         }
 
         @Override
-        protected Void doInBackground(Void... params)
+        protected Void doInBackground(final TalentChamp... params)
         {
-            StorageReference photoRef = MainActivity.firebaseRootStorageRef.child("newUser" + "/");
-
-            UploadTask uploadTask = photoRef.child(selectedImageUri.getLastPathSegment()).putFile(selectedImageUri);
+            StorageReference photoRef = MainActivity.firebaseRootStorageRef.child(MainActivity.user.getId() + "/");
             // Upload file to Firebase Storage
+            UploadTask uploadTask = photoRef.child(selectedImageUri.getLastPathSegment()).putFile(selectedImageUri);
+
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
             {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
                 {
                     Uri downloadUri = taskSnapshot.getDownloadUrl();
-                    champ.setPhotoUri(downloadUri);
-                    champ.setPhoto(downloadUri.toString());
-                    Log.d(TAG, "onSuccess: image uploaded " + champ.getPhotoUri().toString());
-                    //set image on popup
-                    new ImageLoadTask(downloadUri.toString(), imgProfile).execute();
+                    //set TC's image
+                    MainActivity.user.setPhotoUri(downloadUri);
+                    MainActivity.user.setPhoto(downloadUri.toString());
+                    Log.d(TAG, "onSuccess: image uploaded " + MainActivity.user.getPhotoUri().toString());
+
+                    //update firebase user profile
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(MainActivity.user.getFirstName() + " " + MainActivity.user.getLastName())
+                            .setPhotoUri(downloadUri)
+                            .build();
+
+                    _firebaseAuth.getCurrentUser().updateProfile(profileUpdates)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.d(TAG, "User profile updated.");
+                                        dbUsersRef.child(MainActivity.user.getId()).setValue(MainActivity.user);
+                                        popupWindow.dismiss();
+                                    }
+                                }
+                            });
+
                 }
             }).addOnFailureListener(new OnFailureListener()
             {
@@ -782,5 +813,10 @@ public class LoginActivity extends AppCompatActivity
 
 
     //</editor-fold>
+
+     private void loading(boolean isLoading)
+     {
+
+     }
 }
 

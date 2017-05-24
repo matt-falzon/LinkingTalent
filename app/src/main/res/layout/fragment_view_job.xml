@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context="com.ridebooker.linkingtalent.ViewJobFragment"
@@ -10,21 +10,21 @@
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="90dp">
 
         <TextView
             android:id="@+id/view_job_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:hint="@string/create_job_title_hint"
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
             android:textColor="#33ccff"
-            android:textSize="25dp"/>
+            android:textSize="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/view_job_company_name"
+            android:layout_toEndOf="@+id/view_job_company_name"/>
 
         <TextView
             android:id="@+id/view_job_company_name"
@@ -36,7 +36,7 @@
             android:hint="@string/create_job_company_hint"
             android:paddingLeft="10dp"
             android:textSize="18dp"/>
-
+        <!--
         <ImageView
             android:id="@+id/view_job_image"
             android:layout_width="120dp"
@@ -48,7 +48,7 @@
             android:paddingTop="5dp"
             android:scaleType="fitXY"
             android:src="@drawable/lt_symbol"/>
-
+        -->
         <ImageView
             android:id="@+id/view_job_location_icon"
             android:layout_width="30dp"

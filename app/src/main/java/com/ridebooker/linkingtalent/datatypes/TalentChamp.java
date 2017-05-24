@@ -16,9 +16,9 @@ public class TalentChamp
     private String lastName;
     private String email;
     private String location;
-    private boolean isTalentChamp;
     private String photo;
     private Uri photoUri;
+    private String companyID;
 
     public void setPhotoUri(Uri photoUri)
     {
@@ -71,13 +71,24 @@ public class TalentChamp
         return lastName;
     }
 
-    public TalentChamp(String id, String name, String email, String location, boolean isTalentChamp)
+    public TalentChamp(String id, String name, String email, String photo, String companyID)
     {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.location = location;
-        this.isTalentChamp = isTalentChamp;
+        String[] names = name.split(" ");
+        this.firstName = names[0];
+        this.lastName = names[1];
+        this.photo = photo;
+        this.companyID = companyID;
+
+    };
+
+    public TalentChamp(String id, String name, String email)
+    {
+        this.id = id;
+        this.name = name;
+        this.email = email;
         String[] names = name.split(" ");
         this.firstName = names[0];
         this.lastName = names[1];
@@ -96,7 +107,7 @@ public class TalentChamp
 
     public void setFirstName(String firstName)
     {
-        this.firstName = firstName;
+            this.firstName = firstName;
     }
 
     public void setLastName(String lastName)

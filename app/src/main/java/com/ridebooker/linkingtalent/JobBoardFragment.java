@@ -81,17 +81,6 @@ public class JobBoardFragment extends Fragment implements NavigationView.OnNavig
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s)
             {
-                //ArrayList<Job> newJobs = new ArrayList<>();
-                /*
-                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-                for (DataSnapshot child: children)
-                {
-                    Job j = child.getValue(Job.class);
-                    Log.d("Child", j.getTitle());
-                    jobs.add(j);
-                }
-                jobAdapter.notifyItemInserted(jobs.size() - 1);*/
-
                 Job job = dataSnapshot.getValue(Job.class);
                 jobAdapter.add(job);
                 jobAdapter.notifyItemInserted(jobAdapter.getLength());
