@@ -25,7 +25,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="Job Post"
-            android:textColor="#FFFFFF"
+            android:textColor="#FBFCFD"
             android:textSize="24sp"/>
     </RelativeLayout>
 
@@ -41,7 +41,7 @@
             android:layout_marginLeft="70dp"
             android:layout_marginRight="70dp"
             android:layout_marginTop="0dp"
-            android:background="#FFFFFF"/>
+            android:background="#FBFCFD"/>
 
 
         <TextView
@@ -53,7 +53,7 @@
             android:hint="@string/create_job_title_hint"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
-            android:textColor="#FFFFFF"
+            android:textColor="#FBFCFD"
             android:textSize="36dp"/>
         <!--
         <TextView
@@ -94,12 +94,12 @@
             android:id="@+id/view_job_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/view_job_title"
+            android:layout_centerHorizontal="true"
             android:hint="@string/create_job_location_hint"
             android:textColor="#FFFFFF"
             android:textSize="22dp"
-            android:textStyle="bold"
-            android:layout_below="@+id/view_job_title"
-            android:layout_centerHorizontal="true"/>
+            android:textStyle="bold"/>
     </RelativeLayout>
 
     <View
@@ -203,13 +203,20 @@
             android:id="@+id/view_job_bounty_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="50dp"
+            android:layout_marginRight="20dp"
             android:paddingTop="3dp"
             android:text="Reward"
-            android:textColor="#FFFFFF"
+            android:textColor="#FBFCFD"
             android:textSize="18dp"/>
 
     </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#FBFCFD"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -217,21 +224,51 @@
         android:layout_gravity="bottom"
         android:orientation="vertical">
 
-        <ScrollView
+
+        <TextView
+            android:id="@+id/tv_job_overview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="55dp"
+            android:text="Job Overview"
+            android:textColor="#FBFCFD"
+            android:textSize="22dp"
+            android:textStyle="bold"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:layout_marginTop="30dp"
             android:fillViewport="true">
 
-            <TextView
-                android:id="@+id/view_job_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/create_job_descrition_hint"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:textColor="#FFFFFF"
-                android:textSize="18dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/view_job_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/create_job_descrition_hint"
+                    android:paddingLeft="10dp"
+                    android:textColor="#FBFCFD"
+                    android:textSize="18dp"/>
+
+                <TextView
+                    android:id="@+id/tv_view_job_view_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onClickViewMore"
+                    android:paddingTop="10dp"
+                    android:text="View More.."
+                    android:textColor="#FBFCFD"
+                    android:textSize="20dp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
 
         </ScrollView>
         <!-- this puts the bottom nav anchor'd to the bottom of the screen
@@ -239,13 +276,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </FrameLayout>-->
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:layout_marginBottom="55dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="#FFFFFF"/>
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/view_job_bottom_navigation"
@@ -254,9 +284,18 @@
             android:layout_alignParentBottom="true"
             android:background="@android:color/transparent"
             android:visibility="visible"
-            app:itemIconTint="#ffffff"
-            app:itemTextColor="#ffffff"
+            app:itemIconTint="#FBFCFD"
+            app:itemTextColor="#FBFCFD"
             app:menu="@menu/view_job_bottom_navigation"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_above="@id/view_job_bottom_navigation"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FBFCFD"/>
+
     </RelativeLayout>
 
     <View

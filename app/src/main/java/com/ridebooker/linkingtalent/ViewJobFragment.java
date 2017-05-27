@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.view.ViewGroup.LayoutParams;
+import android.view.View.OnClickListener;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
@@ -37,7 +38,7 @@ import com.ridebooker.linkingtalent.datatypes.Job;
 public class ViewJobFragment extends Fragment
 {
 
-    private TextView tvTitle, tvCompany, tvCategory, tvLocation, tvDescription, tvPay, tvBounty, tvEmploymentType;
+    private TextView tvTitle, tvCompany, tvCategory, tvLocation, tvDescription, tvPay, tvBounty, tvEmploymentType, tvViewMore;
     private ImageView imgJob;
     private String key;
     private BottomNavigationView bottomNavView;
@@ -75,11 +76,59 @@ public class ViewJobFragment extends Fragment
         tvEmploymentType = (TextView) view.findViewById(R.id.view_job_employment_type);
         //imgJob = (ImageView) view.findViewById(R.id.view_job_image);
         bottomNavView = (BottomNavigationView) view.findViewById(R.id.view_job_bottom_navigation);
+        tvViewMore = (TextView) view.findViewById(R.id.tv_view_job_view_more);
 
+        setOnClickListeners();
 
         setupBottomNav(view);
 
         return view;
+    }
+
+    private void setOnClickListeners()
+    {
+        tvViewMore.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(getContext().LAYOUT_INFLATER_SERVICE);
+                View popupView = inflater.inflate(R.layout.popup_job_info,null);
+
+                if(MainActivity.popupWindow != null)
+                    if(MainActivity.popupWindow.isShowing())
+                        MainActivity.popupWindow.dismiss();
+
+                MainActivity.popupWindow = new PopupWindow(
+                        popupView,
+                        LayoutParams.WRAP_CONTENT,
+                        LayoutParams.WRAP_CONTENT
+                );
+
+                MainActivity.popupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
+
+                // Set an elevation value for popup window
+                // Call requires API level 21
+                if(Build.VERSION.SDK_INT>=21){
+                    MainActivity.popupWindow.setElevation(5.0f);
+                }
+
+                // Get a reference for the popup view close button
+                ImageButton closeButton = (ImageButton) popupView.findViewById(R.id.ib_close);
+
+                closeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Dismiss the popup window
+                        MainActivity.popupWindow.dismiss();
+                    }
+                });
+
+                // Finally, show the popup window at the center location of root relative layout
+                MainActivity.popupWindow.showAtLocation(v, Gravity.CENTER,0,0);
+            }
+        });
+
     }
 
     @Override
@@ -88,6 +137,7 @@ public class ViewJobFragment extends Fragment
         super.onStart();
         populateData(key);
     }
+
 
     private void setupBottomNav(final View view)
     {
@@ -106,6 +156,7 @@ public class ViewJobFragment extends Fragment
                         applyIntent.putExtra(Intent.EXTRA_TEXT, "Job application template goes here" );
                         startActivity(applyIntent);
                         break;
+                    /* This has been moved to the bottom of the job description scroll view
                     case R.id.job_action_info:
                         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(getContext().LAYOUT_INFLATER_SERVICE);
                         View popupView = inflater.inflate(R.layout.popup_job_info,null);
@@ -143,7 +194,7 @@ public class ViewJobFragment extends Fragment
                         MainActivity.popupWindow.showAtLocation(view, Gravity.CENTER,0,0);
 
                         break;
-
+                        */
                     case R.id.job_action_share:
                         Intent shareIntent = new Intent();
                         shareIntent.setAction(Intent.ACTION_SEND);
@@ -171,7 +222,7 @@ public class ViewJobFragment extends Fragment
                 //tvCompany.setText(viewedJob.getCompany());
                 tvCategory.setText(viewedJob.getCategory());
                 tvLocation.setText(viewedJob.getLocation());
-                tvBounty.setText("Bounty" + ": " + "$" + Integer.toString(viewedJob.getBounty()));
+                tvBounty.setText("Reward" + ": " + "$" + Integer.toString(viewedJob.getBounty()));
                 tvPay.setText("Pay" + ": " + "$" + Integer.toString(viewedJob.getPayMin()) + " - $" + Integer.toString(viewedJob.getPayMax()));
                 tvDescription.setText(viewedJob.getDescription());
                 tvEmploymentType.setText("Employment Type: " + viewedJob.getEmploymentType());
@@ -198,6 +249,7 @@ public class ViewJobFragment extends Fragment
         };
         ref.addValueEventListener(valueEventListener);
     }
+
 
 
 

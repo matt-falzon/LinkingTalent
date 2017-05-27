@@ -7,12 +7,14 @@
         android:icon="@drawable/ic_menu_share"
         android:title="@string/view_job_menu_share"
         app:showAsAction="ifRoom" />
+    <!--
     <item
         android:id="@+id/job_action_info"
         android:enabled="true"
         android:icon="@drawable/ic_menu_manage"
         android:title="@string/view_job_menu_info"
         app:showAsAction="ifRoom" />
+        -->
     <item
         android:id="@+id/job_action_apply"
         android:enabled="true"
