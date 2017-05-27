@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context="com.ridebooker.linkingtalent.JobBoardFragment"
-    android:background="#FFFFFF">
+    android:background="@drawable/background">
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -16,13 +17,56 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_input_add"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_job_view"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="45dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_job_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="50dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/nav_button"/>
+
+        <TextView
+            android:id="@+id/job_board_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Job Board"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+
+            android:background="#FFFFFF"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            android:paddingTop="10dp"/>
+    </LinearLayout>
 
 
 </FrameLayout>

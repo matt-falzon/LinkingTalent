@@ -8,7 +8,7 @@
             android:title="Home"/>
         <item
             android:id="@+id/nav_jobs"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/nav_icon_job_board"
             android:title="View Jobs"/>
        <!-- <item
             android:id="@+id/nav_search"
@@ -29,12 +29,12 @@
         <menu>
             <item
                 android:id="@+id/nav_about"
-                android:icon="@drawable/ic_menu_share"
-                android:title="About"/>
+                android:icon="@drawable/nav_icon_about"
+                android:title="About Linking Talent"/>
             <item
                 android:id="@+id/nav_terms"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Terms"/>
+                android:icon="@drawable/nav_icon_howitworks"
+                android:title="How it works"/>
         </menu>
     </item>
 
@@ -42,11 +42,11 @@
         <menu>
             <item
                 android:id="@+id/nav_profile"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/nav_icon_profile"
                 android:title="My Profile"/>
             <item
                 android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/nav_icon_logout"
                 android:title="Sign out"/>
         </menu>
     </item>

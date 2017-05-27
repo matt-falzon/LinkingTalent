@@ -114,7 +114,6 @@ public class MainActivity extends AppCompatActivity
 
         setUpDrawer(drawer, toolbar);
         //getHash();
-
         //check if user is logged in and start login state listener
         loginState();
 

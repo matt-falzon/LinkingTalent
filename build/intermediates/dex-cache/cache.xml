@@ -3,15 +3,6 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\mattf\.android\build-cache\44cb87a610b811a4bdea861106b7294021957e22\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d5cbc9214ee567ea6ef56fb2707d48e58d240fc2">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7eadea717ea16ff1c38d71c1526f2e86afc843c3\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\linkedin-sdk\build\intermediates\bundles\default\classes.jar"
         jumboMode="false"
         optimize="true"

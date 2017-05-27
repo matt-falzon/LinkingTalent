@@ -71,10 +71,12 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
     public void onBindViewHolder(JobViewHolder holder, int position)
     {
             holder.tvJobTitle.setText(jobs.get(position).getTitle());
-            holder.tvJobCompany.setText(jobs.get(position).getCompany());
+            //holder.tvJobCompany.setText(jobs.get(position).getCompany());
             String bounty = Integer.toString(jobs.get(position).getBounty());
             holder.tvJobBounty.setText("$" + bounty);
+            holder.tvJobLocation.setText(jobs.get(position).getLocation());
             StorageReference photoRef = MainActivity.firebaseRootStorageRef.child(jobs.get(position).getId());
+        /*
             if(jobs.get(position).getImageName() != null)
             {
                 //Log.d("ViewJobFragment", "onDataChange: getting image => " + jobs.get(position).getImageName());
@@ -83,7 +85,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
                         .load(photoRef.child(jobs.get(position).getImageName()))
                         .into(holder.ivJobImage);
             }
-
+        */
             holder.key = jobs.get(position).getKey();
         //holder.ivJobImage.setImageResource(icon id here);
     }
@@ -105,7 +107,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
     public class JobViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener
     {
-        TextView tvJobTitle, tvJobCompany, tvJobBounty;
+        TextView tvJobTitle, tvJobCompany, tvJobBounty, tvJobLocation;
         ImageView ivJobImage;
         String key;
 
@@ -113,8 +115,9 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
             super(itemView);
 
             tvJobTitle = (TextView) itemView.findViewById(R.id.tv_job_title);
-            tvJobCompany = (TextView) itemView.findViewById(R.id.tv_job_company);
-            ivJobImage = (ImageView) itemView.findViewById(R.id.iv_job_image);
+            //tvJobCompany = (TextView) itemView.findViewById(R.id.tv_job_company);
+            //ivJobImage = (ImageView) itemView.findViewById(R.id.iv_job_image);
+            tvJobLocation = (TextView) itemView.findViewById(R.id.tv_job_location);
             tvJobBounty = (TextView) itemView.findViewById(R.id.tv_job_bounty);
 
             itemView.setOnClickListener(this);

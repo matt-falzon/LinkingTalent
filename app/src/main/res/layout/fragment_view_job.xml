@@ -6,26 +6,56 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context="com.ridebooker.linkingtalent.ViewJobFragment"
-    android:background="#FFFFFF">
+    android:background="@drawable/background">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/nav_button"/>
+
+        <TextView
+            android:id="@+id/job_board_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Job Post"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"/>
+    </RelativeLayout>
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="90dp">
 
+        <View
+            android:id="@+id/view"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginTop="0dp"
+            android:background="#FFFFFF"/>
+
+
         <TextView
             android:id="@+id/view_job_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/view"
+            android:layout_centerHorizontal="true"
             android:hint="@string/create_job_title_hint"
             android:paddingLeft="10dp"
-            android:paddingTop="5dp"
-            android:textColor="#33ccff"
-            android:textSize="25dp"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/view_job_company_name"
-            android:layout_toEndOf="@+id/view_job_company_name"/>
-
+            android:paddingTop="10dp"
+            android:textColor="#FFFFFF"
+            android:textSize="36dp"/>
+        <!--
         <TextView
             android:id="@+id/view_job_company_name"
             android:layout_width="wrap_content"
@@ -35,7 +65,9 @@
             android:layout_below="@+id/view_job_title"
             android:hint="@string/create_job_company_hint"
             android:paddingLeft="10dp"
+            android:textColor="#FFFFFF"
             android:textSize="18dp"/>
+            -->
         <!--
         <ImageView
             android:id="@+id/view_job_image"
@@ -51,25 +83,23 @@
         -->
         <ImageView
             android:id="@+id/view_job_location_icon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/icon_location"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:src="@drawable/ic_location_on_black_24dp"/>
+            android:layout_toRightOf="@+id/view_job_location"
+            android:layout_toEndOf="@+id/view_job_location"/>
 
         <TextView
             android:id="@+id/view_job_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_toEndOf="@+id/view_job_location_icon"
-            android:layout_toRightOf="@+id/view_job_location_icon"
             android:hint="@string/create_job_location_hint"
-            android:textSize="15dp"
-            android:textStyle="bold"/>
+            android:textColor="#FFFFFF"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/view_job_title"
+            android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
     <View
@@ -93,14 +123,15 @@
             android:layout_height="30dp"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
-            android:src="@drawable/ic_business_center_black_24dp"/>
+            android:src="@drawable/icon_clock"/>
 
         <TextView
-            android:id="@+id/view_job_category"
+            android:id="@+id/view_job_employment_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:textColor="#FFFFFF"
             android:hint="@string/create_job_category_hint"
             android:paddingTop="8dp"
             android:textSize="18dp"/>
@@ -116,14 +147,15 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:paddingLeft="10dp"
-            android:src="@drawable/ic_access_time_black_24dp"/>
+            android:src="@drawable/icon_bag"/>
 
         <TextView
-            android:id="@+id/view_job_employment_type"
+            android:id="@+id/view_job_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:textColor="#FFFFFF"
             android:hint="@string/view_job_employment_type"
             android:paddingTop="3dp"
             android:textSize="18dp"/>
@@ -140,12 +172,13 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:paddingLeft="10dp"
-            android:src="@drawable/ic_attach_money_black_24dp"/>
+            android:src="@drawable/icon_money"/>
 
         <TextView
             android:id="@+id/view_job_pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:paddingTop="3dp"
             android:text="Pay"
             android:textSize="18dp"/>
@@ -153,25 +186,78 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:weightSum="1">
 
         <ImageView
+            android:id="@+id/imageView2"
             android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:paddingLeft="10dp"
-            android:src="@drawable/ic_attach_money_black_24dp"/>
+            android:layout_height="31dp"
+            android:layout_marginRight="0dp"
+            android:src="@drawable/icon_trophy"/>
 
         <TextView
             android:id="@+id/view_job_bounty_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
             android:paddingTop="3dp"
-            android:text="Bounty"
+            android:text="Reward"
+            android:textColor="#FFFFFF"
             android:textSize="18dp"/>
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="55dp"
+            android:fillViewport="true">
+
+            <TextView
+                android:id="@+id/view_job_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/create_job_descrition_hint"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"/>
+
+        </ScrollView>
+        <!-- this puts the bottom nav anchor'd to the bottom of the screen
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </FrameLayout>-->
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginBottom="55dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FFFFFF"/>
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/view_job_bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/transparent"
+            android:visibility="visible"
+            app:itemIconTint="#ffffff"
+            app:itemTextColor="#ffffff"
+            app:menu="@menu/view_job_bottom_navigation"/>
+    </RelativeLayout>
 
     <View
         android:layout_width="fill_parent"
@@ -184,43 +270,4 @@
         android:paddingRight="35dp"
         android:paddingTop="10dp"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="bottom"
-        android:orientation="vertical">
-
-        <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fillViewport="true"
-            android:layout_marginBottom="55dp">
-
-            <TextView
-                android:id="@+id/view_job_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/create_job_descrition_hint"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:textSize="18dp"/>
-
-        </ScrollView>
-        <!-- this puts the bottom nav anchor'd to the bottom of the screen
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </FrameLayout>-->
-
-        <android.support.design.widget.BottomNavigationView
-            android:id="@+id/view_job_bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/colorPrimary"
-            android:visibility="visible"
-            app:itemIconTint="#ffffff"
-            app:itemTextColor="#ffffff"
-            app:menu="@menu/view_job_bottom_navigation"/>
-    </RelativeLayout>
 </LinearLayout>

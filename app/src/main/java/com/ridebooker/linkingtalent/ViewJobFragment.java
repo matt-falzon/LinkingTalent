@@ -66,7 +66,7 @@ public class ViewJobFragment extends Fragment
 
         // Inflate the layout for this fragment
         tvTitle = (TextView) view.findViewById(R.id.view_job_title);
-        tvCompany = (TextView) view.findViewById(R.id.view_job_company_name);
+        //tvCompany = (TextView) view.findViewById(R.id.view_job_company_name);
         tvCategory = (TextView) view.findViewById(R.id.view_job_category);
         tvLocation = (TextView) view.findViewById(R.id.view_job_location);
         tvDescription = (TextView) view.findViewById(R.id.view_job_description);
@@ -149,7 +149,7 @@ public class ViewJobFragment extends Fragment
                         shareIntent.setAction(Intent.ACTION_SEND);
                         shareIntent.setType("text/plain");
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, tvTitle.getText().toString() + " position");
-                        shareIntent.putExtra(Intent.EXTRA_TEXT, "I found a " + tvTitle.getText().toString() + " role working for " + tvCompany.getText().toString() + " that i thought you may be interested in "
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, "I found a " + tvTitle.getText().toString() + " role that i thought you may be interested in "
                                 + "https://d1btafwoxo8q34.cloudfront.net/view_job.html?j=" + viewedJob.getKey());
                         startActivity(Intent.createChooser(shareIntent, "Send to"));
                         break;
@@ -168,7 +168,7 @@ public class ViewJobFragment extends Fragment
             {
                 viewedJob = dataSnapshot.child(key).getValue(Job.class);
                 tvTitle.setText(viewedJob.getTitle());
-                tvCompany.setText(viewedJob.getCompany());
+                //tvCompany.setText(viewedJob.getCompany());
                 tvCategory.setText(viewedJob.getCategory());
                 tvLocation.setText(viewedJob.getLocation());
                 tvBounty.setText("Bounty" + ": " + "$" + Integer.toString(viewedJob.getBounty()));
@@ -178,6 +178,8 @@ public class ViewJobFragment extends Fragment
 
                 StorageReference imageRef =  FirebaseStorage.getInstance().getReference().child(viewedJob.getId());
                 //check if there is an image with this job
+                //no longer getting image
+                /*
                 if(viewedJob.getImageUrl() != null)
                 {
                     Log.d("ViewJobFragment", "onDataChange: getting image => " + viewedJob.getImageName());
@@ -185,7 +187,7 @@ public class ViewJobFragment extends Fragment
                             .using(new FirebaseImageLoader())
                             .load(imageRef.child(viewedJob.getImageName()))
                             .into(imgJob);
-                }
+                }*/
             }
 
             @Override

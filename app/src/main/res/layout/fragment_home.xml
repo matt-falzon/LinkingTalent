@@ -4,16 +4,20 @@
              android:layout_height="match_parent"
               android:orientation="vertical"
              tools:context="com.ridebooker.linkingtalent.HomeFragment"
-              android:background="#FFFFFF">
+              android:background="@drawable/background">
 
     <!-- TODO: Update blank fragment layout -->
-
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/nav_button"/>
     <TextView
         android:id="@+id/tvHomeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Home Fragment"
-        android:textSize="22dp"/>
+        android:textSize="22dp"
+        android:textColor="#FFFFFF"/>
 
     <TextView
         android:id="@+id/facebook_img_uri"
