@@ -6,16 +6,12 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Base64;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -23,25 +19,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import com.auth0.android.result.UserProfile;
 import com.facebook.login.LoginManager;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 //import com.google.firebase.auth.FirebaseCredentials;
 import com.google.firebase.auth.FirebaseUser;
@@ -55,8 +44,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.ridebooker.linkingtalent.Helpers.Credentials.CredentialsManager;
-import com.ridebooker.linkingtalent.datatypes.Job;
-import com.ridebooker.linkingtalent.datatypes.TalentChamp;
+import com.ridebooker.linkingtalent.Models.Job;
+import com.ridebooker.linkingtalent.Models.TalentChamp;
 import com.ridebooker.linkingtalent.Helpers.ImageLoadTask;
 
 public class MainActivity extends AppCompatActivity
@@ -237,23 +226,24 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         switch(id){
-            case R.id.nav_home:
-                navHome();
+            case R.id.nav_share:
+                navShare();
                 break;
             case R.id.nav_jobs:
                 navJobBoard();
                 break;
+            /*
             case R.id.nav_profile:
                 Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_create:
                 navCreateJob();
+                break;*/
+            case R.id.nav_howitworks:
+                navHowitworks();
                 break;
             case R.id.nav_about:
                 navAbout();
-                break;
-            case R.id.nav_terms:
-                navTerms();
                 break;
             case R.id.nav_logout:
                 //remove preferences
@@ -290,7 +280,7 @@ public class MainActivity extends AppCompatActivity
         HomeFragment fragment = new HomeFragment();
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        transaction.setCustomAnimations(R.anim.animation_slide_in_right, R.anim.animation_slide_out_left, R.anim.animation_slide_in_right, R.anim.animation_slide_out_left);
         transaction.add(R.id.content_main, fragment, "home fragment");
         transaction.addToBackStack("home");
         transaction.commit();
@@ -306,7 +296,7 @@ public class MainActivity extends AppCompatActivity
         JobBoardFragment fragment = new JobBoardFragment();
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        transaction.setCustomAnimations(R.anim.animation_slide_in_right, R.anim.animation_slide_out_left, R.anim.animation_slide_in_right, R.anim.animation_slide_out_left);
         transaction.add(R.id.content_main, fragment, "job fragment");
         transaction.addToBackStack("jobBoard");
         transaction.commit();
@@ -324,11 +314,38 @@ public class MainActivity extends AppCompatActivity
 
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_in_left, android.R.anim.slide_out_right );
+        transaction.setCustomAnimations(R.anim.animation_slide_in_right, R.anim.animation_slide_out_left, R.anim.animation_slide_in_right, R.anim.animation_slide_out_left);
         CreateJobFragment fragment = new CreateJobFragment();
         transaction.add(R.id.content_main, fragment, "create_fragment");
         transaction.addToBackStack("createJob");
         transaction.commit();
+    }
+
+    private void navShare()
+    {
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Linking Talent App");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "Share content goes here \n .\n .. \n ... \n .. \n .");
+        startActivity(Intent.createChooser(shareIntent, "Send to"));
+    }
+
+    public void navJobInfo(String jobKey)
+    {
+        fragmentManager = getSupportFragmentManager();
+        JobInfoFragment fragment = new JobInfoFragment();
+
+        //create bundle with job key
+        Bundle b = new Bundle();
+        b.putString("key", jobKey);
+        fragment.setArguments(b);
+
+        FragmentTransaction ft = fragmentManager.beginTransaction();;
+        ft.setCustomAnimations(R.anim.animation_slide_in_right, R.anim.animation_slide_out_left, R.anim.animation_slide_in_right, R.anim.animation_slide_out_left);
+        ft.add(R.id.content_main, fragment);
+        ft.addToBackStack("jobInfo");
+        ft.commit();
     }
 
     public void navViewJob(String jobKey)
@@ -342,86 +359,35 @@ public class MainActivity extends AppCompatActivity
         fragment.setArguments(b);
 
         FragmentTransaction ft = fragmentManager.beginTransaction();;
-        ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_in_left, android.R.anim.slide_out_right );
+        ft.setCustomAnimations(R.anim.animation_slide_in_right, R.anim.animation_slide_out_left, R.anim.animation_slide_in_right, R.anim.animation_slide_out_left);
         ft.add(R.id.content_main, fragment);
         ft.addToBackStack("viewJob");
         ft.commit();
     }
 
-    private void navTerms()
+    public void navHowitworks()
     {
-        LayoutInflater termsInflater = (LayoutInflater) this.getSystemService(MainActivity.LAYOUT_INFLATER_SERVICE);
-        View popupView = termsInflater.inflate(R.layout.popup_terms,null);
+        fragmentManager = getSupportFragmentManager();
+        HowItWorksFragment fragment = new HowItWorksFragment();
 
-        if(popupWindow != null)
-            if(popupWindow.isShowing())
-                popupWindow.dismiss();
-
-        popupWindow = new PopupWindow(
-                popupView,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-        );
-
-        popupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
-
-        // Set an elevation value for popup window
-        // Call requires API level 21
-        if(Build.VERSION.SDK_INT>=21){
-            popupWindow.setElevation(5.0f);
-        }
-
-        // Get a reference for the popup view close button
-        ImageButton termsCloseButton = (ImageButton) popupView.findViewById(R.id.ib_close);
-
-        termsCloseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Dismiss the popup window
-                popupWindow.dismiss();
-            }
-        });
-
-        // Finally, show the popup window at the center location of root relative layout
-        popupWindow.showAtLocation(popupView, Gravity.CENTER,0,0);
+        FragmentTransaction ft = fragmentManager.beginTransaction();;
+        ft.setCustomAnimations(R.anim.animation_slide_in_right, R.anim.animation_slide_out_left, R.anim.animation_slide_in_right, R.anim.animation_slide_out_left);
+        ft.add(R.id.content_main, fragment);
+        ft.addToBackStack("howitworks");
+        ft.commit();
     }
+
 
     private void navAbout()
     {
-        LayoutInflater aboutInflater = (LayoutInflater) this.getSystemService(MainActivity.LAYOUT_INFLATER_SERVICE);
-        View aboutPopupView = aboutInflater.inflate(R.layout.popup_about,null);
+        fragmentManager = getSupportFragmentManager();
+        AboutFragment fragment = new AboutFragment();
 
-        if(popupWindow != null)
-            if(popupWindow.isShowing())
-                popupWindow.dismiss();
-
-        popupWindow = new PopupWindow(
-                aboutPopupView,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-        );
-
-        popupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
-
-        // Set an elevation value for popup window
-        // Call requires API level 21
-        if(Build.VERSION.SDK_INT>=21){
-            popupWindow.setElevation(5.0f);
-        }
-
-        // Get a reference for the popup view close button
-        ImageButton closeButton = (ImageButton) aboutPopupView.findViewById(R.id.ib_close);
-
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Dismiss the popup window
-                popupWindow.dismiss();
-            }
-        });
-
-        // Finally, show the popup window at the center location of root relative layout
-        popupWindow.showAtLocation(aboutPopupView, Gravity.CENTER,0,0);
+        FragmentTransaction ft = fragmentManager.beginTransaction();;
+        ft.setCustomAnimations(R.anim.animation_slide_in_right, R.anim.animation_slide_out_left, R.anim.animation_slide_in_right, R.anim.animation_slide_out_left);
+        ft.add(R.id.content_main, fragment);
+        ft.addToBackStack("about");
+        ft.commit();
     }
     //Checks if the fragment the user is trying to open is the same as the current fragment
     public boolean checkSameFragment(String fragmentClicked)
@@ -500,6 +466,8 @@ public class MainActivity extends AppCompatActivity
                 super.onDrawerOpened(drawerView);
             }
         };
+
+
 
         drawer.setDrawerListener(toggle);
         toggle.syncState();
@@ -611,14 +579,14 @@ public class MainActivity extends AppCompatActivity
         setupMainNav();
 
         //stops app randomly launching a second home fragment
-        if(!checkSameFragment("home"))
+        if(!checkSameFragment("jobBoard"))
         {
-            HomeFragment fragment = new HomeFragment();
+            JobBoardFragment fragment = new JobBoardFragment();
             fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.slide_out_right, android.R.anim.fade_in, android.R.anim.slide_out_right);
-            transaction.add(R.id.content_main, fragment, "home fragment");
-            transaction.addToBackStack("home");
+            transaction.setCustomAnimations(R.anim.animation_slide_in_right, R.anim.animation_slide_out_left, R.anim.animation_slide_in_right, R.anim.animation_slide_out_left);
+            transaction.add(R.id.content_main, fragment, "job board fragment");
+            transaction.addToBackStack("jobBoard");
             transaction.commit();
         }
     }

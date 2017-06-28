@@ -7,7 +7,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowActionBarOverlay">true</item>
-
+        <item name="android:actionMenuTextColor">@color/MenuText</item>
+        <item name="actionMenuTextColor">@color/MenuText</item>
+        <item name="android:textColorPrimary">@color/MenuText</item>
+        <item name="android:textColorSecondary">@color/MenuText</item>
     </style>
 
     <style name="TransparentTheme" parent="android:Theme.Holo.Light">
@@ -32,6 +35,15 @@
         <item name="windowNoTitle">true</item>
         <item name="android:colorPrimaryDark">#231F20</item>
         <item name="colorPrimaryDark">#231F20</item>
+        <item name="android:actionMenuTextColor">@color/MenuText</item>
+        <item name="actionMenuTextColor">@color/MenuText</item>
+        <item name="android:textColorPrimary">@color/MenuText</item>
+        <item name="android:textColorSecondary">@color/MenuText</item>
+    </style>
+
+    <style name="scrollBarStyle">
+        <item name="android:scrollbarSize">15dp</item>
+        <item name="android:scrollbarThumbVertical">@color/text_color</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">

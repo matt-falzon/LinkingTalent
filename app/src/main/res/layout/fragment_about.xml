@@ -1,0 +1,106 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.ridebooker.linkingtalent.AboutFragment"
+    android:background="@drawable/background">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/nav_button"/>
+
+        <TextView
+            android:id="@+id/job_board_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="About Linking Talent"
+            android:textColor="#FBFCFD"
+            android:textSize="24sp"/>
+    </RelativeLayout>
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginTop="0dp"
+            android:background="#FBFCFD"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view"
+            android:layout_alignParentLeft="true"
+            android:text="What we do"
+            android:paddingLeft="10dp"
+            android:paddingTop="30dp"
+            android:textColor="@color/text_color"
+            android:textSize="28dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv1"
+            android:layout_below="@+id/title"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:text=" Linking Talent helps ‘Talent Champs’ capitalize on their networks. "
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv2"
+            android:layout_below="@+id/tv1"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:text="You are a ‘Talent Champ’ if you can identify and refer high-quality professional talent from your work and social communities for job openings on our platform."
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv3"
+            android:layout_below="@+id/tv2"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:text="With Linking Talent’s platform, ‘Talent Champs’ get paid to help companies finding the right talent and making job placements much faster, easier and smarter."
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv4"
+            android:layout_below="@+id/tv3"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:text="Referral earnings: $1000 - $5000 USD per successful hire."
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+
+    </RelativeLayout>
+</LinearLayout>

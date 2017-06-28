@@ -8,7 +8,7 @@
     tools:context="com.ridebooker.linkingtalent.JobBoardFragment"
     android:background="@drawable/background">
 
-
+    <!--
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -16,7 +16,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_input_add"/>
-
+-->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="5dp"
-            android:paddingBottom="5dp">
+            android:paddingBottom="5dp"
+            android:scrollbars="vertical"
+            android:scrollbarSize="10dp">
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 

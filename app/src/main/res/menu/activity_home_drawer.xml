@@ -3,47 +3,35 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Home"/>
-        <item
             android:id="@+id/nav_jobs"
             android:icon="@drawable/nav_icon_job_board"
-            android:title="View Jobs"/>
-       <!-- <item
-            android:id="@+id/nav_search"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Search"/>
-        <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Profile"/>
-             -->
-        <item
-            android:id="@+id/nav_create"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Create Job"/>
+            android:title="Job Board"/>
+
     </group>
 
-    <item android:title="Misc">
+    <item android:title="">
         <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/nav_icon_share"
+                android:title="Share App"/>
+            <item
+                android:id="@+id/nav_howitworks"
+                android:icon="@drawable/nav_icon_howitworks"
+                android:title="How it works"/>
             <item
                 android:id="@+id/nav_about"
                 android:icon="@drawable/nav_icon_about"
                 android:title="About Linking Talent"/>
             <item
-                android:id="@+id/nav_terms"
-                android:icon="@drawable/nav_icon_howitworks"
-                android:title="How it works"/>
+                android:id="@+id/nav_contact"
+                android:icon="@drawable/nav_icon_contact"
+                android:title="Contact Linking Talent"/>
         </menu>
     </item>
 
-    <item android:title="Account">
+    <item android:title="">
         <menu>
-            <item
-                android:id="@+id/nav_profile"
-                android:icon="@drawable/nav_icon_profile"
-                android:title="My Profile"/>
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/nav_icon_logout"

@@ -1,23 +1,12 @@
 package com.ridebooker.linkingtalent;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.nfc.Tag;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
 
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 
@@ -25,8 +14,6 @@ import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -36,14 +23,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,27 +44,19 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.io.Console;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -91,24 +66,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.linkedin.platform.APIHelper;
-import com.linkedin.platform.LISession;
-import com.linkedin.platform.LISessionManager;
-import com.linkedin.platform.errors.LIApiError;
-import com.linkedin.platform.errors.LIAuthError;
-import com.linkedin.platform.listeners.ApiListener;
-import com.linkedin.platform.listeners.ApiResponse;
-import com.linkedin.platform.listeners.AuthListener;
-import com.linkedin.platform.utils.Scope;
 import com.ridebooker.linkingtalent.Helpers.Credentials.CredentialsManager;
-import com.ridebooker.linkingtalent.Helpers.ImageLoadTask;
-import com.ridebooker.linkingtalent.datatypes.TalentChamp;
-import com.squareup.picasso.Picasso;
-
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import static android.Manifest.permission.READ_CONTACTS;
+import com.ridebooker.linkingtalent.Models.TalentChamp;
 
 
 public class LoginActivity extends AppCompatActivity
@@ -119,25 +78,25 @@ public class LoginActivity extends AppCompatActivity
     private static final String host = "api.linkedin.com";
     private static final String topCardUrl = "https://" + host + "/v1/people/~:(id,email-address,formatted-name,phone-numbers,public-profile-url,picture-url,picture-urls::(original))";
     private static final int RC_PHOTO_PICKER = 1234;
-    private Uri imageUri;
+
 
     private final static Logger LOGGER = Logger.getLogger(LoginActivity.class.getName());
 
     //UI References
-    private View mProgressView;
-    private View mLoginFormView;
     private LoginButton fbLoginButton;
-    private ProgressBar progressBar;
     private EditText etEmail, etPassword;
     private PopupWindow popupWindow;
-    private  ImageView imgProfile;
+    //private  ImageView imgProfile;
+    private Button loginButton;
+    private ProgressDialog progressDialog;
+
     public static DatabaseReference dbRootRef = FirebaseDatabase.getInstance().getReference();
     public static DatabaseReference dbUsersRef = dbRootRef.child("users");
 
-    private String linkedinUid;
     private Auth0 auth0;
     private UserProfile _profile;
     private Uri selectedImageUri;
+    private Uri imageUri;
 
     CallbackManager cbManager;
 
@@ -171,14 +130,24 @@ public class LoginActivity extends AppCompatActivity
         fbLoginButton = (LoginButton) findViewById(R.id.fb_login_button);
         etEmail = (EditText) findViewById(R.id.login_email);
         etPassword = (EditText) findViewById(R.id.login_password);
-        //mLoginFormView = findViewById(R.id.login_form);
-        //mProgressView = findViewById(R.id.login_progress);
-        //progressBar = (ProgressBar) findViewById(R.id.login_progress);
-        //progressBar.setVisibility(View.INVISIBLE);
+        loginButton = (Button) findViewById(R.id.login_signin);
 
         fbLoginButton.setReadPermissions("email", "public_profile");
 
         setupTextListeners();
+
+        loginButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(etEmail.getText().toString() == "")
+                    Toast.makeText(getBaseContext(), "No Email address entered", Toast.LENGTH_SHORT);
+                else if(etPassword.getText().toString() == "")
+                    Toast.makeText(getBaseContext(), "No Email address entered", Toast.LENGTH_SHORT);
+
+                else
+                    emailLogin(etEmail.getText().toString(), etPassword.getText().toString());
+            }
+    });
 
     }
 
@@ -227,7 +196,7 @@ public class LoginActivity extends AppCompatActivity
             selectedImageUri = data.getData();
             if(selectedImageUri != null)
             {
-                imgProfile.setImageURI(selectedImageUri);
+                //imgProfile.setImageURI(selectedImageUri);
                 //store image Uri for later use
                 imageUri = selectedImageUri;
             }
@@ -274,7 +243,6 @@ public class LoginActivity extends AppCompatActivity
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = _firebaseAuth.getCurrentUser();
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.
@@ -350,7 +318,6 @@ public class LoginActivity extends AppCompatActivity
                         }
                         else
                         {
-                            //progressBar.setVisibility(View.INVISIBLE);
                             finish();
                         }
 
@@ -406,8 +373,9 @@ public class LoginActivity extends AppCompatActivity
                     }
                 });
     }
-
+/*
     //get Linkedin Session
+    //this uses linkedin api's and is no longer used. We now use OAuth
     private void setUpdateState() {
         LISessionManager sessionManager = LISessionManager.getInstance(getApplicationContext());
         LISession session = sessionManager.getSession();
@@ -451,15 +419,7 @@ public class LoginActivity extends AppCompatActivity
         });
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        if (WebAuthProvider.resume(intent)) {
-            return;
-        }
-        super.onNewIntent(intent);
-    }
-
-    ///Parse the Linkedin JSON Data
+        ///Parse the Linkedin JSON Data
     public void  parseData(JSONObject response)
     {
         try
@@ -476,7 +436,15 @@ public class LoginActivity extends AppCompatActivity
         }
 
     }
+*/
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        if (WebAuthProvider.resume(intent)) {
+            return;
+        }
+        super.onNewIntent(intent);
+    }
     private void validateToken(final String token, Auth0 auth0)
     {
         // Try to make an automatic login
@@ -641,7 +609,7 @@ public class LoginActivity extends AppCompatActivity
 
         // Get a reference for the popup view close button
         ImageButton closeButton = (ImageButton) popupView.findViewById(R.id.ib_close);
-        imgProfile = (ImageView) popupView.findViewById(R.id.register_profile_img);
+        //imgProfile = (ImageView) popupView.findViewById(R.id.register_profile_img);
         Button btnRegister = (Button) popupView.findViewById(R.id.btn_register_submit);
 
         final EditText registerFirstName = (EditText) popupView.findViewById(R.id.register_first_name);
@@ -654,16 +622,17 @@ public class LoginActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                /*
                 if(imageUri == null)
                 {
                     Toast.makeText(getBaseContext(), "Upload a profile image", Toast.LENGTH_SHORT).show();
                     //return;
-                }
-                else if(registerFirstName.getText() == null ||
-                        registerLastName.getText() == null ||
-                        registerEmail.getText() == null ||
-                        registerPassword.getText() == null ||
-                        registerPassword2.getText() == null)
+                }*/
+                if(registerFirstName.getText() == null ||
+                    registerLastName.getText() == null ||
+                    registerEmail.getText() == null ||
+                    registerPassword.getText() == null ||
+                    registerPassword2.getText() == null)
                 {
                     Toast.makeText(getBaseContext(), "Please fill all the fields", Toast.LENGTH_SHORT).show();
                 }
@@ -673,7 +642,7 @@ public class LoginActivity extends AppCompatActivity
                 }
                 else
                 {
-                    ProgressDialog.show(LoginActivity.this, "",
+                    progressDialog = ProgressDialog.show(LoginActivity.this, "",
                             "Creating Account...", true);
                     MainActivity.user.setEmail(registerEmail.getText().toString());
                     MainActivity.user.setFirstName(registerFirstName.getText().toString());
@@ -703,7 +672,7 @@ public class LoginActivity extends AppCompatActivity
 
     }
 
-    private void createEmailUser(String email, String password)
+    private void createEmailUser(final String email, final String password)
     {
         _firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
@@ -717,9 +686,28 @@ public class LoginActivity extends AppCompatActivity
                             FirebaseUser user = _firebaseAuth.getCurrentUser();
                             MainActivity.user.setId(user.getUid());
                             //upload TC's Image
-                            new ImageUploadTask().execute(MainActivity.user);
+                            //new ImageUploadTask().execute(MainActivity.user);
 
+                            //update firebase user profile
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName(MainActivity.user.getFirstName() + " " + MainActivity.user.getLastName())
+                                    .setPhotoUri(Uri.parse("https://firebasestorage.googleapis.com/v0/b/linkingtalent-e8c2d.appspot.com/o/default_profile_img.png?alt=media&token=963e23ae-f4f2-4924-80f2-f8db96cd8828"))
+                                    .build();
+
+                            _firebaseAuth.getCurrentUser().updateProfile(profileUpdates)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Log.d(TAG, "User profile updated.");
+                                                dbUsersRef.child(MainActivity.user.getId()).setValue(MainActivity.user);
+                                                popupWindow.dismiss();
+                                            }
+                                        }
+                                    });
                             //dbUsersRef.child(user.getUid()).setValue(champ);
+                            emailLogin(email, password);
+                            progressDialog.dismiss();
                         }
                         else
                         {
@@ -734,6 +722,7 @@ public class LoginActivity extends AppCompatActivity
                 });
     }
 
+    //we are no longer uploading profile image on registration
     public void onClickProfileImage(View view)
     {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -742,6 +731,7 @@ public class LoginActivity extends AppCompatActivity
             startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
     }
 
+    //this class is not being used in user registration anymore
     private class ImageUploadTask extends AsyncTask<TalentChamp, Void, Void>{
 
         @Override

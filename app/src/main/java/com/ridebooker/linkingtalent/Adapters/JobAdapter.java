@@ -6,24 +6,18 @@ package com.ridebooker.linkingtalent.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.storage.StorageReference;
 import com.ridebooker.linkingtalent.MainActivity;
 import com.ridebooker.linkingtalent.R;
-import com.ridebooker.linkingtalent.datatypes.Job;
+import com.ridebooker.linkingtalent.Models.Job;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
 {
@@ -70,12 +64,17 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
     @Override
     public void onBindViewHolder(JobViewHolder holder, int position)
     {
-            holder.tvJobTitle.setText(jobs.get(position).getTitle());
-            //holder.tvJobCompany.setText(jobs.get(position).getCompany());
-            String bounty = Integer.toString(jobs.get(position).getBounty());
-            holder.tvJobBounty.setText("$" + bounty);
-            holder.tvJobLocation.setText(jobs.get(position).getLocation());
-            StorageReference photoRef = MainActivity.firebaseRootStorageRef.child(jobs.get(position).getId());
+        String jobTitle = jobs.get(position).getTitle();
+
+        if(jobTitle.length() >= 17)
+            jobTitle = jobTitle.substring(0, 16) + "...";
+
+        holder.tvJobTitle.setText(jobTitle);
+        //holder.tvJobCompany.setText(jobs.get(position).getCompany());
+        String bounty = Integer.toString(jobs.get(position).getBounty());
+        holder.tvJobBounty.setText("$" + bounty);
+        holder.tvJobLocation.setText(jobs.get(position).getLocation());
+        StorageReference photoRef = MainActivity.firebaseRootStorageRef.child(jobs.get(position).getId());
         /*
             if(jobs.get(position).getImageName() != null)
             {
@@ -86,7 +85,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder>
                         .into(holder.ivJobImage);
             }
         */
-            holder.key = jobs.get(position).getKey();
+        holder.key = jobs.get(position).getKey();
         //holder.ivJobImage.setImageResource(icon id here);
     }
 

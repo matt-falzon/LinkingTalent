@@ -1,0 +1,110 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.ridebooker.linkingtalent.HowItWorksFragment"
+    android:background="@drawable/background">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/nav_button"/>
+
+        <TextView
+            android:id="@+id/job_board_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="How It Works"
+            android:textColor="#FBFCFD"
+            android:textSize="24sp"/>
+    </RelativeLayout>
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginTop="0dp"
+            android:background="#FBFCFD"/>
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view"
+            android:layout_alignParentLeft="true"
+            android:text="How it works "
+            android:paddingLeft="10dp"
+            android:paddingTop="30dp"
+            android:textColor="@color/text_color"
+            android:textSize="28dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv1"
+            android:layout_below="@+id/title"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:text="1.  View a job posting to find out who is the best fit in your network for the job."
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv2"
+            android:layout_below="@+id/tv1"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:text="2.  View the reward to see how much you will earn if your referral is successfully hired."
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv3"
+            android:layout_below="@+id/tv2"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:text="3.  Share the job posting from Linking Talent platform to your connection with your unique sharing URL."
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv4"
+            android:layout_below="@+id/tv3"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:text="4.  Help your applicant to get the job so you get the reward."
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

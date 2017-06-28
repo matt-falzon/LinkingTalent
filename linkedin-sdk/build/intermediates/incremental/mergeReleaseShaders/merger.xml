@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\linkedin-sdk\src\main\shaders"/></dataSet><dataSet config="release"><source path="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\linkedin-sdk\src\release\shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/matt/Dev/LinkingTalent/linkedin-sdk/src/main/shaders"/></dataSet><dataSet config="release"><source path="/Users/matt/Dev/LinkingTalent/linkedin-sdk/src/release/shaders"/></dataSet></merger>

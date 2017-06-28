@@ -2,34 +2,26 @@ package com.ridebooker.linkingtalent;
 
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.view.ViewGroup.LayoutParams;
-import android.view.View.OnClickListener;
 
-import com.bumptech.glide.Glide;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.ridebooker.linkingtalent.datatypes.Job;
+import com.ridebooker.linkingtalent.Models.Job;
 
 
 /**
@@ -44,6 +36,7 @@ public class ViewJobFragment extends Fragment
     private BottomNavigationView bottomNavView;
     private DatabaseReference ref = ((MainActivity)getActivity()).dbJobRef;
     private ValueEventListener valueEventListener;
+    private static final String LINKING_TALENT_JOB_URL = "https://d1btafwoxo8q34.cloudfront.net/view_job.html?j=";
 
     private Job viewedJob;
 
@@ -92,40 +85,7 @@ public class ViewJobFragment extends Fragment
             @Override
             public void onClick(View v)
             {
-                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(getContext().LAYOUT_INFLATER_SERVICE);
-                View popupView = inflater.inflate(R.layout.popup_job_info,null);
-
-                if(MainActivity.popupWindow != null)
-                    if(MainActivity.popupWindow.isShowing())
-                        MainActivity.popupWindow.dismiss();
-
-                MainActivity.popupWindow = new PopupWindow(
-                        popupView,
-                        LayoutParams.WRAP_CONTENT,
-                        LayoutParams.WRAP_CONTENT
-                );
-
-                MainActivity.popupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
-
-                // Set an elevation value for popup window
-                // Call requires API level 21
-                if(Build.VERSION.SDK_INT>=21){
-                    MainActivity.popupWindow.setElevation(5.0f);
-                }
-
-                // Get a reference for the popup view close button
-                ImageButton closeButton = (ImageButton) popupView.findViewById(R.id.ib_close);
-
-                closeButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // Dismiss the popup window
-                        MainActivity.popupWindow.dismiss();
-                    }
-                });
-
-                // Finally, show the popup window at the center location of root relative layout
-                MainActivity.popupWindow.showAtLocation(v, Gravity.CENTER,0,0);
+                ((MainActivity)getActivity()).navJobInfo(key);
             }
         });
 
@@ -150,7 +110,7 @@ public class ViewJobFragment extends Fragment
                     case R.id.job_action_apply:
                         Intent applyIntent = new Intent();
                         applyIntent.setAction(Intent.ACTION_SEND);
-                        applyIntent.setType("message/rfc822");
+                        applyIntent.setType("text/plain");
                         applyIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"mattf@ridebooker.com"});
                         applyIntent.putExtra(Intent.EXTRA_SUBJECT, tvTitle.getText().toString() + " application");
                         applyIntent.putExtra(Intent.EXTRA_TEXT, "Job application template goes here" );
@@ -201,7 +161,7 @@ public class ViewJobFragment extends Fragment
                         shareIntent.setType("text/plain");
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, tvTitle.getText().toString() + " position");
                         shareIntent.putExtra(Intent.EXTRA_TEXT, "I found a " + tvTitle.getText().toString() + " role that i thought you may be interested in "
-                                + "https://d1btafwoxo8q34.cloudfront.net/view_job.html?j=" + viewedJob.getKey());
+                                + LINKING_TALENT_JOB_URL + viewedJob.getKey());
                         startActivity(Intent.createChooser(shareIntent, "Send to"));
                         break;
                 }
@@ -249,7 +209,6 @@ public class ViewJobFragment extends Fragment
         };
         ref.addValueEventListener(valueEventListener);
     }
-
 
 
 

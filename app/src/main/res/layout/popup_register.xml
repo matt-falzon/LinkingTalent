@@ -4,9 +4,10 @@
     android:id="@+id/view_job_popup"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/popup_background"
+    android:background="#FFFFFF"
+    android:layout_gravity="top"
     android:padding="2dp"
-    android:layout_gravity="center">
+    android:layout_marginTop="20dp">
 
 
     <ImageButton
@@ -19,7 +20,7 @@
         android:src="@drawable/ic_close_white_24dp"
         />
 
-
+<!--
     <ImageView
         android:id="@+id/register_profile_img"
         android:layout_width="150dp"
@@ -29,8 +30,8 @@
         android:layout_marginTop="11dp"
         android:backgroundTint="@color/cardview_shadow_end_color"
         android:src="@drawable/default_profile_img"
-        android:onClick="onClickProfileImage"/>
-<!--
+        android:onClick="onClickProfileImage"/>--><!--
+
     <TextView
         android:id="@+id/register_profile_img_text"
         android:layout_width="wrap_content"
@@ -48,10 +49,10 @@
     android:layout_width="wrap_content"
     android:layout_height="250dp"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="top"
     android:id="@+id/linearLayout"
     android:layout_marginTop="10dp"
-    android:layout_below="@+id/register_profile_img"
+    android:layout_below="@+id/ib_close"
     android:layout_centerHorizontal="true">
 
     <EditText
@@ -95,9 +96,10 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/edittext_border"
         android:hint="Password"
-        android:imeOptions="actionDone"
+        android:imeOptions="actionNext"
         android:inputType="textPassword"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:nextFocusForward="@+id/register_password2"/>
 
     <EditText
         android:id="@+id/register_password2"

@@ -35,7 +35,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.ridebooker.linkingtalent.Helpers.ImageLoadTask;
-import com.ridebooker.linkingtalent.datatypes.Job;
+import com.ridebooker.linkingtalent.Models.Job;
 
 import java.io.IOException;
 import java.util.List;

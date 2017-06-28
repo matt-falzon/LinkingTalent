@@ -134,6 +134,7 @@
             android:textColor="#FFFFFF"
             android:hint="@string/create_job_category_hint"
             android:paddingTop="8dp"
+            android:paddingLeft="5dp"
             android:textSize="18dp"/>
 
     </LinearLayout>
@@ -158,6 +159,7 @@
             android:textColor="#FFFFFF"
             android:hint="@string/view_job_employment_type"
             android:paddingTop="3dp"
+            android:paddingLeft="5dp"
             android:textSize="18dp"/>
 
     </LinearLayout>
@@ -180,6 +182,7 @@
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
             android:paddingTop="3dp"
+            android:paddingLeft="5dp"
             android:text="Pay"
             android:textSize="18dp"/>
 
@@ -197,6 +200,7 @@
             android:layout_width="30dp"
             android:layout_height="31dp"
             android:layout_marginRight="0dp"
+            android:layout_marginBottom="5dp"
             android:src="@drawable/icon_trophy"/>
 
         <TextView
@@ -232,7 +236,8 @@
             android:text="Job Overview"
             android:textColor="#FBFCFD"
             android:textSize="22dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:paddingLeft="10dp"/>
 
         <ScrollView
             android:layout_width="match_parent"

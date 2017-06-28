@@ -3,21 +3,30 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\linkedin-sdk\build\intermediates\bundles\default\classes.jar"
-        jumboMode="false"
+        jar="/Users/matt/Dev/LinkingTalent/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="ff0dbd51b176ea277d0eb2359b37338041922a82">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\4\classes_83c44da6fb0f51f5a87c0cfacaafdaf0e266f723\classes.dex" />
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/matt/Dev/LinkingTalent/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_9eccef0b4d5fcbf577e5d4aa7551d4ad218d3be7/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\linkedin-sdk\build\intermediates\bundles\default\libs\volley.jar"
-        jumboMode="false"
+        jar="/Users/matt/Dev/LinkingTalent/linkedin-sdk/build/intermediates/bundles/default/libs/volley.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="665cdcc34ce1b904988530a63132163e8fc1efba">
-        <dex dex="C:\Users\mattf\OneDrive\Documents\GitHub\LinkingTalent\app\build\intermediates\transforms\dex\debug\folders\1000\8\volley_2a7e1db920f9e5b7c4a297bbb60f245f82bb5233\classes.dex" />
+        <dex dex="/Users/matt/Dev/LinkingTalent/app/build/intermediates/transforms/dex/debug/folders/1000/8/volley_fa5077c29b95c6c653144ed19b80a90a31e73632/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/matt/Dev/LinkingTalent/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="98721b2472df44f151fc1d4f9558bdfe5e9d6e3f">
+        <dex dex="/Users/matt/Dev/LinkingTalent/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_38cb0d80f187f0b777068aa5af3793ea71e091c7/classes.dex" />
     </item>
 
 </items>
