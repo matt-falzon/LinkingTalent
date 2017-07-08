@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.ridebooker.linkingtalent"
+          package="com.empoweredstartups.linkingtalent"
         xmlns:tools="http://schemas.android.com/tools">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
@@ -24,7 +24,7 @@
             android:value="@string/facebook_app_id"/>
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.empoweredstartups.linkingtalent.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
@@ -41,14 +41,14 @@
 
         <!-- android:label="@string/title_activity_login" -->
         <activity
-            android:name=".LoginActivity"
-            android:parentActivityName=".MainActivity"
+            android:name="com.empoweredstartups.linkingtalent.LoginActivity"
+            android:parentActivityName="com.empoweredstartups.linkingtalent.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"
             android:launchMode="singleTask">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ridebooker.linkingtalent.MainActivity"/>
+                android:value="com.empoweredstartups.linkingtalent.MainActivity"/>
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -57,7 +57,7 @@
 
                 <data
                     android:host="falzonm.auth0.com"
-                    android:pathPrefix="/android/com.ridebooker.linkingtalent/callback"
+                    android:pathPrefix="/android/com.empoweredstartups.linkingtalent/callback"
                     android:scheme="https" />
             </intent-filter>
         </activity>
@@ -70,7 +70,7 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"/>
         <activity
-            android:name=".SplashActivity"
+            android:name="com.empoweredstartups.linkingtalent.SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
